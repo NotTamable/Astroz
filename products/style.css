@@ -44,10 +44,12 @@ footer {
     width: calc(210mm / 3); /* A4 width divided by 3 */
     height: auto; /* Adjust height to be responsive */
     background-color: #1f1f1f;
-    border: 1px solid #ffffff;
+    border: 2px solid #ffffff; /* Thicker border */
+    border-radius: 10px; /* Rounded edges */
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
+    cursor: pointer;
 }
 
 .product img {
@@ -59,8 +61,11 @@ footer {
     margin: 10px 0 5px;
 }
 
-.product p {
+.product p.price {
     margin: 0;
+    background-color: red; /* Red background for price tag */
+    padding: 5px;
+    border-radius: 5px;
 }
 
 @media (max-width: 768px) {

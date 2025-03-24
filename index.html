@@ -15,6 +15,10 @@
     <main>
         <h2>Welcome to Astroz</h2>
         <p>Your one-stop shop for the best products.</p>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button type="submit">Search</button>
+        </form>
     </main>
     <footer>
         <p>&copy; 2023 Astroz</p>
@@ -26,6 +30,12 @@
 
         document.getElementById('close-top-bar').addEventListener('click', function() {
             document.getElementById('top-bar').style.display = 'none';
+        });
+
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value;
+            window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
         });
     </script>
 </body>

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Antipasto';
-    src: url('/fonts/Antipasto.ttf') format('truetype');
+    src: url('./fonts/Antipasto.ttf') format('truetype');
 }
 
 body {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astroz</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/png" href="/images/AstrozLogo.png">
+    <style>
+        @font-face {
+            font-family: 'Methane';
+            src: url('/fonts/Varino.ttf') format('truetype');
+        }
+    </style>
+</head>
+<body>
+    <div id="top-bar">
+        <p>Free Shipping<button id="close-top-bar">X</button></p>
+    </div>
+    <div id="navbar"></div>
+    <main>
+        <h2>Welcome to Astroz</h2>
+        <p>Your one-stop shop for the best products.</p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Astroz</p>
+    </footer>
+    <script>
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar').innerHTML = data);
+
+        document.getElementById('close-top-bar').addEventListener('click', function() {
+            document.getElementById('top-bar').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

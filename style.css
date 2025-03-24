@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Antipasto';
+    src: url('/fonts/Antipasto.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: "Antipasto";
+    background-color: #121212;
+    color: #ffffff;
+}
+
+#top-bar {
+    background-color: #1f1f1f;
+    color: #37ff00;
+    text-align: center;
+    padding: 1vh;
+    position: relative;
+}
+
+#top-bar p {
+    margin: 0px;
+    font-family: "Antipasto";
+}
+
+#top-bar button {
+    position: absolute;
+    right: 2vh;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+main {
+    padding: 1rem;
+}
+
+h1, h2 {
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

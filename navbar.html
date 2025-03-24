@@ -1,0 +1,51 @@
+<nav>
+    <ul>
+        <li><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo" class="logo">Home</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+    </ul>
+</nav>
+<style>
+    @font-face {
+        font-family: 'Antipasto';
+        src: url('/fonts/Antipasto.ttf') format('truetype');
+    }
+    nav {
+        background: radial-gradient(circle at 10% 20%, #000428, transparent),
+                    radial-gradient(circle at 80% 80%, #004e92, transparent),
+                    radial-gradient(circle at 50% 50%, #1f1c2c, transparent),
+                    radial-gradient(circle at 30% 70%, #2c3e50, transparent),
+                    radial-gradient(circle at 70% 30%, #1f1c2c, transparent);
+        background-size: cover;
+        padding-bottom: 1vh;
+        padding-top: 1vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+    }
+    nav ul li {
+        margin-left: 5vh;
+        margin-right: 5vh;
+    }
+    nav ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-family: 'Antipasto', sans-serif;
+        font-size: 5vh;
+    }
+    nav ul li a img {
+        margin-right: 1vh;
+        width: auto;
+        height: 5vh;
+    }
+</style>

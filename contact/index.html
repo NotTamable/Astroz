@@ -11,6 +11,12 @@
     <main>
         <h2>Contact Us</h2>
         <p>Get in touch with Astroz.</p>
+        <form id="contact-form" action="https://formsubmit.co/hrahmant360@gmail.com" method="POST">
+            <input type="text" name="name" required placeholder="Your Name">
+            <input type="email" name="email" required placeholder="Your Email">
+            <textarea name="message" required placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
     </main>
     <footer>
         <p>&copy; 2023 Astroz</p>
@@ -19,6 +25,17 @@
         fetch('/navbar.html')
             .then(response => response.text())
             .then(data => document.getElementById('navbar').innerHTML = data);
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            const lastSubmitTime = localStorage.getItem('lastSubmitTime');
+            const now = new Date().getTime();
+            if (lastSubmitTime && now - lastSubmitTime < 24 * 60 * 60 * 1000) {
+                event.preventDefault();
+                alert('You can only send one message per day.');
+            } else {
+                localStorage.setItem('lastSubmitTime', now);
+            }
+        });
     </script>
 </body>
 </html>

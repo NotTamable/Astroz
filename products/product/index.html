@@ -38,6 +38,7 @@
             productPriceExclVAT.className = 'price';
             const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
             productPriceExclVAT.textContent = `Excl. VAT: £${displayedPriceExclVAT}`;
+            productPriceExclVAT.style.backgroundColor = 'red'; // Red background for price excluding VAT
 
             const productPriceInclVAT = document.createElement('p');
             productPriceInclVAT.className = 'price';

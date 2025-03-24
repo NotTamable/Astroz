@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const productImage = document.createElement("img");
         productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
         productImage.alt = product.name;
+        productImage.style.borderRadius = "10px"; // Adjust the image border radius
 
         const productName = document.createElement("h3");
         productName.textContent = product.name;

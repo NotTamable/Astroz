@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Astroz</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <main>
+        <div id="product-details"></div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Astroz</p>
+    </footer>
+    <script src="../products.js"></script>
+    <script>
+        fetch('../../navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar').innerHTML = data);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+            const productDetails = document.getElementById('product-details');
+            const productImage = document.createElement('img');
+            productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
+            productImage.alt = product.name;
+            productImage.style.width = '100%'; // Size the image correctly
+
+            const productName = document.createElement('h3');
+            productName.textContent = product.name;
+
+            const productPriceExclVAT = document.createElement('p');
+            productPriceExclVAT.className = 'price';
+            const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
+            productPriceExclVAT.textContent = `Excl. VAT: £${displayedPriceExclVAT}`;
+
+            const productPriceInclVAT = document.createElement('p');
+            productPriceInclVAT.className = 'price';
+            productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
+
+            productDetails.appendChild(productImage);
+            productDetails.appendChild(productName);
+            productDetails.appendChild(productPriceExclVAT);
+            productDetails.appendChild(productPriceInclVAT);
+        }
+    </script>
+</body>
+</html>

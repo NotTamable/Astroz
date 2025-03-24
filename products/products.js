@@ -6,7 +6,13 @@ const products = [
 
 document.addEventListener("DOMContentLoaded", function() {
     const productsContainer = document.getElementById("products-container");
-    products.forEach(product => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+    const filteredProducts = searchQuery ? products.filter(product => 
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ) : products;
+
+    filteredProducts.forEach(product => {
         const productDiv = document.createElement("div");
         productDiv.className = "product";
         productDiv.dataset.id = product.id;
@@ -28,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productDiv.appendChild(productPrice);
 
         productDiv.addEventListener("click", function() {
-            window.location.href = `product.html?id=${product.id}`;
+            window.location.href = `product/index.html?id=${product.id}`;
         });
 
         productsContainer.appendChild(productDiv);

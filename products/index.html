@@ -10,11 +10,12 @@
     <div id="navbar"></div>
     <main>
         <h2>Our Products</h2>
-        <p>Check out our amazing products.</p>
+        <div id="products-container"></div>
     </main>
     <footer>
         <p>&copy; 2023 Astroz</p>
     </footer>
+    <script src="products.js"></script>
     <script>
         fetch('/navbar.html')
             .then(response => response.text())

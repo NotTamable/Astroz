@@ -32,3 +32,33 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+#products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product {
+    width: calc(210mm / 2); /* A4 width divided by 2 */
+    height: calc(297mm / 2); /* A4 height divided by 2 */
+    background-color: #1f1f1f;
+    border: 1px solid #ffffff;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product h3 {
+    margin: 10px 0 5px;
+}
+
+.product p {
+    margin: 0;
+}

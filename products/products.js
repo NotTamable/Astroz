@@ -1,7 +1,7 @@
 const products = [
-    { name: "Astroz Hoodie - Green", price: "£10", },
-    { name: "Product2", price: "£20", },
-    { name: "Product3", price: "£30", }
+    { name: "Astroz Hoodie - Green", price: "£10" },
+    { name: "Product2", price: "£20" },
+    { name: "Product3", price: "£30" }
 ];
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productDiv.className = "product";
 
         const productImage = document.createElement("img");
-        productImage.src = `/ProductImages/${product.name}.webp`;
+        productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
         productImage.alt = product.name;
 
         const productName = document.createElement("h3");

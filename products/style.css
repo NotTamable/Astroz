@@ -41,8 +41,8 @@ footer {
 }
 
 .product {
-    width: calc(210mm / 2); /* A4 width divided by 2 */
-    height: calc(297mm / 2); /* A4 height divided by 2 */
+    width: calc(210mm / 3); /* A4 width divided by 3 */
+    height: auto; /* Adjust height to be responsive */
     background-color: #1f1f1f;
     border: 1px solid #ffffff;
     padding: 10px;
@@ -61,4 +61,16 @@ footer {
 
 .product p {
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: calc(210mm / 2); /* A4 width divided by 2 for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        width: 100%; /* Full width for very small screens */
+    }
 }

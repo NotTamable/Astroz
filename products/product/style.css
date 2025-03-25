@@ -17,10 +17,10 @@ body {
 }
 .product-image {
     width: 50%;
-    min-width: 50%;
     height: 80vh;
     object-fit: contain;
     border-radius: 15px;
+    transition: none; /* Disable smooth transitions for border-radius */
 }
 .product-info {
     max-width: 50%;
@@ -53,4 +53,24 @@ body {
 }
 .checkout-button:hover {
     background-color: #2ecc71;
+}
+
+@media (max-width: 768px) {
+    .product-image {
+        width: 100%; /* Make the image cover the full width */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 15px; /* Retain border radius */
+        transition: none; /* Ensure no smooth transitions for border-radius */
+    }
+    .product-layout {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center align elements */
+    }
+    .product-info {
+        max-width: 100%; /* Make the product info take full width */
+        text-align: center; /* Center align text */
+    }
+    .price-container {
+        align-items: center; /* Center align price container */
+    }
 }

@@ -11,9 +11,9 @@
     <main>
         <div id="product-details"></div>
     </main>
-    <footer>
+    <div>
         <p>&copy; 2023 Astroz</p>
-    </footer>
+    </div>
     <script src="../products.js"></script>
     <script>
         fetch('../../navbar.html')
@@ -30,6 +30,7 @@
             productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
             productImage.alt = product.name;
             productImage.style.width = '100%'; // Size the image correctly
+            productImage.style.borderRadius = '15px'; // Rounded corners
 
             const productName = document.createElement('h3');
             productName.textContent = product.name;
@@ -38,10 +39,12 @@
             productPriceExclVAT.className = 'price';
             const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
             productPriceExclVAT.textContent = `Excl. VAT: £${displayedPriceExclVAT}`;
+            productPriceExclVAT.style.textAlign = 'right'; // Align to the right
 
             const productPriceInclVAT = document.createElement('p');
             productPriceInclVAT.className = 'price';
             productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
+            productPriceInclVAT.style.textAlign = 'right'; // Align to the right
 
             productDetails.appendChild(productImage);
             productDetails.appendChild(productName);

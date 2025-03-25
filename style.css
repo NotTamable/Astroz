@@ -51,3 +51,15 @@ footer {
     bottom: 0;
     font-family: 'Courier New', Courier, monospace;
 }
+
+input[type="search"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px; /* Rounded corners for the search bar */
+    box-sizing: border-box;
+}
+
+.price {
+    text-align: right; /* Align prices to the right */
+}

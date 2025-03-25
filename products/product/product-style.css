@@ -8,9 +8,11 @@
 }
 
 .price {
+    max-width: fit-content;
     text-align: right; /* Align prices to the right */
 }
 .excl-vat {
+    max-width: fit-content;
     background-color: red;
     border-radius: 15px; /* Change the color of the excl-vat price */
     font-size: larger;

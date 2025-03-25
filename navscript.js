@@ -4,4 +4,3 @@ function openModal(modalid) {
 function closeModal(modalid) {
     document.getElementById(modalid).style.display = 'none';
 }
-alert('Hello, welcome to Astroz!');

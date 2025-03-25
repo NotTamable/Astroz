@@ -20,21 +20,6 @@
             <button type="submit">Search</button>
         </form>
     </main>
-    <script src="/script.js"></script>
-    <script>
-        fetch('/navbar.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('navbar').innerHTML = data);
-
-        document.getElementById('close-top-bar').addEventListener('click', function() {
-            document.getElementById('top-bar').style.display = 'none';
-        });
-
-        document.getElementById('search-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const query = document.getElementById('search-input').value.trim().toLowerCase();
-            window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

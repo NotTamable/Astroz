@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Astroz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="navbar"></div>
@@ -18,21 +18,6 @@
             <button type="submit">Send Message</button>
         </form>
     </main>
-    <script>
-        fetch('/navbar.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('navbar').innerHTML = data);
-
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            const lastSubmitTime = localStorage.getItem('lastSubmitTime');
-            const now = new Date().getTime();
-            if (lastSubmitTime && now - lastSubmitTime < 24 * 60 * 60 * 1000) {
-                event.preventDefault();
-                alert('You can only send one message per day.');
-            } else {
-                localStorage.setItem('lastSubmitTime', now);
-            }
-        });
-    </script>
+    <script src="../script.js"></script>
 </body>
 </html>

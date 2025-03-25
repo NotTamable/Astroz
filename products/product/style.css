@@ -1,0 +1,51 @@
+/* Page-specific style for product details page */
+
+.product-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
+}
+
+.product-info {
+    max-width: 500px;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.excl-vat {
+    font-size: 1em;
+    color: #666;
+}
+
+.checkout-button {
+    background-color: #37ff00;
+    color: #000;
+    border: none;
+    padding: 10px 40px; /* Make the button wider */
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.checkout-button:hover {
+    background-color: #2ecc71;
+}

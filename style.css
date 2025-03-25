@@ -56,12 +56,12 @@ input[type="search"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 15px; /* Rounded corners for the search bar */
+    border-radius: 15px;
     box-sizing: border-box;
 }
 
 .price {
-    text-align: right; /* Align prices to the right */
+    text-align: right;
 }
 
 #search-form {

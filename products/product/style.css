@@ -17,7 +17,7 @@ body {
 }
 .product-image {
     width: auto; /* Make the image cover the full width */
-    height: 80%; /* Maintain aspect ratio */
+    height: 80vh; /* Maintain aspect ratio */
     border-radius: 15px; /* Retain border radius */
     transition: none; /* Ensure no smooth transitions for border-radius */
 }

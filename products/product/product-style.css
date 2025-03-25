@@ -1,0 +1,7 @@
+#product-details img {
+    border-radius: 15px; /* Rounded corners for product images */
+}
+
+.price {
+    text-align: right; /* Align prices to the right */
+}

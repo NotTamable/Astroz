@@ -60,10 +60,6 @@ input[type="search"] {
     box-sizing: border-box;
 }
 
-.price {
-    text-align: right;
-}
-
 #search-form {
     display: flex;
     justify-content: center;

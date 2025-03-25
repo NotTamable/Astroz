@@ -11,22 +11,27 @@
     <div id="navbar"></div>
     <main>
         <div id="product-details" class="product-layout">
+            <img class="product-image" alt="Product Image">
             <div class="product-info">
                 <h3 class="product-name"></h3>
-                <div class="price-container"></div>
-                <button class="checkout-button">Checkout</button>
+                <div class="price-container">
+                    <p class="price"></p>
+                    <p class="excl-vat"></p>
+                    <button class="checkout-button">Checkout</button>
+                </div>
             </div>
-            <img class="product-image" alt="Product Image">
         </div>
     </main>
-    <div class="footer">
-        <p>&copy; 2023 Astroz</p>
-    </div>
+    <div id="footer"></div>
     <script src="../products.js"></script>
     <script>
         fetch('../../navbar.html')
             .then(response => response.text())
             .then(data => document.getElementById('navbar').innerHTML = data);
+
+        fetch('../../footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
 
         const urlParams = new URLSearchParams(window.location.search);
         const productId = parseInt(urlParams.get('id'));
@@ -43,17 +48,11 @@
 
             const priceContainer = productDetails.querySelector('.price-container');
 
-            const productPriceExclVAT = document.createElement('p');
-            productPriceExclVAT.className = 'excl-vat';
-            const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
-            productPriceExclVAT.textContent = `Excl. VAT: £${displayedPriceExclVAT}`;
+            const productPriceExclVAT = priceContainer.querySelector('.excl-vat');
+            productPriceExclVAT.textContent = `Excl. VAT: £${(product.price * 0.8).toFixed(2)}`;
 
-            const productPriceInclVAT = document.createElement('p');
-            productPriceInclVAT.className = 'price';
+            const productPriceInclVAT = priceContainer.querySelector('.price');
             productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
-
-            priceContainer.appendChild(productPriceExclVAT);
-            priceContainer.appendChild(productPriceInclVAT);
         }
     </script>
 </body>

@@ -20,13 +20,16 @@
             <button type="submit">Search</button>
         </form>
     </main>
-    <div class="footer">
-        <p>&copy; 2023 Astroz</p>
-    </div>
+    <div id="footer"></div>
+    <script src="/script.js"></script>
     <script>
         fetch('/navbar.html')
             .then(response => response.text())
             .then(data => document.getElementById('navbar').innerHTML = data);
+
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
 
         document.getElementById('close-top-bar').addEventListener('click', function() {
             document.getElementById('top-bar').style.display = 'none';
@@ -34,7 +37,7 @@
 
         document.getElementById('search-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const query = document.getElementById('search-input').value;
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
             window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
         });
     </script>

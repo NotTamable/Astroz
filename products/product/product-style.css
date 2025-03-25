@@ -7,15 +7,25 @@
     border-radius: 15px; /* Rounded corners */
 }
 
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align both prices to the same x position */
+    margin-top: 1rem;
+}
+
 .price {
     max-width: fit-content;
-    text-align: right; /* Align prices to the right */
+    border-radius: 15px;
+    font-size: medium;
+    text-align: center;
 }
+
 .excl-vat {
     max-width: fit-content;
     background-color: red;
-    border-radius: 15px; /* Change the color of the excl-vat price */
+    border-radius: 15px;
     font-size: larger;
     padding: 3vh;
-    text-align: right;
+    text-align: center;
 }

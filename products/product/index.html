@@ -35,6 +35,9 @@
             const productName = document.createElement('h3');
             productName.textContent = product.name;
 
+            const priceContainer = document.createElement('div');
+            priceContainer.className = 'price-container'; // Container for price alignment
+
             const productPriceExclVAT = document.createElement('p');
             productPriceExclVAT.className = 'excl-vat';
             const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
@@ -44,10 +47,12 @@
             productPriceInclVAT.className = 'price';
             productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
 
+            priceContainer.appendChild(productPriceExclVAT);
+            priceContainer.appendChild(productPriceInclVAT);
+
             productDetails.appendChild(productImage);
             productDetails.appendChild(productName);
-            productDetails.appendChild(productPriceExclVAT);
-            productDetails.appendChild(productPriceInclVAT);
+            productDetails.appendChild(priceContainer);
         }
     </script>
 </body>

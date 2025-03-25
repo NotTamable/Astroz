@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'Antipasto';
-    src: url('./fonts/Antipasto.ttf') format('truetype');
+    font-family: 'FutureClean';
+    src: url('../../fonts/futureclean.ttf') format('truetype');
 }
 body {
     margin: 0;
-    font-family: "Antipasto";
+    font-family: "FutureClean";
     background-color: #121212;
     color: #ffffff;
 }
@@ -19,6 +19,7 @@ body {
     max-width: 50%;
     height: 80vh;
     margin-right: 10vh;
+    object-fit: contain; /* Prevent image stretching */
 }
 .product-info {
     max-width: 50%;
@@ -30,12 +31,11 @@ body {
     align-items: flex-start;
 }
 .price {
-    font-size: 10vh;
-    font-weight: bold;
     color: white;
 }
 .excl-vat {
-    font-size: 1em;
+    font-size: 10vh;
+    font-weight: bold;
     color: white;
     background-color: red;
     border-radius: 15px;

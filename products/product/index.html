@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - Astroz</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./product-style.css"> <!-- Page-specific style -->
 </head>
 <body>
     <div id="navbar"></div>
     <main>
         <div id="product-details"></div>
     </main>
-    <div>
+    <div class="footer">
         <p>&copy; 2023 Astroz</p>
     </div>
     <script src="../products.js"></script>
@@ -36,7 +37,7 @@
             productName.textContent = product.name;
 
             const productPriceExclVAT = document.createElement('p');
-            productPriceExclVAT.className = 'price';
+            productPriceExclVAT.className = 'price excl-vat';
             const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
             productPriceExclVAT.textContent = `Excl. VAT: £${displayedPriceExclVAT}`;
             productPriceExclVAT.style.textAlign = 'right'; // Align to the right

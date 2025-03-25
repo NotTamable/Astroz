@@ -18,7 +18,6 @@ body {
 .product-image {
     max-width: 50%;
     height: 80vh;
-    margin: 5vh;
     object-fit: contain;
     border-radius: 15px;
 }

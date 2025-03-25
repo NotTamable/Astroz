@@ -22,6 +22,11 @@ body {
     object-fit: contain;
     border-radius: 15px;
 }
+@media (max-width: 768px) {
+    .product-image {
+        border-radius: 15px; /* Ensure border radius stays consistent */
+    }
+}
 .product-info {
     max-width: 50%;
     float: right;

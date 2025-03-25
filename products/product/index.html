@@ -30,8 +30,7 @@
             const productImage = document.createElement('img');
             productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
             productImage.alt = product.name;
-            productImage.style.width = '100%'; // Size the image correctly
-            productImage.style.borderRadius = '15px'; // Rounded corners
+            productImage.className = 'product-image'; // Set class for styling
 
             const productName = document.createElement('h3');
             productName.textContent = product.name;

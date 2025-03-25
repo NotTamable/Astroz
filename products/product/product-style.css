@@ -2,6 +2,17 @@
     border-radius: 15px; /* Rounded corners for product images */
 }
 
+.product-image {
+    height: 80vh; /* Size the image correctly */
+    border-radius: 15px; /* Rounded corners */
+}
+
 .price {
     text-align: right; /* Align prices to the right */
+}
+.price excl-vat {
+    background-color: red;
+    border-radius: 15px; /* Change the color of the excl-vat price */
+    font-size: larger;
+    padding: 3vh;
 }

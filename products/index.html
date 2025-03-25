@@ -12,16 +12,11 @@
         <h2>Our Products</h2>
         <div id="products-container"></div>
     </main>
-    <div id="footer"></div>
     <script src="products.js"></script>
     <script>
         fetch('../navbar.html')
             .then(response => response.text())
             .then(data => document.getElementById('navbar').innerHTML = data);
-
-        fetch('../footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
 
         const urlParams = new URLSearchParams(window.location.search);
         const searchQuery = urlParams.get('search');

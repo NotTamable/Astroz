@@ -10,9 +10,10 @@
 .price {
     text-align: right; /* Align prices to the right */
 }
-.price excl-vat {
+.excl-vat {
     background-color: red;
     border-radius: 15px; /* Change the color of the excl-vat price */
     font-size: larger;
     padding: 3vh;
+    text-align: right;
 }

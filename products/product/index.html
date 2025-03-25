@@ -36,15 +36,13 @@
             productName.textContent = product.name;
 
             const productPriceExclVAT = document.createElement('p');
-            productPriceExclVAT.className = 'price excl-vat';
+            productPriceExclVAT.className = 'excl-vat';
             const displayedPriceExclVAT = (product.price * 0.8).toFixed(2); // 20% less
             productPriceExclVAT.textContent = `Excl. VAT: £${displayedPriceExclVAT}`;
-            productPriceExclVAT.style.textAlign = 'right'; // Align to the right
 
             const productPriceInclVAT = document.createElement('p');
             productPriceInclVAT.className = 'price';
             productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
-            productPriceInclVAT.style.textAlign = 'right'; // Align to the right
 
             productDetails.appendChild(productImage);
             productDetails.appendChild(productName);

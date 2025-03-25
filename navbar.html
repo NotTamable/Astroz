@@ -5,11 +5,11 @@
         <li class="nav-extra"><a href="/about/">About</a></li>
         <li class="nav-extra"><a href="/contact/">Contact</a></li>
     </ul>
-    <button id="nav-toggle" class="nav-extra">☰</button>
+    <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
 </nav>
 <div id="nav-modal" class="nav-modal">
     <div class="nav-modal-content">
-        <span id="nav-close">&times;</span>
+        <span id="nav-close" onclick="closeModal('nav-modal')">&times;</span>
         <ul>
             <li><a href="/products/">Products</a></li>
             <li><a href="/about/">About</a></li>
@@ -138,11 +138,11 @@
     }
 </style>
 <script>
-    document.getElementById('nav-toggle').addEventListener('click', function () {
-        document.getElementById('nav-modal').style.display = 'block';
-    });
-
-    document.getElementById('nav-close').addEventListener('click', function () {
-        document.getElementById('nav-modal').style.display = 'none';
-    });
+    function openModal(modalid) {
+        document.getElementById(modalid).style.display = 'block';
+    }
+    function closeModal(modalid) {
+        document.getElementById(modalid).style.display = 'none';
+    }
+    alert('Hello, welcome to Astroz!');
 </script>

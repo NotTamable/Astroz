@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
     ) : products;
 
-    productsContainer.innerHTML = ''; // Clear previous results
+    productsContainer.innerHTML = ' ';
     filteredProducts.forEach(product => {
         const productDiv = document.createElement("div");
         productDiv.className = "product";

@@ -41,12 +41,13 @@ body {
     background-color: red;
     border-radius: 15px;
     padding: 2vh;
+    margin: 1vh 0;
 }
 .checkout-button {
     background-color: #37ff00;
     color: black;
-    border: 10px solid #219700;
-    padding: 3vh;
+    border: 0.5vh solid #219700;
+    padding: 1vh;
     font-size: 5vh;
     border-radius: 15px;
     margin-top: 0;

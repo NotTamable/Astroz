@@ -4,7 +4,9 @@ document.getElementById('close-top-bar')?.addEventListener('click', function() {
 fetch('/navbar.html')
     .then(response => response.text())
     .then(data => document.getElementById('navbar').innerHTML = data);
-document.appendChild(document.createElement('script')).src = '/navscript.js';
+const script = document.createElement('script');
+script.src = '/navscript.js';
+document.body.appendChild(script);
 document.getElementById('search-form')?.addEventListener('submit', function(event) {
     event.preventDefault();
     const query = document.getElementById('search-input').value.trim().toLowerCase();

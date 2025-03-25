@@ -1,7 +1,9 @@
 fetch('../../navbar.html')
     .then(response => response.text())
     .then(data => document.getElementById('navbar').innerHTML = data);
-    document.appendChild(document.createElement('script')).src = '/navscript.js';
+const script = document.createElement('script');
+script.src = '/navscript.js';
+document.body.appendChild(script);
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
 const product = products.find(p => p.id === productId);

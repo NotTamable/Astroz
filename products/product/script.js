@@ -16,8 +16,10 @@ if (product) {
     productName.textContent = product.name;
 
     const priceContainer = productDetails.querySelector('.price-container');
-    const productPriceInclVAT = priceContainer.querySelector('.price');
-    productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
+
     const productPriceExclVAT = priceContainer.querySelector('.excl-vat');
     productPriceExclVAT.textContent = `Excl. VAT: £${(product.price * 0.8).toFixed(2)}`;
+
+    const productPriceInclVAT = priceContainer.querySelector('.price');
+    productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
 }

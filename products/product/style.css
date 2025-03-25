@@ -18,8 +18,9 @@ body {
 .product-image {
     max-width: 50%;
     height: 80vh;
-    margin-right: 10vh;
-    object-fit: contain; /* Prevent image stretching */
+    margin: 5vh;
+    object-fit: contain;
+    border-radius: 15px;
 }
 .product-info {
     max-width: 50%;
@@ -34,22 +35,21 @@ body {
     color: white;
 }
 .excl-vat {
-    font-size: 10vh;
+    font-size: 3vh;
     font-weight: bold;
     color: white;
     background-color: red;
     border-radius: 15px;
-    padding: 5vh;
+    padding: 2vh;
 }
 .checkout-button {
     background-color: #37ff00;
-    color: #000;
-    border: none;
-    padding: 5vh;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 1rem;
+    color: black;
+    border: 10px solid #219700;
+    padding: 3vh;
+    font-size: 5vh;
+    border-radius: 15px;
+    margin-top: 0;
 }
 .checkout-button:hover {
     background-color: #2ecc71;

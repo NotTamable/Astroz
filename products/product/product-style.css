@@ -3,15 +3,17 @@
 }
 
 .product-image {
-    height: 80vh; /* Size the image correctly */
-    border-radius: 15px; /* Rounded corners */
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    border-radius: 15px;
 }
 
 .price-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Align both prices to the same x position */
-    margin-top: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
 }
 
 .price {
@@ -28,4 +30,42 @@
     font-size: larger;
     padding: 3vh;
     text-align: center;
+}
+
+.product-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.product-name {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.checkout-button {
+    background-color: #37ff00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.checkout-button:hover {
+    background-color: #2ecc71;
 }

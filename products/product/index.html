@@ -10,7 +10,14 @@
 <body>
     <div id="navbar"></div>
     <main>
-        <div id="product-details"></div>
+        <div id="product-details" class="product-layout">
+            <div class="product-info">
+                <h3 class="product-name"></h3>
+                <div class="price-container"></div>
+                <button class="checkout-button">Checkout</button>
+            </div>
+            <img class="product-image" alt="Product Image">
+        </div>
     </main>
     <div class="footer">
         <p>&copy; 2023 Astroz</p>
@@ -27,16 +34,14 @@
 
         if (product) {
             const productDetails = document.getElementById('product-details');
-            const productImage = document.createElement('img');
+            const productImage = productDetails.querySelector('.product-image');
             productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
             productImage.alt = product.name;
-            productImage.className = 'product-image'; // Set class for styling
 
-            const productName = document.createElement('h3');
+            const productName = productDetails.querySelector('.product-name');
             productName.textContent = product.name;
 
-            const priceContainer = document.createElement('div');
-            priceContainer.className = 'price-container'; // Container for price alignment
+            const priceContainer = productDetails.querySelector('.price-container');
 
             const productPriceExclVAT = document.createElement('p');
             productPriceExclVAT.className = 'excl-vat';
@@ -49,10 +54,6 @@
 
             priceContainer.appendChild(productPriceExclVAT);
             priceContainer.appendChild(productPriceInclVAT);
-
-            productDetails.appendChild(productImage);
-            productDetails.appendChild(productName);
-            productDetails.appendChild(priceContainer);
         }
     </script>
 </body>

@@ -93,7 +93,8 @@ input[type="search"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
+    background-color: rgb(255, 0, 0); /* Bright red */
+    box-shadow: 0 0 0 1vh rgb(255, 0, 0); /* Bright red shadow */
     color: white;
     height: auto; /* Adjust height to fit navbar */
     padding: 0 2vh;

@@ -24,11 +24,12 @@ main {
 }
 
 #basket-items th {
-    background-color: #333333;
+    background-color: rgb(255, 0, 0); /* Bright red */
 }
 
 #basket-items td:nth-child(1) {
     font-weight: bold;
+    color: rgb(0, 255, 0); /* Bright green text */
 }
 
 #basket-items td:nth-child(5) img {
@@ -62,7 +63,7 @@ main {
 }
 
 .add-to-cart-button {
-    background-color: #37ff00;
+    background-color: rgb(255, 0, 0); /* Bright red */
     color: black;
     padding: 10px 20px;
     font-size: 1.2rem;
@@ -74,7 +75,7 @@ main {
 }
 
 .add-to-cart-button:hover {
-    background-color: #2ecc71;
+    background-color: rgb(200, 0, 0); /* Slightly darker red on hover */
 }
 
 nav {

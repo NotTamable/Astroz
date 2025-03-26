@@ -64,14 +64,14 @@ main {
 
 .product p.price {
     margin: 0;
-    background-color: red; /* Red background for price tag */
+    background-color: rgb(255, 0, 0); /* Bright red */
     padding: 5px;
     border-radius: 5px;
 }
 
 .product p.excl-vat {
     font-size: 1.2em; /* Slightly bigger text */
-    background-color: red; /* Red background */
+    background-color: rgb(255, 0, 0); /* Bright red */
     padding: 5px;
     border-radius: 5px; /* Rounded background */
     display: inline-block; /* Only cover the text */

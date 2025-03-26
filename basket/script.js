@@ -8,8 +8,24 @@ const totalExclVatElement = document.getElementById('total-excl-vat');
 const totalInclVatElement = document.getElementById('total-incl-vat');
 const feeElement = document.getElementById('fee');
 const grandTotalElement = document.getElementById('grand-total');
+const emptyBasketMessage = document.getElementById('empty-basket-message');
+const basketContent = document.getElementById('basket-content');
+const goToProductsButton = document.getElementById('go-to-products');
+
+goToProductsButton.addEventListener('click', () => {
+    window.location.href = '/products/';
+});
 
 function renderBasket() {
+    if (basket.length === 0) {
+        emptyBasketMessage.style.display = 'block';
+        basketContent.style.display = 'none';
+        return;
+    } else {
+        emptyBasketMessage.style.display = 'none';
+        basketContent.style.display = 'block';
+    }
+
     const basketTableBody = document.querySelector('#basket-items tbody');
     basketTableBody.innerHTML = ''; // Clear existing rows
     let totalExclVat = 0;
@@ -41,6 +57,7 @@ function renderBasket() {
         toggleButton.style.cursor = 'pointer';
         toggleButton.style.width = '20px';
         toggleButton.style.height = '20px';
+        toggleButton.style.objectFit = 'contain'; // Maintain image aspect ratio
         toggleButton.addEventListener('click', () => {
             item.buy = !item.buy;
             toggleButton.src = item.buy ? '/images/eyesOpen.png' : '/images/eyesClosed.png';

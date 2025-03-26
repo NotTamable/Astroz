@@ -31,6 +31,12 @@ main {
     background-color: white; /* Set background for the "Buy" column */
 }
 
+#basket-items td:nth-child(5) img {
+    object-fit: contain; /* Maintain image aspect ratio */
+    width: 20px;
+    height: 20px;
+}
+
 #basket-items div {
     margin-bottom: 1rem;
 }
@@ -85,4 +91,23 @@ button:hover {
     padding: 10px 20px;
     border-radius: 5px;
     z-index: 1000;
+}
+
+#empty-basket-message {
+    display: none;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#empty-basket-message button {
+    background-color: #37ff00;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#empty-basket-message button:hover {
+    background-color: #2ecc71;
 }

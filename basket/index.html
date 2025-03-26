@@ -11,24 +11,30 @@
     <div id="navbar"></div>
     <main>
         <h2>Your Basket</h2>
-        <button id="clear-basket">Clear Basket</button>
-        <table id="basket-items">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Price (Excl. VAT)</th>
-                    <th>Price (Incl. VAT)</th>
-                    <th>Buy</th>
-                    <th>Remove</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <p id="total-excl-vat"></p>
-        <p id="total-incl-vat"></p>
-        <p id="fee"></p>
-        <p id="grand-total"></p>
-        <button class="add-to-cart-button">Checkout</button>
+        <div id="empty-basket-message" style="display: none; text-align: center;">
+            <p>Your basket is empty.</p>
+            <button id="go-to-products">Go to Products</button>
+        </div>
+        <div id="basket-content">
+            <button id="clear-basket">Clear Basket</button>
+            <table id="basket-items">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price (Excl. VAT)</th>
+                        <th>Price (Incl. VAT)</th>
+                        <th>Remove</th>
+                        <th>Buy</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="total-excl-vat"></p>
+            <p id="total-incl-vat"></p>
+            <p id="fee"></p>
+            <p id="grand-total"></p>
+            <button class="add-to-cart-button">Checkout</button>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>

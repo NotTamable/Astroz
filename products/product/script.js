@@ -62,16 +62,16 @@ const basketButton = document.createElement('button');
 basketButton.className = 'basket-button';
 basketButton.textContent = 'View Basket';
 basketButton.addEventListener('click', () => {
-    window.location.href = '/workspaces/Astroz/basket/index.html';
+    window.location.href = '/basket/';
 });
 document.body.appendChild(basketButton);
 
 function updateBasketButton() {
     if (basket.length > 0) {
-        basketButton.style.display = 'block';
+        basketButton.style.display = 'block'; // Show the basket button
     } else {
-        basketButton.style.display = 'none';
+        basketButton.style.display = 'none'; // Hide the basket button
     }
 }
 
-updateBasketButton();
+updateBasketButton(); // Initial check to set basket button visibility

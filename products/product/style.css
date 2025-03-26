@@ -41,7 +41,7 @@ body {
 .excl-vat {
     background-color: red;
     color: white;
-    padding: 1vh;
+    padding: 2vh;
     font-size: 5vh;
     border-radius: 15px;
     margin: 0;
@@ -50,16 +50,18 @@ body {
 .checkout-button {
     background-color: #37ff00;
     color: black;
-    padding: 1vh;
+    padding: 3vh;
     font-size: 5vh;
     border-radius: 15px;
     margin-top: 10vh;
     font-family: 'FutureClean';
     border: 0;
     font-weight: bolder;
+    transition: 0.2s;
 }
 .checkout-button:hover {
     box-shadow: 0 0 0 2vh #37ff00;
+    transition: 0.2s;
 }
 @media (max-width: 768px) {
     .product-image {

@@ -77,6 +77,11 @@ main {
     display: inline-block; /* Only cover the text */
 }
 
+.basket-button {
+    height: auto; /* Adjust height to fit navbar */
+    padding: 0 2vh;
+}
+
 @media (max-width: 768px) {
     .product {
         width: calc(210mm / 2); /* A4 width divided by 2 for smaller screens */

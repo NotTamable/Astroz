@@ -95,7 +95,7 @@ input[type="search"] {
     justify-content: center;
     background-color: red;
     color: white;
-    height: 100%; /* Full height of the navbar */
+    height: auto; /* Adjust height to fit navbar */
     padding: 0 2vh;
     font-size: 2vh;
     border: none;

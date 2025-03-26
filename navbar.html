@@ -7,8 +7,10 @@
     </ul>
     <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
     <button id="basket-button" class="basket-button">
-        <img src="/images/cartIcon.png" alt="Cart Icon" class="basket-icon">
-        <span class="basket-count">0</span>
+        <a href="/basket/" style="display: flex; align-items: center; text-decoration: none; color: white;">
+            <img src="/images/cartIcon.png" alt="Cart Icon" class="basket-icon">
+            <span class="basket-count">0</span>
+        </a>
     </button>
 </nav>
 <div id="nav-modal" class="nav-modal">
@@ -84,7 +86,7 @@
         justify-content: center;
         background-color: red;
         color: white;
-        height: 100%; /* Full height of the navbar */
+        height: auto; /* Adjust height to fit navbar */
         padding: 0 2vh;
         font-size: 2vh;
         border: none;

@@ -12,3 +12,6 @@ document.getElementById('search-form')?.addEventListener('submit', function(even
     const query = document.getElementById('search-input').value.trim().toLowerCase();
     window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
 });
+basketButton.addEventListener('click', () => {
+    window.location.href = '/basket/';
+});

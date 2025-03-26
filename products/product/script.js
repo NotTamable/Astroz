@@ -34,11 +34,14 @@ basketButton.addEventListener('click', () => {
 
 addToCartButton?.addEventListener('click', () => {
     if (product) {
-        product.buy = true;
-        basket.push(product);
-        localStorage.setItem('basket', JSON.stringify(basket));
-        updateBasketButton();
-        showPopup();
+        const existingProduct = basket.find(p => p.id === product.id);
+        if (!existingProduct) {
+            product.buy = true;
+            basket.push(product);
+            localStorage.setItem('basket', JSON.stringify(basket));
+            updateBasketButton();
+            showPopup();
+        }
     }
 });
 

@@ -12,14 +12,18 @@ const grandTotalElement = document.getElementById('grand-total');
 let totalExclVat = 0;
 let totalInclVat = 0;
 
-basket.forEach(item => {
-    const itemDiv = document.createElement('div');
-    itemDiv.textContent = `${item.name} - £${(item.price * 0.8).toFixed(2)} excl. VAT, £${item.price.toFixed(2)} incl. VAT`;
-    basketItemsContainer.appendChild(itemDiv);
+if (basket.length === 0) {
+    basketItemsContainer.textContent = 'Your basket is empty.';
+} else {
+    basket.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = `${item.name} - £${(item.price * 0.8).toFixed(2)} excl. VAT, £${item.price.toFixed(2)} incl. VAT`;
+        basketItemsContainer.appendChild(itemDiv);
 
-    totalExclVat += item.price * 0.8;
-    totalInclVat += item.price;
-});
+        totalExclVat += item.price * 0.8;
+        totalInclVat += item.price;
+    });
+}
 
 const fee = Math.ceil(totalInclVat * 0.029 + 0.3);
 const grandTotal = totalInclVat + fee;

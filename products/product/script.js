@@ -47,11 +47,16 @@ toggleFixedExclVat(); // Initial check
 let basket = JSON.parse(localStorage.getItem('basket')) || [];
 
 const addToCartButton = document.querySelector('.add-to-cart-button');
-addToCartButton.addEventListener('click', () => {
-    basket.push(product);
-    localStorage.setItem('basket', JSON.stringify(basket));
-    updateBasketButton();
-});
+if (addToCartButton) {
+    addToCartButton.addEventListener('click', () => {
+        if (product) {
+            basket.push(product); // Add the current product to the basket
+            localStorage.setItem('basket', JSON.stringify(basket)); // Save the basket to localStorage
+            updateBasketButton(); // Update the basket button visibility
+            alert(`${product.name} has been added to your basket!`); // Notify the user
+        }
+    });
+}
 
 const basketButton = document.createElement('button');
 basketButton.className = 'basket-button';

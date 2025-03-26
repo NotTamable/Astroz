@@ -79,6 +79,8 @@ body {
     border: 0;
     font-weight: bolder;
     transition: 0.2s;
+    display: inline-block; /* Ensure it is visible */
+    cursor: pointer; /* Add pointer cursor */
 }
 
 .add-to-cart-button:hover {

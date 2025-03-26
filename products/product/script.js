@@ -25,3 +25,21 @@ if (product) {
     const productPriceInclVAT = priceContainer.querySelector('.price');
     productPriceInclVAT.textContent = `£${product.price.toFixed(2)}incl. VAT`;
 }
+
+const exclVatPrice = document.querySelector('.excl-vat');
+const exclVatFixed = document.createElement('p');
+exclVatFixed.className = 'excl-vat-fixed';
+exclVatFixed.textContent = exclVatPrice.textContent;
+document.body.appendChild(exclVatFixed);
+
+function toggleFixedExclVat() {
+    const rect = exclVatPrice.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        exclVatFixed.style.display = 'none'; // Hide fixed price when original is visible
+    } else {
+        exclVatFixed.style.display = 'block'; // Show fixed price when original is not visible
+    }
+}
+
+window.addEventListener('scroll', toggleFixedExclVat);
+toggleFixedExclVat(); // Initial check

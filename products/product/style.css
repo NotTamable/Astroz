@@ -102,11 +102,11 @@ body {
     .product-info {
         max-width: 100%;
         text-align: center;
-        position: absolute; /* Position it absolutely */
+        position: static; /* Reset positioning */
         top: 50%; /* Center vertically */
         left: 50%; /* Center horizontally */
-        transform: translate(-50%, -50%); /* Adjust for centering */
-        margin: 0; /* Remove any margins */
+        transform: none; /* Remove transform */
+        margin: 20vh 0; /* Add vertical margins to center */
         float: none;
         display: flex;
         align-items: center;
@@ -123,5 +123,37 @@ body {
 
     .excl-vat {
         text-align: center; /* Center text */
+    }
+
+    .excl-vat-fixed {
+        display: none; /* Hidden by default */
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: red;
+        color: white;
+        padding: 1vh 2vh;
+        font-size: 4vh;
+        border-radius: 10px;
+        font-weight: bolder;
+        z-index: 1000;
+    }
+
+    @keyframes hideFixedPrice {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showFixedPrice {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 }

@@ -22,7 +22,6 @@ body {
     width: auto;
     height: 80vh;
     border-radius: 15px;
-    transition: none;
 }
 
 .product-info {
@@ -30,42 +29,33 @@ body {
     border-radius: 15px;
     padding: 4vh;
     max-width: 50%;
-    float: right;
     margin-left: 20px;
-    align-self: flex-start;
-    position: static;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center items vertically */
-    text-align: center; /* Center text */
-    align-items: center; /* Center items horizontally */
+    justify-content: center;
+    text-align: center;
 }
 
 .price-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     text-align: center;
-    align-items: center; /* Center align price container */
 }
 
-.price {
+.price, .excl-vat {
     color: white;
     margin: 1vh;
     font-weight: bold;
-    text-align: center; /* Center text */
+    text-align: center;
 }
 
 .excl-vat {
     background-color: red;
-    color: white;
     padding: 2vh;
     font-size: 5vh;
     border-radius: 15px;
-    margin: 0;
-    font-weight: bolder;
-    text-align: center; /* Center text */
 }
 
 .add-to-cart-button {
@@ -78,9 +68,8 @@ body {
     font-family: 'FutureClean';
     border: 0;
     font-weight: bolder;
+    cursor: pointer;
     transition: 0.2s;
-    display: inline-block; /* Ensure it is visible */
-    cursor: pointer; /* Add pointer cursor */
 }
 
 .add-to-cart-button:hover {
@@ -106,71 +95,16 @@ body {
     .product-image {
         width: 100%;
         height: auto;
-        border-radius: 15px;
-        transition: none;
     }
 
     .product-layout {
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* Center the layout horizontally */
+        justify-content: center;
     }
 
     .product-info {
         max-width: 100%;
-        text-align: center;
-        position: static; /* Reset positioning */
-        top: 50%; /* Center vertically */
-        left: 50%; /* Center horizontally */
-        transform: none; /* Remove transform */
-        margin: 20vh 0; /* Add vertical margins to center */
-        float: none;
-        display: flex;
-        align-items: center;
-        justify-content: center; /* Center items vertically */
-    }
-
-    .price-container {
-        align-items: center; /* Center align price container */
-    }
-
-    .price {
-        text-align: center; /* Center text */
-    }
-
-    .excl-vat {
-        text-align: center; /* Center text */
-    }
-
-    .excl-vat-fixed {
-        display: none; /* Hidden by default */
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        background-color: red;
-        color: white;
-        padding: 1vh 2vh;
-        font-size: 4vh;
-        border-radius: 10px;
-        font-weight: bolder;
-        z-index: 1000;
-    }
-
-    @keyframes hideFixedPrice {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }
-
-    @keyframes showFixedPrice {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+        margin: 20vh 0;
     }
 }

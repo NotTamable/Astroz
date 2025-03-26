@@ -3,17 +3,22 @@ fetch('/navbar.html')
     .then(data => document.getElementById('navbar').innerHTML = data);
 
 const basket = JSON.parse(localStorage.getItem('basket')) || [];
-const basketItemsContainer = document.getElementById('basket-items');
+const emptyBasketMessage = document.getElementById('empty-basket-message');
+const basketContent = document.getElementById('basket-content');
+const basketTableBody = document.querySelector('#basket-items tbody');
 const totalExclVatElement = document.getElementById('total-excl-vat');
 const totalInclVatElement = document.getElementById('total-incl-vat');
 const feeElement = document.getElementById('fee');
 const grandTotalElement = document.getElementById('grand-total');
-const emptyBasketMessage = document.getElementById('empty-basket-message');
-const basketContent = document.getElementById('basket-content');
-const goToProductsButton = document.getElementById('go-to-products');
 
-goToProductsButton.addEventListener('click', () => {
+document.getElementById('go-to-products').addEventListener('click', () => {
     window.location.href = '/products/';
+});
+
+document.getElementById('clear-basket').addEventListener('click', () => {
+    basket.length = 0;
+    localStorage.setItem('basket', JSON.stringify(basket));
+    renderBasket();
 });
 
 function renderBasket() {
@@ -21,74 +26,46 @@ function renderBasket() {
         emptyBasketMessage.style.display = 'block';
         basketContent.style.display = 'none';
         return;
-    } else {
-        emptyBasketMessage.style.display = 'none';
-        basketContent.style.display = 'block';
     }
 
-    const basketTableBody = document.querySelector('#basket-items tbody');
-    basketTableBody.innerHTML = ''; // Clear existing rows
-    let totalExclVat = 0;
-    let totalInclVat = 0;
+    emptyBasketMessage.style.display = 'none';
+    basketContent.style.display = 'block';
+    basketTableBody.innerHTML = '';
+
+    let totalExclVat = 0, totalInclVat = 0;
 
     basket.forEach((item, index) => {
         const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>£${(item.price * 0.8).toFixed(2)}</td>
+            <td>£${item.price.toFixed(2)}</td>
+            <td><button>X</button></td>
+            <td style="background-color: white;">
+                <img src="${item.buy ? '/images/eyesOpen.png' : '/images/eyesClosed.png'}" style="cursor: pointer; width: 20px; height: 20px; object-fit: contain;">
+            </td>
+        `;
 
-        // Item name
-        const nameCell = document.createElement('td');
-        nameCell.textContent = item.name;
-        row.appendChild(nameCell);
-
-        // Price (Excl. VAT)
-        const exclVatCell = document.createElement('td');
-        exclVatCell.textContent = `£${(item.price * 0.8).toFixed(2)}`;
-        row.appendChild(exclVatCell);
-
-        // Price (Incl. VAT)
-        const inclVatCell = document.createElement('td');
-        inclVatCell.textContent = `£${item.price.toFixed(2)}`;
-        row.appendChild(inclVatCell);
-
-        // Toggle buy button
-        const toggleCell = document.createElement('td');
-        toggleCell.style.backgroundColor = 'white'; // Set background to white
-        const toggleButton = document.createElement('img');
-        toggleButton.src = item.buy ? '/images/eyesOpen.png' : '/images/eyesClosed.png';
-        toggleButton.style.cursor = 'pointer';
-        toggleButton.style.width = '20px';
-        toggleButton.style.height = '20px';
-        toggleButton.style.objectFit = 'contain'; // Maintain image aspect ratio
-        toggleButton.addEventListener('click', () => {
-            item.buy = !item.buy;
-            toggleButton.src = item.buy ? '/images/eyesOpen.png' : '/images/eyesClosed.png';
-            localStorage.setItem('basket', JSON.stringify(basket));
-            renderBasket();
-        });
-        toggleCell.appendChild(toggleButton);
-        row.appendChild(toggleCell);
-
-        // Remove button
-        const removeCell = document.createElement('td');
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.addEventListener('click', () => {
+        row.querySelector('button').addEventListener('click', () => {
             basket.splice(index, 1);
             localStorage.setItem('basket', JSON.stringify(basket));
             renderBasket();
         });
-        removeCell.appendChild(removeButton);
-        row.appendChild(removeCell);
+
+        row.querySelector('img').addEventListener('click', () => {
+            item.buy = !item.buy;
+            localStorage.setItem('basket', JSON.stringify(basket));
+            renderBasket();
+        });
 
         basketTableBody.appendChild(row);
 
-        // Update totals if the item is marked to buy
-        if (item.buy !== false) {
+        if (item.buy) {
             totalExclVat += item.price * 0.8;
             totalInclVat += item.price;
         }
     });
 
-    // Update totals
     const fee = Math.ceil(totalInclVat * 0.029 + 0.3);
     const grandTotal = totalInclVat + fee;
 
@@ -98,11 +75,4 @@ function renderBasket() {
     grandTotalElement.textContent = `Grand Total: £${grandTotal.toFixed(2)}`;
 }
 
-// Clear basket functionality
-document.getElementById('clear-basket').addEventListener('click', () => {
-    basket.length = 0; // Clear the basket array
-    localStorage.setItem('basket', JSON.stringify(basket));
-    renderBasket();
-});
-
-renderBasket(); // Initial render
+renderBasket();

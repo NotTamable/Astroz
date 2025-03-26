@@ -102,8 +102,11 @@ body {
     .product-info {
         max-width: 100%;
         text-align: center;
-        position: static;
-        margin: 20px 0; /* Add margin only to the top and bottom */
+        position: absolute; /* Position it absolutely */
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust for centering */
+        margin: 0; /* Remove any margins */
         float: none;
         display: flex;
         align-items: center;

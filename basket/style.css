@@ -9,8 +9,38 @@ main {
     padding: 1rem;
 }
 
+#basket-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+#basket-items th, #basket-items td {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+#basket-items th {
+    background-color: #1f1f1f;
+}
+
 #basket-items div {
     margin-bottom: 1rem;
+}
+
+#clear-basket {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+#clear-basket:hover {
+    background-color: darkred;
 }
 
 .add-to-cart-button {
@@ -24,5 +54,18 @@ main {
 }
 
 .add-to-cart-button:hover {
+    background-color: #2ecc71;
+}
+
+button {
+    background-color: #37ff00;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
     background-color: #2ecc71;
 }

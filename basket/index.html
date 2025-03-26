@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Basket - Astroz</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/images/astrozFavicon.jpeg">
 </head>
 <body>
     <div id="navbar"></div>
     <main>
         <h2>Your Basket</h2>
-        <div id="basket-items"></div>
+        <button id="clear-basket">Clear Basket</button>
+        <table id="basket-items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price (Excl. VAT)</th>
+                    <th>Price (Incl. VAT)</th>
+                    <th>Buy</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
         <p id="total-excl-vat"></p>
         <p id="total-incl-vat"></p>
         <p id="fee"></p>

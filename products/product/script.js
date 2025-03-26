@@ -69,6 +69,7 @@ document.body.appendChild(basketButton);
 function updateBasketButton() {
     if (basket.length > 0) {
         basketButton.style.display = 'block'; // Show the basket button
+        basketButton.textContent = `View Basket (${basket.length})`; // Update item count
     } else {
         basketButton.style.display = 'none'; // Hide the basket button
     }

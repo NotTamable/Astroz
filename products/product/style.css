@@ -35,11 +35,11 @@ body {
 }
 .price {
     color: white;
+    margin: 0;
 }
 .excl-vat {
     background-color: red;
     color: white;
-    border: 0.5vh solid rgb(197, 0, 0);
     padding: 1vh;
     font-size: 5vh;
     border-radius: 15px;
@@ -48,7 +48,6 @@ body {
 .checkout-button {
     background-color: #37ff00;
     color: black;
-    border: 0.5vh solid #219700;
     padding: 1vh;
     font-size: 5vh;
     border-radius: 15px;

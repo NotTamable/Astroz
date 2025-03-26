@@ -23,5 +23,5 @@ if (product) {
     productPriceExclVAT.textContent = `Excl. VAT: £${(product.price * 0.8).toFixed(2)}`;
 
     const productPriceInclVAT = priceContainer.querySelector('.price');
-    productPriceInclVAT.textContent = `Incl. VAT: £${product.price.toFixed(2)}`;
+    productPriceInclVAT.textContent = `£${product.price.toFixed(2)}incl. VAT`;
 }

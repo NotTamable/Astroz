@@ -22,10 +22,14 @@ body {
     transition: none; /* Ensure no smooth transitions for border-radius */
 }
 .product-info {
+    border: 5px solid white;
     max-width: 50%;
     float: none; /* Remove float */
     margin-left: 20px; /* Add spacing to the right of the image */
     align-self: flex-start; /* Align with the top of the image */
+    position: absolute; /* Position it absolutely */
+    right: 20px; /* Align to the very right of the screen */
+    top: 20px; /* Add some spacing from the top */
 }
 .price-container {
     display: flex;
@@ -76,6 +80,9 @@ body {
     }
     .product-info {
         max-width: 100%; /* Make the product info take full width */
+        text-align: center; /* Center align text */
+        position: static; /* Reset positioning */
+        margin: 0 auto; /* Center horizontally */
         text-align: center; /* Center align text */
     }
     .price-container {

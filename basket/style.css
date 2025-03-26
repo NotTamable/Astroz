@@ -76,6 +76,7 @@ main {
 
 .add-to-cart-button:hover {
     background-color: rgb(200, 0, 0); /* Slightly darker red on hover */
+    transform: scale(1.05); /* Add hover effect */
 }
 
 nav {

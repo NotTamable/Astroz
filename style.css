@@ -102,9 +102,11 @@ input[type="search"] {
     border: none;
     font-weight: bold;
     cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: fixed; /* Fix position for better visibility */
+    bottom: 10px; /* Position above the footer */
+    right: 10px; /* Align to the right */
+    z-index: 1000; /* Ensure it stays above other elements */
+    border-radius: 5px; /* Add rounded corners */
 }
 
 .basket-icon {

@@ -1,6 +1,9 @@
 fetch('../../navbar.html')
     .then(response => response.text())
-    .then(data => document.getElementById('navbar').innerHTML = data);
+    .then(data => {
+        const navbar = document.getElementById('navbar');
+        if (navbar) navbar.innerHTML = data;
+    });
 
 const script = document.createElement('script');
 script.src = '/navscript.js';
@@ -12,23 +15,27 @@ const product = products.find(p => p.id === productId);
 
 if (product) {
     const productDetails = document.getElementById('product-details');
-    productDetails.querySelector('.product-image').src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
-    productDetails.querySelector('.product-name').textContent = product.name;
-    productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
-    productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
+    if (productDetails) {
+        productDetails.querySelector('.product-image').src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
+        productDetails.querySelector('.product-name').textContent = product.name;
+        productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
+        productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
+    }
 }
 
 const basket = JSON.parse(localStorage.getItem('basket')) || [];
 const addToCartButton = document.querySelector('.add-to-cart-button');
 const basketButton = document.getElementById('basket-button');
-const basketCount = basketButton.querySelector('.basket-count');
+const basketCount = basketButton?.querySelector('.basket-count');
 
 function updateBasketButton() {
-    basketCount.textContent = basket.length;
-    basketButton.style.display = basket.length > 0 ? 'flex' : 'none';
+    if (basketCount) {
+        basketCount.textContent = basket.length;
+        basketButton.style.display = basket.length > 0 ? 'flex' : 'none';
+    }
 }
 
-basketButton.addEventListener('click', () => {
+basketButton?.addEventListener('click', () => {
     window.location.href = '/basket/';
 });
 

@@ -37,7 +37,7 @@ function renderBasket() {
     basket.forEach((item, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td style="color: ${item.buy ? 'green' : 'red'};">${item.name}</td>
+            <td style="color: ${item.buy ? 'rgb(0,255,0)' : 'red'};">${item.name}</td>
             <td>£${(item.price * 0.8).toFixed(2)}</td>
             <td>£${item.price.toFixed(2)}</td>
             <td><button>X</button></td>

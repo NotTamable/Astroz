@@ -34,11 +34,10 @@
             radial-gradient(circle at 30% 70%, #2c3e50, transparent),
             radial-gradient(circle at 70% 30%, #1f1c2c, transparent);
         background-size: cover;
-        padding-bottom: 1vh;
-        padding-top: 1vh;
+        padding: 1vh 2vh;
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -77,6 +76,29 @@
         color: #ffffff;
         font-size: 5vh;
         cursor: pointer;
+    }
+
+    .basket-button {
+        display: flex;
+        align-items: center;
+        background-color: red;
+        color: white;
+        padding: 1vh 2vh;
+        font-size: 2vh;
+        border: none;
+        border-radius: 0 10px 10px 0;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .basket-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .basket-count {
+        font-size: 2vh;
     }
 
     .nav-modal {
@@ -132,14 +154,14 @@
     }
 
     .footer {
-        background-color: #000000; /* Black background */
-        color: #ffffff; /* White text */
+        background-color: #000000;
+        color: #ffffff;
         text-align: center;
         padding: 10px;
         position: fixed;
         bottom: 0;
         width: 100%;
-        border-top: 2px solid #ffffff; /* Rigid border */
+        border-top: 2px solid #ffffff;
     }
 </style>
 <script>

@@ -2,46 +2,56 @@
     font-family: 'FutureClean';
     src: url('../../fonts/futureclean.ttf') format('truetype');
 }
+
 body {
     margin: 0;
     font-family: "FutureClean";
     background-color: #121212;
     color: #ffffff;
 }
+
 .product-layout {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Align items to the start */
-    align-items: flex-start; /* Align items at the top */
+    justify-content: flex-start;
+    align-items: flex-start;
     margin: 20px;
 }
+
 .product-image {
-    width: auto; /* Make the image cover the full width */
-    height: 80vh; /* Maintain aspect ratio */
-    border-radius: 15px; /* Retain border radius */
-    transition: none; /* Ensure no smooth transitions for border-radius */
+    width: auto;
+    height: 80vh;
+    border-radius: 15px;
+    transition: none;
 }
+
 .product-info {
     border: 5px solid white;
+    border-radius: 15px;
+    padding: 4vh;
     max-width: 50%;
-    float: none; /* Remove float */
-    margin-left: 20px; /* Add spacing to the right of the image */
-    align-self: flex-start; /* Align with the top of the image */
-    position: absolute; /* Position it absolutely */
-    right: 20px; /* Align to the very right of the screen */
-    top: 20px; /* Add some spacing from the top */
+    float: right;
+    margin-left: 20px;
+    align-self: flex-start;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .price-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: center;
 }
+
 .price {
     color: white;
     margin: 1vh;
     font-weight: bold;
 }
+
 .excl-vat {
     background-color: red;
     color: white;
@@ -51,6 +61,7 @@ body {
     margin: 0;
     font-weight: bolder;
 }
+
 .checkout-button {
     background-color: #37ff00;
     color: black;
@@ -63,29 +74,35 @@ body {
     font-weight: bolder;
     transition: 0.2s;
 }
+
 .checkout-button:hover {
     box-shadow: 0 0 0 2vh #37ff00;
-    transition: 0.2s;
 }
+
 @media (max-width: 768px) {
     .product-image {
-        width: 100%; /* Make the image cover the full width */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 15px; /* Retain border radius */
-        transition: none; /* Ensure no smooth transitions for border-radius */
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        transition: none;
     }
+
     .product-layout {
-        flex-direction: column; /* Stack elements vertically */
-        align-items: center; /* Center align elements */
+        flex-direction: column;
+        align-items: center;
     }
+
     .product-info {
-        max-width: 100%; /* Make the product info take full width */
-        text-align: center; /* Center align text */
-        position: static; /* Reset positioning */
-        margin: 0 auto; /* Center horizontally */
-        text-align: center; /* Center align text */
+        max-width: 100%;
+        text-align: center;
+        position: static;
+        margin: 0 auto;
+        float: none;
+        display: flex;
+        align-items: center;
     }
+
     .price-container {
-        align-items: center; /* Center align price container */
+        align-items: center;
     }
 }

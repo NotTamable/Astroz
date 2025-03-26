@@ -50,22 +50,45 @@ const addToCartButton = document.querySelector('.add-to-cart-button');
 if (addToCartButton) {
     addToCartButton.addEventListener('click', () => {
         if (product) {
+            product.buy = true; // Default to "buy" when added
             basket.push(product); // Add the current product to the basket
             localStorage.setItem('basket', JSON.stringify(basket)); // Save the basket to localStorage
             updateBasketButton(); // Update the basket button visibility
-            alert(`${product.name} has been added to your basket!`); // Notify the user
+            showPopup(); // Show popup instead of alert
         }
     });
 }
 
+const popup = document.createElement('div');
+popup.id = 'basket-popup';
+popup.style.display = 'none';
+popup.style.position = 'fixed';
+popup.style.top = '10px';
+popup.style.left = '50%';
+popup.style.transform = 'translateX(-50%)';
+popup.style.backgroundColor = '#37ff00';
+popup.style.color = 'black';
+popup.style.padding = '10px 20px';
+popup.style.borderRadius = '5px';
+popup.style.zIndex = '1000';
+popup.textContent = 'Item added to basket!';
+document.body.appendChild(popup);
+
+function showPopup() {
+    popup.style.display = 'block';
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 2000);
+}
+
 const basketButton = document.createElement('button');
 basketButton.className = 'basket-button';
-basketButton.textContent = 'View Basket';
-basketButton.addEventListener('click', () => {
-    window.location.href = '/basket/';
-});
-document.body.appendChild(basketButton);
-
+const basketIcon = document.createElement('img');
+basketIcon.src = '/images/cartIcon.png';
+basketIcon.alt = 'Cart Icon';
+basketButton.appendChild(basketIcon);
+const basketCount = document.createElement('span');
+basketButton.appendChild(basketCount);
 function updateBasketButton() {
     if (basket.length > 0) {
         basketButton.style.display = 'block'; // Show the basket button

@@ -13,6 +13,8 @@ main {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    background-color: #1f1f1f;
+    color: #ffffff;
 }
 
 #basket-items th, #basket-items td {
@@ -22,7 +24,11 @@ main {
 }
 
 #basket-items th {
-    background-color: #1f1f1f;
+    background-color: #333333;
+}
+
+#basket-items td:nth-child(4) {
+    background-color: white; /* Set background for the "Buy" column */
 }
 
 #basket-items div {
@@ -31,8 +37,6 @@ main {
 
 #clear-basket {
     background-color: red;
-    color: white;
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -68,4 +72,17 @@ button {
 
 button:hover {
     background-color: #2ecc71;
+}
+
+#basket-popup {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #37ff00;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
 }

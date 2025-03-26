@@ -35,10 +35,15 @@ function renderBasket() {
 
         // Toggle buy button
         const toggleCell = document.createElement('td');
-        const toggleButton = document.createElement('button');
-        toggleButton.textContent = item.buy ? 'Yes' : 'No';
+        toggleCell.style.backgroundColor = 'white'; // Set background to white
+        const toggleButton = document.createElement('img');
+        toggleButton.src = item.buy ? '/images/eyesOpen.png' : '/images/eyesClosed.png';
+        toggleButton.style.cursor = 'pointer';
+        toggleButton.style.width = '20px';
+        toggleButton.style.height = '20px';
         toggleButton.addEventListener('click', () => {
             item.buy = !item.buy;
+            toggleButton.src = item.buy ? '/images/eyesOpen.png' : '/images/eyesClosed.png';
             localStorage.setItem('basket', JSON.stringify(basket));
             renderBasket();
         });

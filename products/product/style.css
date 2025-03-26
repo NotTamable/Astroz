@@ -35,7 +35,7 @@ body {
 }
 .price {
     color: white;
-    margin: 0;
+    margin: 1vh;
     font-weight: bold;
 }
 .excl-vat {
@@ -58,7 +58,9 @@ body {
     border: 0;
     font-weight: bolder;
 }
-
+.checkout-button:hover {
+    box-shadow: 0 0 0 2vh #37ff00;
+}
 @media (max-width: 768px) {
     .product-image {
         width: 100%; /* Make the image cover the full width */

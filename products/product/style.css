@@ -37,6 +37,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center items vertically */
+    text-align: center; /* Center text */
+    align-items: center; /* Center items horizontally */
 }
 
 .price-container {
@@ -44,12 +47,14 @@ body {
     flex-direction: column;
     align-items: flex-start;
     text-align: center;
+    align-items: center; /* Center align price container */
 }
 
 .price {
     color: white;
     margin: 1vh;
     font-weight: bold;
+    text-align: center; /* Center text */
 }
 
 .excl-vat {
@@ -60,6 +65,7 @@ body {
     border-radius: 15px;
     margin: 0;
     font-weight: bolder;
+    text-align: center; /* Center text */
 }
 
 .checkout-button {
@@ -105,6 +111,14 @@ body {
     }
 
     .price-container {
-        align-items: center;
+        align-items: center; /* Center align price container */
+    }
+
+    .price {
+        text-align: center; /* Center text */
+    }
+
+    .excl-vat {
+        text-align: center; /* Center text */
     }
 }

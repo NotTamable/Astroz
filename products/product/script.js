@@ -20,23 +20,12 @@ if (product) {
 
 const basket = JSON.parse(localStorage.getItem('basket')) || [];
 const addToCartButton = document.querySelector('.add-to-cart-button');
-const basketButton = document.createElement('button');
-basketButton.className = 'basket-button';
-basketButton.innerHTML = `<img src="/images/cartIcon.png" alt="Cart Icon" class="basket-icon"><span class="basket-count">${basket.length}</span>`;
-basketButton.addEventListener('click', () => window.location.href = '/basket/');
-document.body.appendChild(basketButton);
-
-function updateBasketButton() {
-    basketButton.style.display = basket.length > 0 ? 'flex' : 'none';
-    basketButton.querySelector('.basket-count').textContent = basket.length;
-}
 
 addToCartButton?.addEventListener('click', () => {
     if (product) {
         product.buy = true;
         basket.push(product);
         localStorage.setItem('basket', JSON.stringify(basket));
-        updateBasketButton();
         showPopup();
     }
 });
@@ -60,5 +49,3 @@ function showPopup() {
     popup.style.display = 'block';
     setTimeout(() => popup.style.display = 'none', 2000);
 }
-
-updateBasketButton();

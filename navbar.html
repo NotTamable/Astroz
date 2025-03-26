@@ -6,6 +6,10 @@
         <li class="nav-extra"><a href="/contact/">Contact</a></li>
     </ul>
     <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
+    <button id="basket-button" class="basket-button">
+        <img src="/images/cartIcon.png" alt="Cart Icon" class="basket-icon">
+        <span class="basket-count">0</span>
+    </button>
 </nav>
 <div id="nav-modal" class="nav-modal">
     <div class="nav-modal-content">
@@ -138,3 +142,19 @@
         border-top: 2px solid #ffffff; /* Rigid border */
     }
 </style>
+<script>
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const basketButton = document.getElementById('basket-button');
+    const basketCount = basketButton.querySelector('.basket-count');
+
+    function updateBasketButton() {
+        basketCount.textContent = basket.length;
+        basketButton.style.display = basket.length > 0 ? 'flex' : 'none';
+    }
+
+    basketButton.addEventListener('click', () => {
+        window.location.href = '/basket/';
+    });
+
+    updateBasketButton();
+</script>

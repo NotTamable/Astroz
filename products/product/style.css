@@ -83,10 +83,10 @@ body {
     right: 0;
     background-color: red;
     color: white;
-    padding: 1vh 2vh;
-    font-size: 2vh;
+    padding: 3vh 6vh; /* Increased size */
+    font-size: 6vh; /* Increased font size */
     border: none;
-    border-radius: 0 0 0 10px; /* No border radius on the right */
+    border-radius: 0 0 0 10px;
     font-weight: bold;
     z-index: 1000;
     cursor: pointer;
@@ -95,13 +95,13 @@ body {
 }
 
 .basket-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    width: 60px; /* Increased size */
+    height: 60px; /* Increased size */
+    margin-right: 10px;
 }
 
 .basket-count {
-    font-size: 1.5vh;
+    font-size: 4.5vh; /* Increased size */
 }
 
 @media (max-width: 768px) {

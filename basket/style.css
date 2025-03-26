@@ -60,3 +60,23 @@ main {
     height: auto; /* Adjust height to fit navbar */
     padding: 0 2vh;
 }
+
+.add-to-cart-button {
+    background-color: #37ff00;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #2ecc71;
+}
+
+nav {
+    overflow-x: hidden; /* Prevent horizontal scrolling caused by the navbar */
+}

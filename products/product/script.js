@@ -43,3 +43,30 @@ function toggleFixedExclVat() {
 
 window.addEventListener('scroll', toggleFixedExclVat);
 toggleFixedExclVat(); // Initial check
+
+let basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+const addToCartButton = document.querySelector('.add-to-cart-button');
+addToCartButton.addEventListener('click', () => {
+    basket.push(product);
+    localStorage.setItem('basket', JSON.stringify(basket));
+    updateBasketButton();
+});
+
+const basketButton = document.createElement('button');
+basketButton.className = 'basket-button';
+basketButton.textContent = 'View Basket';
+basketButton.addEventListener('click', () => {
+    window.location.href = '/workspaces/Astroz/basket/index.html';
+});
+document.body.appendChild(basketButton);
+
+function updateBasketButton() {
+    if (basket.length > 0) {
+        basketButton.style.display = 'block';
+    } else {
+        basketButton.style.display = 'none';
+    }
+}
+
+updateBasketButton();

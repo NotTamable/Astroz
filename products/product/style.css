@@ -68,7 +68,7 @@ body {
     text-align: center; /* Center text */
 }
 
-.checkout-button {
+.add-to-cart-button {
     background-color: #37ff00;
     color: black;
     padding: 3vh;
@@ -81,8 +81,23 @@ body {
     transition: 0.2s;
 }
 
-.checkout-button:hover {
+.add-to-cart-button:hover {
     box-shadow: 0 0 0 2vh #37ff00;
+}
+
+.basket-button {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    padding: 1vh 2vh;
+    font-size: 2vh;
+    border-radius: 10px;
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

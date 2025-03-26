@@ -36,6 +36,7 @@ body {
 .price {
     color: white;
     margin: 0;
+    font-weight: bold;
 }
 .excl-vat {
     background-color: red;
@@ -44,16 +45,18 @@ body {
     font-size: 5vh;
     border-radius: 15px;
     margin: 0;
+    font-weight: bolder;
 }
 .checkout-button {
     background-color: #37ff00;
-    color: white;
+    color: black;
     padding: 1vh;
     font-size: 5vh;
     border-radius: 15px;
     margin-top: 10vh;
     font-family: 'FutureClean';
     border: 0;
+    font-weight: bolder;
 }
 
 @media (max-width: 768px) {

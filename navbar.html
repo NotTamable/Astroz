@@ -5,13 +5,13 @@
         <li class="nav-extra"><a href="/about/">About</a></li>
         <li class="nav-extra"><a href="/contact/">Contact</a></li>
     </ul>
-    <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
     <button id="basket-button" class="basket-button">
         <a href="/basket/" style="display: flex; align-items: center; text-decoration: none; color: white;">
             <img src="/images/cartIcon.png" alt="Cart Icon" class="basket-icon">
             <span class="basket-count">0</span>
         </a>
     </button>
+    <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
 </nav>
 <div id="nav-modal" class="nav-modal">
     <div class="nav-modal-content">
@@ -30,6 +30,9 @@
     }
 
     nav {
+        display: flex;
+        justify-content: center; /* Center all navbar elements */
+        align-items: center;
         background: radial-gradient(circle at 10% 20%, #000428, transparent),
             radial-gradient(circle at 80% 80%, #002241, transparent),
             radial-gradient(circle at 50% 50%, #1f1c2c, transparent),
@@ -38,9 +41,6 @@
         background-size: cover;
         padding: 1vh 2vh;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
     nav ul {
@@ -49,11 +49,11 @@
         padding: 0;
         margin: 0;
         align-items: center;
+        justify-content: center; /* Center the list items */
     }
 
     nav ul li {
-        margin-left: 5vh;
-        margin-right: 5vh;
+        margin: 0 5vh; /* Equal spacing on both sides */
     }
 
     nav ul li a {
@@ -92,6 +92,7 @@
         border: none;
         font-weight: bold;
         cursor: pointer;
+        margin-left: 2vh; /* Add spacing between the basket button and the list */
     }
 
     .basket-icon {

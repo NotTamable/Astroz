@@ -47,14 +47,13 @@ body {
 }
 .checkout-button {
     background-color: #37ff00;
-    color: black;
+    color: white;
     padding: 1vh;
     font-size: 5vh;
     border-radius: 15px;
-    margin-top: 0;
-}
-.checkout-button:hover {
-    background-color: #2ecc71;
+    margin-top: 10vh;
+    font-family: 'FutureClean';
+    border: 0;
 }
 
 @media (max-width: 768px) {

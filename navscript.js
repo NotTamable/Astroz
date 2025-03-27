@@ -19,7 +19,7 @@ function updateBasketCount() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    alert("DOMContentLoaded event fired"); // Debug log
+window.onload = () => {
+    alert("window.onload event fired"); // Debug log
     updateBasketCount();
-});
+};

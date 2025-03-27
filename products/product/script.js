@@ -60,13 +60,15 @@ if (product) {
 
                 localStorage.setItem('basket', JSON.stringify(basket));
 
-                // Show popup
+                // Show popup as a modal
                 const popup = document.createElement('div');
-                popup.className = 'basket-popup';
+                popup.className = 'basket-modal';
                 popup.innerHTML = `
-                    <p>${product.name} added to basket.</p>
-                    <button id="undo-button">Undo</button>
-                    <button id="view-basket-button">View Basket</button>
+                    <div class="modal-content">
+                        <p>${product.name} added to basket.</p>
+                        <button id="undo-button">Undo</button>
+                        <button id="view-basket-button">View Basket</button>
+                    </div>
                 `;
                 document.body.appendChild(popup);
 

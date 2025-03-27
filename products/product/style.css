@@ -151,6 +151,45 @@ body {
     background-color: #2ecc71;
 }
 
+.basket-modal {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f1f1f;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+.basket-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.basket-modal button {
+    background-color: #37ff00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.basket-modal button:hover {
+    transform: scale(1.1);
+    background-color: #28a745;
+}
+
 @media (max-width: 768px) {
     .product-image {
         width: 100%;

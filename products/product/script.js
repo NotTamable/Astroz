@@ -23,10 +23,46 @@ if (product) {
 
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
         addToCartButton.addEventListener('click', () => {
+            const quantity = parseInt(prompt('Enter quantity:', '1')) || 1;
             const basket = JSON.parse(localStorage.getItem('basket')) || [];
-            basket.push(product);
+            const existingItem = basket.find(item => item.id === product.id);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                basket.push({ ...product, quantity });
+            }
+
             localStorage.setItem('basket', JSON.stringify(basket));
-            alert(`${product.name} has been added to your basket.`);
+
+            // Show popup
+            const popup = document.createElement('div');
+            popup.className = 'basket-popup';
+            popup.innerHTML = `
+                <p>${product.name} added to basket.</p>
+                <button id="undo-button">Undo</button>
+                <button id="view-basket-button">View Basket</button>
+            `;
+            document.body.appendChild(popup);
+
+            document.getElementById('undo-button').addEventListener('click', () => {
+                if (existingItem) {
+                    existingItem.quantity -= quantity;
+                    if (existingItem.quantity <= 0) {
+                        basket.splice(basket.indexOf(existingItem), 1);
+                    }
+                } else {
+                    basket.pop();
+                }
+                localStorage.setItem('basket', JSON.stringify(basket));
+                popup.remove();
+            });
+
+            document.getElementById('view-basket-button').addEventListener('click', () => {
+                window.location.href = '/basket/';
+            });
+
+            setTimeout(() => popup.remove(), 5000); // Auto-remove after 5 seconds
         });
     }
 }

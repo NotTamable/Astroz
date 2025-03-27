@@ -12,10 +12,28 @@ document.addEventListener('DOMContentLoaded', () => {
         row.innerHTML = `
             <td>${item.name}</td>
             <td>£${item.price.toFixed(2)}</td>
-            <td>1</td>
+            <td>${item.quantity}</td>
+            <td><button class="remove-item-button" data-id="${item.id}">Remove</button></td>
         `;
         basketTableBody.appendChild(row);
-        subtotal += item.price;
+        subtotal += item.price * item.quantity;
+    });
+
+    document.querySelectorAll('.remove-item-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const itemId = parseInt(button.dataset.id);
+            const itemIndex = basket.findIndex(item => item.id === itemId);
+            if (itemIndex > -1) {
+                basket.splice(itemIndex, 1);
+                localStorage.setItem('basket', JSON.stringify(basket));
+                location.reload();
+            }
+        });
+    });
+
+    document.getElementById('clear-basket-button').addEventListener('click', () => {
+        localStorage.removeItem('basket');
+        location.reload();
     });
 
     const fee = Math.round((subtotal * 0.029 + 0.3) * 100) / 100;

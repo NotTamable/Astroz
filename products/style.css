@@ -50,11 +50,12 @@ main {
     box-sizing: border-box;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.3s ease; /* Add hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effect */
 }
 
 .product:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 0 15px 2px #ffffff;
 }
 
 .product img {

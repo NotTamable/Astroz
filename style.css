@@ -106,3 +106,21 @@ input[type="search"] {
 nav {
     overflow-x: hidden; /* Prevent horizontal scrolling caused by the navbar */
 }
+
+nav ul li a {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #37ff00; /* Change color on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+#basket-count {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#basket-count:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    background-color: #ff0000; /* Change background color on hover */
+}

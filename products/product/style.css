@@ -69,11 +69,12 @@ body {
     border: 0;
     font-weight: bolder;
     cursor: pointer;
-    transition: 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .add-to-cart-button:hover {
-    box-shadow: 0 0 0 0.5vh #37ff00;
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 0 10px 2px #37ff00;
 }
 
 .quantity-modal {
@@ -113,6 +114,12 @@ body {
     cursor: pointer;
     margin: 0 5px;
     border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    background-color: #2ecc71;
 }
 
 .quantity-controls input {
@@ -132,6 +139,12 @@ body {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#confirm-quantity:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    background-color: #28a745;
 }
 
 #confirm-quantity:hover {

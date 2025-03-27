@@ -31,10 +31,12 @@ main {
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #checkout-button:hover, #clear-basket-button:hover {
-    background-color: #2ecc71;
+    transform: scale(1.1); /* Slight zoom on hover */
+    background-color: #28a745;
 }
 
 .remove-item-button {
@@ -44,8 +46,19 @@ main {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .remove-item-button:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
     background-color: darkred;
+}
+
+.toggle-item {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.toggle-item:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    opacity: 0.8; /* Slight fade effect */
 }

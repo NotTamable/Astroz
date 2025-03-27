@@ -54,6 +54,11 @@ if (product) {
         }
 
         addToCartButton.addEventListener('click', () => {
+            addToCartButton.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                addToCartButton.style.transform = 'scale(1)';
+            }, 200); // Reset after animation
+
             showQuantityModal(product, quantity => {
                 const basket = JSON.parse(localStorage.getItem('basket')) || [];
                 const existingItem = basket.find(item => item.id === product.id);

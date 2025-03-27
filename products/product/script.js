@@ -83,6 +83,7 @@ if (product) {
                     }
                     localStorage.setItem('basket', JSON.stringify(basket));
                     popup.remove();
+                    updateBasketCount(); // Update basket count dynamically
                 });
 
                 document.getElementById('view-basket-button').addEventListener('click', () => {
@@ -90,6 +91,8 @@ if (product) {
                 });
 
                 setTimeout(() => popup.remove(), 5000); // Auto-remove after 5 seconds
+
+                updateBasketCount(); // Update basket count dynamically
             });
         });
     }

@@ -3,6 +3,16 @@
     src: url('./fonts/Antipasto.ttf') format('truetype');
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding and borders are included in element dimensions */
+}
+
+html, body {
+    overflow-x: hidden; /* Prevent horizontal overflow globally */
+}
+
 body {
     margin: 0;
     font-family: "Antipasto";

@@ -15,6 +15,7 @@ function updateBasketCount() {
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
+    alert("hi111")
     updateBasketCount();
     alert("hi")
 });

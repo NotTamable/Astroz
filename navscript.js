@@ -14,7 +14,7 @@ function updateBasketCount() {
         alert(totalItems)
     }
 }
-alert("making sure this script runs")
 document.addEventListener('DOMContentLoaded', () => {
     updateBasketCount();
+    alert("hi")
 });

@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Antipasto';
     src: url('./fonts/Antipasto.ttf') format('truetype');
+    font-display: swap;
 }
 
 * {
@@ -125,4 +126,9 @@ nav ul li a:hover {
 #basket-count:hover {
     transform: scale(1.2); /* Slight zoom on hover */
     background-color: #ff0000; /* Change background color on hover */
+}
+
+img {
+    max-width: 100%;
+    height: auto; /* Ensure images are responsive */
 }

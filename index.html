@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Welcome to Astroz">
+    <meta name="keywords" content="Astroz, shopping, clothes, brand, hoodie, t-shirt, design">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astroz</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="/images/astrozFavicon.jpeg">
+    <style>
+        /* Ensure text remains visible during web font load */
+        @font-face {
+            font-display: swap;
+            font-family: 'Antipasto';
+            src: url('./fonts/Antipasto.ttf') format('truetype');
+        }
+    </style>
 </head>
 <body>
     <div id="top-bar">
@@ -15,6 +25,7 @@
     <main>
         <h2>Welcome to Astroz</h2>
         <p>Your one-stop shop for the best products.</p>
+        <img src="/images/AstrozLogo.png" alt="Astroz Logo" width="200" height="auto">
         <form id="search-form">
             <input type="text" id="search-input" placeholder="Search for products...">
             <button type="submit">Search</button>

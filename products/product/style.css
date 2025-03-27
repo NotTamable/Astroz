@@ -1,4 +1,5 @@
 @font-face {
+    font-display: swap;
     font-family: 'FutureClean';
     src: url('../../fonts/futureclean.ttf') format('truetype');
 }
@@ -12,8 +13,8 @@
 }
 
 .product-image {
-    width: auto;
-    height: 80vh;
+    width: 100%; /* Explicit width */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 15px;
 }
 
@@ -21,7 +22,6 @@
     border: 5px solid white;
     border-radius: 15px;
     padding: 4vh;
-    max-width: 50%;
     margin-left: 20px;
     display: flex;
     flex-direction: column;

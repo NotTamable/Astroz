@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>£${item.price.toFixed(2)}</td>
                 <td>${item.quantity}</td>
                 <td style="background-color: white;">
-                    <img src="${item.enabled ? '/images/eyesOpen.png' : '/images/eyesClosed.png'}" alt="Enable" class="toggle-item" data-id="${item.id}" style="cursor: pointer; width: 20px;">
+                    <img src="${item.enabled ? '/images/eyesOpen.png' : '/images/eyesClosed.png'}" alt="Enable" style="cursor: pointer; width: 20px;" onclick="toggleItem(${item.id})">
                 </td>
                 <td>
-                    <button class="remove-item-button" data-id="${item.id}" style="background: none; border: none; color: red; font-size: 1.5rem; cursor: pointer;">X</button>
+                    <button style="background: none; border: none; color: red; font-size: 1.5rem; cursor: pointer;" onclick="removeItem(${item.id})">X</button>
                 </td>
             `;
             basketTableBody.appendChild(row);
@@ -34,44 +34,34 @@ document.addEventListener('DOMContentLoaded', () => {
         subtotalElement.textContent = subtotal.toFixed(2);
         feeElement.textContent = fee.toFixed(2);
         totalElement.textContent = total.toFixed(2);
-
-        attachEventListeners(); // Reattach event listeners after updating the table
     }
 
-    function attachEventListeners() {
-        document.querySelectorAll('.toggle-item').forEach(img => {
-            img.addEventListener('click', () => {
-                const itemId = parseInt(img.dataset.id);
-                const item = basket.find(item => item.id === itemId);
-                if (item) {
-                    item.enabled = !item.enabled;
-                    localStorage.setItem('basket', JSON.stringify(basket));
-                    updateBasket();
-                }
-            });
-        });
+    window.toggleItem = function (itemId) {
+        const item = basket.find(item => item.id === itemId);
+        if (item) {
+            item.enabled = !item.enabled;
+            localStorage.setItem('basket', JSON.stringify(basket));
+            updateBasket();
+        }
+    };
 
-        document.querySelectorAll('.remove-item-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const itemId = parseInt(button.dataset.id);
-                const itemIndex = basket.findIndex(item => item.id === itemId);
-                if (itemIndex > -1) {
-                    basket.splice(itemIndex, 1);
-                    localStorage.setItem('basket', JSON.stringify(basket));
-                    updateBasket();
-                }
-            });
-        });
-    }
+    window.removeItem = function (itemId) {
+        const itemIndex = basket.findIndex(item => item.id === itemId);
+        if (itemIndex > -1) {
+            basket.splice(itemIndex, 1);
+            localStorage.setItem('basket', JSON.stringify(basket));
+            updateBasket();
+        }
+    };
 
-    document.getElementById('clear-basket-button').addEventListener('click', () => {
+    document.getElementById('clear-basket-button').onclick = () => {
         localStorage.removeItem('basket');
         updateBasket();
-    });
+    };
 
-    document.getElementById('checkout-button').addEventListener('click', () => {
+    document.getElementById('checkout-button').onclick = () => {
         alert('Checkout functionality is not implemented yet.');
-    });
+    };
 
     updateBasket();
 });

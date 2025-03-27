@@ -10,4 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
         }
     });
+
+    document.querySelectorAll('img').forEach(img => {
+        img.style.maxWidth = '100%';
+        img.style.height = 'auto'; // Ensure images are responsive
+    });
 });

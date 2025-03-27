@@ -9,14 +9,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     basket.forEach(item => {
         const row = document.createElement('tr');
+        row.style.borderBottom = '1px solid white'; // Add line between rows
         row.innerHTML = `
             <td>${item.name}</td>
             <td>£${item.price.toFixed(2)}</td>
             <td>${item.quantity}</td>
-            <td><button class="remove-item-button" data-id="${item.id}">Remove</button></td>
+            <td>
+                <img src="/images/eyesOpen.png" alt="Enable" class="toggle-item" data-id="${item.id}" style="cursor: pointer; width: 20px;">
+            </td>
+            <td>
+                <button class="remove-item-button" data-id="${item.id}" style="background: none; border: none; color: red; font-size: 1.5rem; cursor: pointer;">X</button>
+            </td>
         `;
         basketTableBody.appendChild(row);
         subtotal += item.price * item.quantity;
+    });
+
+    document.querySelectorAll('.toggle-item').forEach(img => {
+        img.addEventListener('click', () => {
+            const itemId = parseInt(img.dataset.id);
+            const item = basket.find(item => item.id === itemId);
+            if (item) {
+                item.enabled = !item.enabled;
+                img.src = item.enabled ? '/images/eyesOpen.png' : '/images/eyesClosed.png';
+                localStorage.setItem('basket', JSON.stringify(basket));
+            }
+        });
     });
 
     document.querySelectorAll('.remove-item-button').forEach(button => {

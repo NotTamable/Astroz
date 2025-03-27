@@ -73,7 +73,69 @@ body {
 }
 
 .add-to-cart-button:hover {
-    box-shadow: 0 0 0 2vh #37ff00;
+    box-shadow: 0 0 0 0.5vh #37ff00;
+}
+
+.quantity-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.quantity-controls button {
+    background-color: #37ff00;
+    color: black;
+    border: none;
+    padding: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.quantity-controls input {
+    width: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#confirm-quantity {
+    background-color: #37ff00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#confirm-quantity:hover {
+    background-color: #2ecc71;
 }
 
 @media (max-width: 768px) {

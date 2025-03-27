@@ -11,11 +11,9 @@ function updateBasketCount() {
     if (basketCount) {
         const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
         basketCount.textContent = totalItems;
-        alert(totalItems)
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-    alert("hi111")
     updateBasketCount();
-    alert("hi")
 });

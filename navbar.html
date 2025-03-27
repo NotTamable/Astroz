@@ -5,12 +5,6 @@
         <li class="nav-extra"><a href="/about/">About</a></li>
         <li class="nav-extra"><a href="/contact/">Contact</a></li>
     </ul>
-    <button id="basket-button" class="basket-button">
-        <a href="/basket/" style="display: flex; align-items: center; text-decoration: none; color: white;">
-            <img src="/images/cartIcon.png" alt="Cart Icon" class="basket-icon">
-            <span class="basket-count">0</span>
-        </a>
-    </button>
     <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
 </nav>
 <div id="nav-modal" class="nav-modal">
@@ -80,32 +74,6 @@
         cursor: pointer;
     }
 
-    .basket-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: red;
-        box-shadow: 0 0 0 1vh red;
-        color: white;
-        height: auto; /* Adjust height to fit navbar */
-        padding: 0 2vh;
-        font-size: 2vh;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        margin-left: 2vh; /* Add spacing between the basket button and the list */
-    }
-
-    .basket-icon {
-        width: 30px;
-        height: 30px;
-        margin-right: 5px;
-    }
-
-    .basket-count {
-        font-size: 2vh;
-    }
-
     .nav-modal {
         display: none;
         position: fixed;
@@ -169,21 +137,3 @@
         border-top: 2px solid #ffffff;
     }
 </style>
-<script>
-    const basket = JSON.parse(localStorage.getItem('basket')) || [];
-    const basketButton = document.getElementById('basket-button');
-    const basketCount = basketButton?.querySelector('.basket-count');
-
-    function updateBasketButton() {
-        if (basketCount) {
-            basketCount.textContent = basket.length;
-            basketButton.style.display = basket.length > 0 ? 'flex' : 'none';
-        }
-    }
-
-    basketButton?.addEventListener('click', () => {
-        window.location.href = '/basket/';
-    });
-
-    updateBasketButton();
-</script>

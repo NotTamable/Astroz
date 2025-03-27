@@ -83,8 +83,7 @@ main {
 }
 
 .basket-button {
-    height: auto; /* Adjust height to fit navbar */
-    padding: 0 2vh;
+    display: none; /* Remove basket button */
 }
 
 @media (max-width: 768px) {

@@ -90,23 +90,7 @@ input[type="search"] {
 }
 
 .basket-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 0, 0); /* Bright red */
-    box-shadow: 0 0 0 1vh rgb(255, 0, 0); /* Bright red shadow */
-    color: white;
-    height: auto; /* Adjust height to fit navbar */
-    padding: 0 2vh;
-    font-size: 2vh;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    position: fixed; /* Fix position for better visibility */
-    bottom: 10px; /* Position above the footer */
-    right: 10px; /* Align to the right */
-    z-index: 1000; /* Ensure it stays above other elements */
-    border-radius: 5px; /* Add rounded corners */
+    display: none; /* Remove basket button */
 }
 
 .basket-icon {

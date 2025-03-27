@@ -9,18 +9,6 @@
     box-sizing: border-box; /* Ensure padding and borders are included in element dimensions */
 }
 
-html, body {
-    overflow-x: hidden; /* Prevent horizontal overflow globally */
-}
-
-body {
-    margin: 0;
-    font-family: "Antipasto";
-    background-color: hsl(0, 0%, 7%);
-    color: #ffffff;
-    overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
 #top-bar {
     background-color: #1f1f1f;
     color: #37ff00;

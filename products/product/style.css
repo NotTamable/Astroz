@@ -3,13 +3,6 @@
     src: url('../../fonts/futureclean.ttf') format('truetype');
 }
 
-body {
-    margin: 0;
-    font-family: "FutureClean";
-    background-color: #121212;
-    color: #ffffff;
-}
-
 .product-layout {
     display: flex;
     flex-wrap: wrap;

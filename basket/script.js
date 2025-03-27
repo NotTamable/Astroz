@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         feeElement.textContent = fee.toFixed(2);
         totalElement.textContent = total.toFixed(2);
 
-        attachEventListeners();
+        attachEventListeners(); // Reattach event listeners after updating the table
     }
 
     function attachEventListeners() {

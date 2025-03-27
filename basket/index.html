@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Basket - Astroz</title>
+    <title>Basket - Astroz</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="/images/astrozFavicon.jpeg">
 </head>
@@ -11,29 +11,21 @@
     <div id="navbar"></div>
     <main>
         <h2>Your Basket</h2>
-        <div id="empty-basket-message" style="display: none; text-align: center;">
-            <p>Your basket is empty.</p>
-            <button id="go-to-products">Go to Products</button>
-        </div>
-        <div id="basket-content">
-            <button id="clear-basket">Clear Basket</button>
-            <table id="basket-items">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price (Excl. VAT)</th>
-                        <th>Price (Incl. VAT)</th>
-                        <th>Remove</th>
-                        <th>Buy</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <p id="total-excl-vat"></p>
-            <p id="total-incl-vat"></p>
-            <p id="fee"></p>
-            <p id="grand-total"></p>
-            <button class="add-to-cart-button">Checkout</button>
+        <table id="basket-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="basket-summary">
+            <p>Subtotal: £<span id="subtotal">0.00</span></p>
+            <p>Fee: £<span id="fee">0.00</span></p>
+            <p>Total: £<span id="total">0.00</span></p>
+            <button id="checkout-button">Checkout</button>
         </div>
     </main>
     <script src="script.js"></script>

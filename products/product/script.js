@@ -20,5 +20,13 @@ if (product) {
         productDetails.querySelector('.product-name').textContent = product.name;
         productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
         productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
+
+        const addToCartButton = productDetails.querySelector('.add-to-cart-button');
+        addToCartButton.addEventListener('click', () => {
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+            basket.push(product);
+            localStorage.setItem('basket', JSON.stringify(basket));
+            alert(`${product.name} has been added to your basket.`);
+        });
     }
 }

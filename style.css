@@ -8,6 +8,7 @@ body {
     font-family: "Antipasto";
     background-color: hsl(0, 0%, 7%);
     color: #ffffff;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 #top-bar {
@@ -35,6 +36,7 @@ body {
 
 main {
     padding: 1rem;
+    box-sizing: border-box; /* Prevent content overflow */
 }
 
 h1, h2 {
@@ -105,6 +107,8 @@ input[type="search"] {
 
 nav {
     overflow-x: hidden; /* Prevent horizontal scrolling caused by the navbar */
+    width: 100%; /* Ensure navbar spans the full width */
+    box-sizing: border-box; /* Include padding and border in width */
 }
 
 nav ul li a {

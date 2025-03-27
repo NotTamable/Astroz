@@ -10,27 +10,45 @@
 <body>
     <div id="navbar"></div>
     <main>
-        <h2>Your Basket</h2>
-        <table id="basket-table" style="border-collapse: collapse; width: 100%;">
-            <thead>
-                <tr>
-                    <th style="border-bottom: 1px solid white;">Product</th>
-                    <th style="border-bottom: 1px solid white;">Price</th>
-                    <th style="border-bottom: 1px solid white;">Quantity</th>
-                    <th style="border-bottom: 1px solid white;">Enable</th>
-                    <th style="border-bottom: 1px solid white;">Actions</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div id="basket-summary">
-            <p>Subtotal: £<span id="subtotal">0.00</span></p>
-            <p>Fee: £<span id="fee">0.00</span></p>
-            <p>Total: £<span id="total">0.00</span></p>
-            <button id="checkout-button">Checkout</button>
-            <button id="clear-basket-button">Clear Basket</button>
+        <div id="empty-basket-message" style="display: none; text-align: center; margin-top: 50px;">
+            <h2>Nothing in your basket yet</h2>
+            <button onclick="window.location.href='/products/'" style="background-color: #37ff00; color: black; padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer;">Discover Products</button>
+        </div>
+        <div id="basket-content">
+            <h2>Your Basket</h2>
+            <table id="basket-table" style="border-collapse: collapse; width: 100%; text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 1px solid white;">Product</th>
+                        <th style="border-bottom: 1px solid white;">Price</th>
+                        <th style="border-bottom: 1px solid white;">Quantity</th>
+                        <th style="border-bottom: 1px solid white; color: white;">Enable</th>
+                        <th style="border-bottom: 1px solid white;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="basket-summary">
+                <p>Subtotal: £<span id="subtotal">0.00</span></p>
+                <p>Fee: £<span id="fee">0.00</span></p>
+                <p>Total: £<span id="total">0.00</span></p>
+                <button id="checkout-button">Checkout</button>
+                <button id="clear-basket-button">Clear Basket</button>
+            </div>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+            const basketContent = document.getElementById('basket-content');
+            const emptyBasketMessage = document.getElementById('empty-basket-message');
+
+            if (basket.length === 0) {
+                basketContent.style.display = 'none';
+                emptyBasketMessage.style.display = 'block';
+            }
+        });
+    </script>
     <script src="script.js"></script>
     <script src="/navscript.js"></script>
 </body>

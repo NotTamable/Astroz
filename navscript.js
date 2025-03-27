@@ -23,5 +23,5 @@ document.getElementById('nav-toggle')?.addEventListener('click', () => {
     navToggle.style.transform = 'rotate(90deg)';
     setTimeout(() => {
         navToggle.style.transform = 'rotate(0deg)';
-    }, 300); // Reset after animation
+    }, 300);
 });

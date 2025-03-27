@@ -1,14 +1,3 @@
-fetch('../../navbar.html')
-    .then(response => response.text())
-    .then(data => {
-        const navbar = document.getElementById('navbar');
-        if (navbar) navbar.innerHTML = data;
-    });
-
-const script = document.createElement('script');
-script.src = '/navscript.js';
-document.body.appendChild(script);
-
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
 const product = products.find(p => p.id === productId);

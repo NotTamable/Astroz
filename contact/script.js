@@ -8,15 +8,6 @@ document.getElementById('contact-form')?.addEventListener('submit', function(eve
         localStorage.setItem('lastSubmitTime', now);
     }
 });
-
-fetch('/navbar.html')
-    .then(response => response.text())
-    .then(data => document.getElementById('navbar').innerHTML = data);
-
-const script = document.createElement('script');
-script.src = '/navscript.js';
-document.body.appendChild(script);
-
 const basket = JSON.parse(localStorage.getItem('basket')) || [];
 const basketButton = document.getElementById('basket-button');
 const basketCount = basketButton.querySelector('.basket-count');

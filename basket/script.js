@@ -65,13 +65,3 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Checkout functionality is not implemented yet.');
     });
 });
-fetch('/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-        const navbar = document.getElementById('navbar');
-        if (navbar) navbar.innerHTML = data;
-    });
-
-const script = document.createElement('script');
-script.src = '/navscript.js';
-document.body.appendChild(script);

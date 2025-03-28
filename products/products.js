@@ -1,4 +1,4 @@
-const products = [
+window.products = [
     { name: "Astroz Hoodie - Default", price: 10, sizes: ['3-4', '4-5', '5-6', '6-7', '7-8'] },
     { name: "Product2", price: 20, sizes: ['S', 'M', 'L', 'XL'] },
     { name: "Product3", price: 30, sizes: ['One Size'] }

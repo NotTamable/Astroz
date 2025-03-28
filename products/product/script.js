@@ -1,9 +1,10 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
 const product = window.products.find(p => p.id === productId); // Use window.products to access the global array
-
+alert(product)
 if (product) {
     const productDetails = document.getElementById('product-details');
+    alert(productDetails);
     if (productDetails) {
         const productNameSlug = product.name.replace(/\s+/g, '');
         alert(productNameSlug);

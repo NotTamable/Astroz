@@ -186,6 +186,25 @@
     background-color: #28a745;
 }
 
+.size-selection, .color-selection {
+    margin: 20px 0;
+}
+
+.size-selection h4, .color-selection h4 {
+    margin-bottom: 10px;
+}
+
+#size-options, #color-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#size-options label, #color-options label {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .product-layout {
         flex-direction: column;

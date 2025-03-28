@@ -1,7 +1,7 @@
 const products = [
-    { id: 1, name: "Astroz Hoodie - Green", price: 10 },
-    { id: 2, name: "Product2", price: 20 },
-    { id: 3, name: "Product3", price: 30 }
+    { id: 1, name: "Astroz Hoodie - Green", price: 10, sizes: ['3-4', '4-5', '5-6', '6-7', '7-8'] },
+    { id: 2, name: "Product2", price: 20, sizes: ['S', 'M', 'L', 'XL'] },
+    { id: 3, name: "Product3", price: 30, sizes: ['One Size'] }
 ];
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -33,9 +33,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const displayedPrice = (product.price * 0.8).toFixed(2); // 20% less
         productPrice.textContent = `£${displayedPrice}`;
 
+        const productSizes = document.createElement("p");
+        productSizes.className = "sizes";
+        productSizes.textContent = `Available Sizes: ${product.sizes.join(', ')}`;
+
         productDiv.appendChild(productImage);
         productDiv.appendChild(productName);
         productDiv.appendChild(productPrice);
+        productDiv.appendChild(productSizes);
 
         productDiv.addEventListener("click", function() {
             window.location.href = `product/index.html?id=${product.id}`;

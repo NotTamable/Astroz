@@ -132,3 +132,9 @@ img {
     max-width: 100%;
     height: auto; /* Ensure images are responsive */
 }
+
+input[type="number"] {
+    -webkit-user-select: none; /* Prevent text selection */
+    -webkit-touch-callout: none; /* Disable callout menu */
+    touch-action: manipulation; /* Prevent zooming */
+}

@@ -10,90 +10,73 @@ if (product) {
         productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
         productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
 
+        const sizeOptions = ['3-4', '4-5', '5-6', '6-7', '7-8'];
+        const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
+
+        const sizeContainer = document.getElementById('size-options');
+        const colorContainer = document.getElementById('color-options');
+
+        sizeOptions.forEach(size => {
+            const sizeCheckbox = document.createElement('input');
+            sizeCheckbox.type = 'checkbox';
+            sizeCheckbox.value = size;
+            sizeCheckbox.id = `size-${size}`;
+            sizeCheckbox.className = 'size-checkbox';
+
+            const sizeLabel = document.createElement('label');
+            sizeLabel.htmlFor = `size-${size}`;
+            sizeLabel.textContent = size;
+
+            sizeContainer.appendChild(sizeCheckbox);
+            sizeContainer.appendChild(sizeLabel);
+        });
+
+        colorOptions.forEach(color => {
+            const colorRadio = document.createElement('input');
+            colorRadio.type = 'radio';
+            colorRadio.name = 'color';
+            colorRadio.value = color;
+            colorRadio.id = `color-${color}`;
+            colorRadio.className = 'color-radio';
+
+            const colorLabel = document.createElement('label');
+            colorLabel.htmlFor = `color-${color}`;
+            colorLabel.textContent = color;
+
+            colorContainer.appendChild(colorRadio);
+            colorContainer.appendChild(colorLabel);
+        });
+
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
 
-        function showQuantityModal(product, callback) {
-            const modal = document.createElement('div');
-            modal.className = 'quantity-modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <h3>Select Quantity</h3>
-                    <div class="quantity-controls">
-                        <button id="decrease-quantity">-</button>
-                        <input type="number" id="quantity-input" value="1" min="1">
-                        <button id="increase-quantity">+</button>
-                    </div>
-                    <button id="confirm-quantity">Confirm</button>
-                </div>
-            `;
-            document.body.appendChild(modal);
-
-            const quantityInput = modal.querySelector('#quantity-input');
-            modal.querySelector('#decrease-quantity').addEventListener('click', () => {
-                quantityInput.value = Math.max(1, parseInt(quantityInput.value) - 1);
-            });
-            modal.querySelector('#increase-quantity').addEventListener('click', () => {
-                quantityInput.value = parseInt(quantityInput.value) + 1;
-            });
-            modal.querySelector('#confirm-quantity').addEventListener('click', () => {
-                const quantity = parseInt(quantityInput.value);
-                document.body.removeChild(modal);
-                callback(quantity);
-            });
-        }
-
         addToCartButton.addEventListener('click', () => {
-            addToCartButton.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                addToCartButton.style.transform = 'scale(1)';
-            }, 200); // Reset after animation
+            const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
+            const selectedColor = document.querySelector('.color-radio:checked')?.value;
 
-            showQuantityModal(product, quantity => {
-                const basket = JSON.parse(localStorage.getItem('basket')) || [];
-                const existingItem = basket.find(item => item.id === product.id);
+            if (!selectedColor) {
+                alert('Please select a color.');
+                return;
+            }
+
+            if (selectedSizes.length === 0) {
+                alert('Please select at least one size.');
+                return;
+            }
+
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+            selectedSizes.forEach(size => {
+                const existingItem = basket.find(item => item.id === product.id && item.size === size && item.color === selectedColor);
 
                 if (existingItem) {
-                    existingItem.quantity += quantity;
+                    existingItem.quantity += 1;
                 } else {
-                    basket.push({ ...product, quantity, enabled: true });
+                    basket.push({ ...product, size, color: selectedColor, quantity: 1, enabled: true });
                 }
-
-                localStorage.setItem('basket', JSON.stringify(basket));
-
-                // Show popup as a modal
-                const popup = document.createElement('div');
-                popup.className = 'basket-modal';
-                popup.innerHTML = `
-                    <div class="modal-content">
-                        <p>${product.name} added to basket.</p>
-                        <button id="undo-button">Undo</button>
-                        <button id="view-basket-button">View Basket</button>
-                    </div>
-                `;
-                document.body.appendChild(popup);
-
-                document.getElementById('undo-button').addEventListener('click', () => {
-                    if (existingItem) {
-                        existingItem.quantity -= quantity;
-                        if (existingItem.quantity <= 0) {
-                            basket.splice(basket.indexOf(existingItem), 1);
-                        }
-                    } else {
-                        basket.pop();
-                    }
-                    localStorage.setItem('basket', JSON.stringify(basket));
-                    popup.remove();
-                    updateBasketCount(); // Update basket count dynamically
-                });
-
-                document.getElementById('view-basket-button').addEventListener('click', () => {
-                    window.location.href = '/basket/';
-                });
-
-                setTimeout(() => popup.remove(), 5000); // Auto-remove after 5 seconds
-
-                updateBasketCount(); // Update basket count dynamically
             });
+
+            localStorage.setItem('basket', JSON.stringify(basket));
+            alert('Items added to basket.');
         });
     }
 }

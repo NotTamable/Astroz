@@ -5,18 +5,16 @@ const product = products.find(p => p.id === productId);
 if (product) {
     const productDetails = document.getElementById('product-details');
     if (productDetails) {
-        productDetails.querySelector('.product-image').src = `/ProductImages/${product.name.replace(/\s+/g, '')}/${product.name.replace(/\s+/g, '')}--front.webp`;
+        const productNameSlug = product.name.replace(/\s+/g, '');
+        productDetails.querySelector('.product-image').src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
         productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
         productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
 
-        const sizeOptions = ['3-4', '4-5', '5-6', '6-7', '7-8'];
-        const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
-
         const sizeContainer = document.getElementById('size-options');
         const colorContainer = document.getElementById('color-options');
 
-        sizeOptions.forEach(size => {
+        product.sizes.forEach(size => {
             const sizeCheckbox = document.createElement('input');
             sizeCheckbox.type = 'checkbox';
             sizeCheckbox.value = size;
@@ -31,6 +29,7 @@ if (product) {
             sizeContainer.appendChild(sizeLabel);
         });
 
+        const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
         colorOptions.forEach(color => {
             const colorRadio = document.createElement('input');
             colorRadio.type = 'radio';

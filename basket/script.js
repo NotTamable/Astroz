@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketItemsContainer = document.getElementById('basket-items');
+    const basketContent = document.getElementById('basket-content');
+    const emptyBasketMessage = document.getElementById('empty-basket-message');
     const subtotalElement = document.getElementById('subtotal');
     const feeElement = document.getElementById('fee');
     const totalElement = document.getElementById('total');
@@ -8,6 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateBasket() {
         basketItemsContainer.innerHTML = ''; // Clear existing items
         let subtotal = 0;
+
+        if (basket.length === 0) {
+            basketContent.style.display = 'none';
+            emptyBasketMessage.style.display = 'block';
+            return;
+        }
+
+        basketContent.style.display = 'block';
+        emptyBasketMessage.style.display = 'none';
 
         basket.forEach(item => {
             const itemCard = document.createElement('div');
@@ -69,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('clear-basket-button').onclick = () => {
         localStorage.removeItem('basket');
+        basket.length = 0; // Clear the basket array
         updateBasket();
     };
 

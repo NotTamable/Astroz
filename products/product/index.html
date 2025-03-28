@@ -9,12 +9,14 @@
 </head>
 <body>
     <div id="navbar"></div>
-    <!-- Add popup container -->
-    <div id="basket-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; background-color: #1f1f1f; color: white; padding: 20px; text-align: center; z-index: 1000;">
-        <p>Item added to basket!</p>
-        <button id="undo-add-to-basket" style="margin-right: 10px; background-color: red; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Undo</button>
-        <button id="go-to-basket" style="background-color: #37ff00; color: black; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Go to Basket</button>
-        <button id="close-popup" style="margin-left: 10px; background-color: gray; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+    <!-- Update popup container -->
+    <div id="basket-popup" class="basket-modal" style="display: none;">
+        <div class="modal-content">
+            <p>Item added to basket!</p>
+            <button id="undo-add-to-basket" style="background-color: red; color: white;">Undo</button>
+            <button id="go-to-basket" style="background-color: #37ff00; color: black;">Go to Basket</button>
+            <button id="close-popup" style="background-color: gray; color: white;">Close</button>
+        </div>
     </div>
     <main>
         <div id="product-details" class="product-layout">

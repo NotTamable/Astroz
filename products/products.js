@@ -14,14 +14,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     productsContainer.innerHTML = '';
     filteredProducts.forEach((product, index) => {
-        product.id = index + 1; // Automatically assign IDs based on order
+        product.id = index + 1; // Assign IDs based on order
 
         const productDiv = document.createElement("div");
         productDiv.className = "product";
         productDiv.dataset.id = product.id;
 
+        const productNameSlug = product.name.replace(/\s+/g, '');
+
         const productImage = document.createElement("img");
-        productImage.src = `/ProductImages/${product.name.replace(/\s+/g, '')}/${product.name.replace(/\s+/g, '')}--front.webp`;
+        productImage.src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productImage.alt = product.name;
 
         const productName = document.createElement("h3");

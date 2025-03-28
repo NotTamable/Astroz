@@ -135,6 +135,7 @@ img {
 
 input[type="number"] {
     -webkit-user-select: none; /* Prevent text selection */
+    user-select: none;
     -webkit-touch-callout: none; /* Disable callout menu */
     touch-action: manipulation; /* Prevent zooming */
 }

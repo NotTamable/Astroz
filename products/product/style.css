@@ -205,7 +205,7 @@
 }
 
 #size-options label, #color-options label {
-    background-color: #1f1f1f;
+    background-color: #0062a9;
     color: #ffffff;
     padding: 10px 15px;
     border-radius: 5px;
@@ -216,6 +216,24 @@
 #size-options label:hover, #color-options label:hover {
     background-color: #37ff00;
     transform: scale(1.1);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    display: none; /* Hide the input elements */
+}
+
+input[type="checkbox"] + label, input[type="radio"] + label {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
+    background-color: #37ff00;
+    color: black;
+    font-weight: bold;
 }
 
 input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {

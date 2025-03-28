@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const feeElement = document.getElementById('fee');
     const totalElement = document.getElementById('total');
 
+    function calculateCharge(desiredAmount) {
+        const percentageFee = 0.0349; // 3.49%
+        const flatFee = 0.49; // £0.49 flat fee
+        const charge = (desiredAmount + flatFee) / (1 - percentageFee);
+        return parseFloat(charge.toFixed(2)); // Rounds to two decimal places
+    }
+
     function updateBasket() {
         basketItemsContainer.innerHTML = ''; // Clear existing items
         let subtotal = 0;
@@ -43,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        const fee = Math.round((subtotal * 0.029 + 0.3) * 100) / 100;
+        const fee = calculateCharge(subtotal) - subtotal;
         const total = subtotal + fee;
 
         subtotalElement.textContent = subtotal.toFixed(2);

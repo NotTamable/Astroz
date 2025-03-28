@@ -5,7 +5,7 @@ const product = products.find(p => p.id === productId);
 if (product) {
     const productDetails = document.getElementById('product-details');
     if (productDetails) {
-        productDetails.querySelector('.product-image').src = `/ProductImages/${product.name.replace(/\s+/g, '')}.webp`;
+        productDetails.querySelector('.product-image').src = `/ProductImages/${product.name.replace(/\s+/g, '')}/${product.name.replace(/\s+/g, '')}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
         productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
         productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;

@@ -188,21 +188,40 @@
 
 .size-selection, .color-selection {
     margin: 20px 0;
+    text-align: center;
 }
 
 .size-selection h4, .color-selection h4 {
     margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #ffffff;
 }
 
 #size-options, #color-options {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 #size-options label, #color-options label {
-    margin-left: 5px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#size-options label:hover, #color-options label:hover {
+    background-color: #37ff00;
+    transform: scale(1.1);
+}
+
+input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
+    background-color: #37ff00;
+    color: black;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {

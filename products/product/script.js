@@ -1,9 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
-alert("Product ID from URL:", productId); // Debugging: Log the product ID
-alert("Products array:", window.products); // Debugging: Log the products array
 const product = window.products.find(p => p.id === productId);
-alert("Product found:", product); // Debugging: Log the product object
 
 if (product) {
     const productDetails = document.getElementById('product-details');
@@ -80,9 +77,5 @@ if (product) {
             localStorage.setItem('basket', JSON.stringify(basket));
             alert('Items added to basket.');
         });
-    } else {
-        console.error("Product details container not found.");
     }
-} else {
-    console.error("Product not found for ID:", productId);
 }

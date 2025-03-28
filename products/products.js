@@ -1,7 +1,7 @@
 window.products = [
-    { id:"1", name: "Astroz Hoodie - Default", price: 10, sizes: ['3-4', '4-5', '5-6', '6-7', '7-8'] },
-    { name: "Product2", price: 20, sizes: ['S', 'M', 'L', 'XL'] },
-    { name: "Product3", price: 30, sizes: ['One Size'] }
+    { id: 1, name: "Astroz Hoodie - Default", price: 10, sizes: ['3-4', '4-5', '5-6', '6-7', '7-8'] },
+    { id: 2, name: "Product2", price: 20, sizes: ['S', 'M', 'L', 'XL'] },
+    { id: 3, name: "Product3", price: 30, sizes: ['One Size'] }
 ];
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -13,9 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ) : window.products;
 
     productsContainer.innerHTML = '';
-    filteredProducts.forEach((product, index) => {
-        product.id = index + 1; // Assign IDs based on order
-
+    filteredProducts.forEach(product => {
         const productDiv = document.createElement("div");
         productDiv.className = "product";
         productDiv.dataset.id = product.id;
@@ -39,8 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productDiv.appendChild(productPrice);
 
         productDiv.addEventListener("click", function() {
-            console.log("Navigating to product with ID:", product.id); // Debugging: Log the ID being passed
-            window.location.href = `product/index.html?id=${product.id}`; // Pass the correct ID in the URL
+            window.location.href = `product/index.html?id=${product.id}`; // Use the predefined ID
         });
 
         productsContainer.appendChild(productDiv);

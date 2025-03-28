@@ -1,28 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
-    const basketTableBody = document.querySelector('#basket-table tbody');
+    const basketItemsContainer = document.getElementById('basket-items');
     const subtotalElement = document.getElementById('subtotal');
     const feeElement = document.getElementById('fee');
     const totalElement = document.getElementById('total');
 
     function updateBasket() {
-        basketTableBody.innerHTML = ''; // Clear existing rows
+        basketItemsContainer.innerHTML = ''; // Clear existing items
         let subtotal = 0;
 
         basket.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${item.name}</td>
-                <td>£${item.price.toFixed(2)}</td>
-                <td>${item.quantity}</td>
-                <td style="background-color: white;">
-                    <img src="${item.enabled ? '/images/eyesOpen.png' : '/images/eyesClosed.png'}" alt="Enable" style="cursor: pointer; width: 20px;" onclick="toggleItem(${item.id})">
-                </td>
-                <td>
-                    <button style="background: none; border: none; color: red; font-size: 1.5rem; cursor: pointer;" onclick="removeItem(${item.id})">X</button>
-                </td>
+            const itemCard = document.createElement('div');
+            itemCard.className = 'basket-item';
+            itemCard.innerHTML = `
+                <div class="basket-item-image">
+                    <img src="/ProductImages/${item.name.replace(/\s+/g, '')}.webp" alt="${item.name}">
+                    <input type="checkbox" class="enable-checkbox" ${item.enabled ? 'checked' : ''} onclick="toggleItem(${item.id})">
+                </div>
+                <div class="basket-item-details">
+                    <h3>${item.name}</h3>
+                    <p>Price: £${item.price.toFixed(2)} incl. VAT</p>
+                    <div class="quantity-controls">
+                        <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+                        <button class="remove-item-button" onclick="removeItem(${item.id})">X</button>
+                    </div>
+                </div>
             `;
-            basketTableBody.appendChild(row);
+            basketItemsContainer.appendChild(itemCard);
             if (item.enabled) {
                 subtotal += item.price * item.quantity;
             }
@@ -40,6 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = basket.find(item => item.id === itemId);
         if (item) {
             item.enabled = !item.enabled;
+            localStorage.setItem('basket', JSON.stringify(basket));
+            updateBasket();
+        }
+    };
+
+    window.updateQuantity = function (itemId, quantity) {
+        const item = basket.find(item => item.id === itemId);
+        if (item) {
+            item.quantity = Math.max(1, parseInt(quantity));
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }

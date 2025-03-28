@@ -1,5 +1,3 @@
-
-
 header {
     display: flex;
     justify-content: space-between;
@@ -55,4 +53,86 @@ main {
 .toggle-item:hover {
     transform: scale(1.2); /* Slight zoom on hover */
     opacity: 0.8; /* Slight fade effect */
+}
+
+.basket-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+}
+
+.basket-item-image {
+    position: relative;
+    margin-right: 20px;
+}
+
+.basket-item-image img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.basket-item-image .enable-checkbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.basket-item-details {
+    flex: 1;
+}
+
+.basket-item-details h3 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+}
+
+.basket-item-details p {
+    margin: 0 0 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls input {
+    width: 50px;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.quantity-controls .remove-item-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.quantity-controls .remove-item-button:hover {
+    transform: scale(1.1);
+    background-color: darkred;
+}
+
+#basket-summary {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#basket-summary p {
+    margin: 5px 0;
 }

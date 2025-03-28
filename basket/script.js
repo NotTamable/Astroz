@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             itemCard.className = 'basket-item';
             itemCard.innerHTML = `
                 <div class="basket-item-image">
-                    <img src="/ProductImages/${item.name.replace(/\s+/g, '')}.webp" alt="${item.name}">
+                    <img src="/ProductImages/${item.name.replace(/\s+/g, '')}/${item.name.replace(/\s+/g, '')}--front.webp" alt="${item.name}">
                     <input type="checkbox" class="enable-checkbox" ${item.enabled ? 'checked' : ''} onclick="toggleItem(${item.id})">
                 </div>
                 <div class="basket-item-details">
@@ -81,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (itemIndex > -1) {
             basket.splice(itemIndex, 1);
             localStorage.setItem('basket', JSON.stringify(basket));
-            location.reload(); // Reload the page
+            location.reload();
         }
     };
 
     document.getElementById('clear-basket-button').onclick = () => {
         localStorage.removeItem('basket');
-        location.reload(); // Reload the page
+        location.reload();
     };
 
     document.getElementById('checkout-button').onclick = () => {

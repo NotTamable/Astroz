@@ -13,10 +13,11 @@
 }
 
 .product-image {
-    width: auto;
-    max-width: 100%; /* Ensure responsiveness */
-    height: auto;
+    width: 100%; /* Ensure the image spans the container */
+    max-width: 400px; /* Limit the maximum width */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 15px;
+    margin-bottom: 20px; /* Add spacing below the image */
 }
 
 .product-info {

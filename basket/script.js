@@ -74,14 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (itemIndex > -1) {
             basket.splice(itemIndex, 1);
             localStorage.setItem('basket', JSON.stringify(basket));
-            updateBasket();
+            location.reload(); // Reload the page
         }
     };
 
     document.getElementById('clear-basket-button').onclick = () => {
         localStorage.removeItem('basket');
-        basket.length = 0; // Clear the basket array
-        updateBasket();
+        location.reload(); // Reload the page
     };
 
     document.getElementById('checkout-button').onclick = () => {

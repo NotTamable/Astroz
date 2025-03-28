@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const productsContainer = document.getElementById("products-container");
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('search');
-    const filteredProducts = searchQuery ? products.filter(product => 
+    const filteredProducts = searchQuery ? window.products.filter(product => 
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
-    ) : products;
+    ) : window.products;
 
     productsContainer.innerHTML = '';
     filteredProducts.forEach((product, index) => {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productDiv.appendChild(productPrice);
 
         productDiv.addEventListener("click", function() {
-            window.location.href = `product/index.html?id=${product.id}`;
+            window.location.href = `product/index.html?id=${product.id}`; // Pass the correct ID in the URL
         });
 
         productsContainer.appendChild(productDiv);

@@ -1,13 +1,13 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
+alert("Product ID from URL:", productId); // Debugging: Log the product ID
 const product = window.products.find(p => p.id === productId); // Use window.products to access the global array
-alert(product)
+alert("Product found:", product); // Debugging: Log the product object
+
 if (product) {
     const productDetails = document.getElementById('product-details');
-    alert(productDetails);
     if (productDetails) {
         const productNameSlug = product.name.replace(/\s+/g, '');
-        alert(productNameSlug);
         productDetails.querySelector('.product-image').src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
         productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
@@ -79,5 +79,9 @@ if (product) {
             localStorage.setItem('basket', JSON.stringify(basket));
             alert('Items added to basket.');
         });
+    } else {
+        console.error("Product details container not found.");
     }
+} else {
+    console.error("Product not found for ID:", productId);
 }

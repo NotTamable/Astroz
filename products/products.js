@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productDiv.appendChild(productPrice);
 
         productDiv.addEventListener("click", function() {
+            console.log("Navigating to product with ID:", product.id); // Debugging: Log the ID being passed
             window.location.href = `product/index.html?id=${product.id}`; // Pass the correct ID in the URL
         });
 

@@ -1,7 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
 alert("Product ID from URL:", productId); // Debugging: Log the product ID
-const product = window.products.find(p => p.id === productId); // Use window.products to access the global array
+alert("Products array:", window.products); // Debugging: Log the products array
+const product = window.products.find(p => p.id === productId);
 alert("Product found:", product); // Debugging: Log the product object
 
 if (product) {

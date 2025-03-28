@@ -6,6 +6,7 @@ if (product) {
     const productDetails = document.getElementById('product-details');
     if (productDetails) {
         const productNameSlug = product.name.replace(/\s+/g, '');
+        alert(productNameSlug);
         productDetails.querySelector('.product-image').src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
         productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;

@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             itemCard.innerHTML = `
                 <div class="basket-item-image">
                     <img src="/ProductImages/${item.name.replace(/\s+/g, '')}/${item.name.replace(/\s+/g, '')}--front.webp" alt="${item.name}">
+                    <input type="checkbox" class="enable-checkbox" ${item.enabled ? 'checked' : ''} data-id="${item.id}">
                 </div>
                 <div class="basket-item-details">
                     <h3>${item.name}</h3>
@@ -48,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             basketItemsContainer.appendChild(itemCard);
-            subtotal += item.price * item.quantity;
+
+            if (item.enabled) {
+                subtotal += item.price * item.quantity;
+            }
         });
 
         const fee = calculateCharge(subtotal) - subtotal;
@@ -58,7 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
         feeElement.textContent = fee.toFixed(2);
         totalElement.textContent = total.toFixed(2);
 
-        updateBasketCount();
+        document.querySelectorAll('.enable-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (event) => {
+                const itemId = parseInt(event.target.dataset.id);
+                const item = basket.find(item => item.id === itemId);
+                if (item) {
+                    item.enabled = event.target.checked;
+                    localStorage.setItem('basket', JSON.stringify(basket));
+                    updateBasket();
+                }
+            });
+        });
     }
 
     window.increaseQuantity = function (itemId) {

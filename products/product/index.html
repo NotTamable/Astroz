@@ -34,6 +34,11 @@
                         <h4>Select Color:</h4>
                         <div id="color-options"></div>
                     </div>
+                    <div class="quantity-controls">
+                        <button id="decrease-quantity">-</button>
+                        <input type="number" id="quantity-input" value="1" min="1" max="10">
+                        <button id="increase-quantity">+</button>
+                    </div>
                     <button class="add-to-cart-button">Add to Basket</button>
                 </center>
             </div>
@@ -42,5 +47,20 @@
     <script src="../products.js"></script> <!-- Ensure this is loaded first -->
     <script src="script.js"></script>
     <script src="/navscript.js"></script>
+    <script>
+        document.getElementById('decrease-quantity').addEventListener('click', () => {
+            const quantityInput = document.getElementById('quantity-input');
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+            }
+        });
+
+        document.getElementById('increase-quantity').addEventListener('click', () => {
+            const quantityInput = document.getElementById('quantity-input');
+            if (quantityInput.value < 10) {
+                quantityInput.value++;
+            }
+        });
+    </script>
 </body>
 </html>

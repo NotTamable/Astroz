@@ -86,12 +86,6 @@ function closeSearch(event) {
     }
 }
 
-// Update to handle multiple search-toggle buttons
-const searchToggles = document.getElementsByClassName('search-toggle');
-for (var i = 0; i < searchToggles.length; i++) {
-    searchToggles[i].addEventListener('click', showSearch);
-}
-
 document.getElementById('nav-toggle')?.addEventListener('click', () => {
     const navbarList = document.getElementById('navbar-list');
     navbarList.style.display = navbarList.style.display === 'flex' ? 'none' : 'flex';

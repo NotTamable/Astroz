@@ -10,7 +10,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <button class="search-toggle">⌕</button>
+            <button class="search-toggle" onclick="showSearch()">⌕</button>
         </li>
     </ul>
     <li class="menu-item"><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo" class="logo">Home</a></li>
@@ -20,7 +20,7 @@
         </a>
     </li>
     <li class="menu-item">
-        <button class="search-toggle">⌕</button>
+        <button class="search-toggle" onclick="showSearch()">⌕</button>
     </li>
     <button id="nav-toggle" onclick="openModal('nav-modal')">☰</button>
 </nav>
@@ -64,6 +64,23 @@
         background-size: cover;
         padding: 1vh 2vh;
         width: 100%;
+    }
+    nav > *:not(#navbar-list) {
+        display: none; /* Hide everything except navbar-list */
+    }
+
+    #navbar-list {
+        display: flex; /* Show navbar-list by default */
+    }
+
+    @media (max-width: 768px) {
+        #navbar-list {
+            display: none; /* Hide navbar-list on small screens */
+        }
+
+        nav > *:not(#navbar-list) {
+            display: block; /* Show other elements on small screens */
+        }
     }
     #navbar-list {
         display: none; /* Hide menu items by default */

@@ -10,7 +10,6 @@ function openModal(modalid) {
 function closeModal(modalid) {
     document.getElementById(modalid).style.display = 'none';
 }
-
 function updateBasketCount() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketCount = document.getElementById('basket-count');
@@ -19,18 +18,15 @@ function updateBasketCount() {
         basketCount.textContent = totalItems;
     }
 }
-
 function updateBasketTable() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketTableBody = document.querySelector('#basket-table tbody');
     const subtotalElement = document.getElementById('subtotal');
     const feeElement = document.getElementById('fee');
     const totalElement = document.getElementById('total');
-
     if (basketTableBody) {
-        basketTableBody.innerHTML = ''; // Clear existing rows
+        basketTableBody.innerHTML = '';
         let subtotal = 0;
-
         basket.forEach(item => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -47,32 +43,28 @@ function updateBasketTable() {
             basketTableBody.appendChild(row);
             subtotal += item.price * item.quantity;
         });
-
         const fee = Math.round((subtotal * 0.029 + 0.3) * 100) / 100;
         const total = subtotal + fee;
-
         subtotalElement.textContent = subtotal.toFixed(2);
         feeElement.textContent = fee.toFixed(2);
         totalElement.textContent = total.toFixed(2);
     }
 }
-
 window.onload = () => {
     updateBasketCount();
     updateBasketTable();
 };
-
 document.addEventListener('DOMContentLoaded', () => {
-    updateBasketTable(); // Ensure basket table updates on page load
-    document.getElementById('search-form')?.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const query = document.getElementById('search-input')?.value.trim().toLowerCase();
-        if (query) {
-            window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
-        }
-    });
+    updateBasketTable();
 });
-function showSearch(){
+function handleSearch(event) {
+    event.preventDefault();
+    const query = document.getElementById('search-input')?.value.trim().toLowerCase();
+    if (query) {
+        window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
+    }
+}
+function showSearch() {
     document.getElementById('search-modal').style.display = 'block';
 }
 document.getElementById('nav-toggle')?.addEventListener('click', () => {

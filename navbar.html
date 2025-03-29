@@ -27,8 +27,8 @@
     </div>
 </div>
 <div id="search-modal">
-    <form id="search-form">
-        <input type="text" id="search-input" placeholder="Search for products...">
+    <form id="search-form" onsubmit="handleSearch(event)">
+        <input type="text" id="search-input" placeholder="Search for products..." required>
         <button type="submit">⌕</button>
     </form>
 </div>
@@ -57,7 +57,6 @@
         padding: 1vh 2vh;
         width: 100%;
     }
-
     #navbar-list {
         display: flex;
         list-style: none;
@@ -66,11 +65,9 @@
         align-items: center;
         justify-content: center;
     }
-
     #navbar-list li {
         margin: 0 5vh;
     }
-
     #navbar-list li a {
         color: #ffffff;
         text-decoration: none;
@@ -79,13 +76,11 @@
         font-family: 'Antipasto', sans-serif;
         font-size: 5vh;
     }
-
     #logo {
         margin-right: 1vh;
         width: auto;
         height: 5vh;
     }
-
     #nav-toggle {
         display: none;
         background: none;
@@ -94,7 +89,6 @@
         font-size: 5vh;
         cursor: pointer;
     }
-
     body {
         margin: 0;
         font-family: "FutureClean";
@@ -102,7 +96,6 @@
         color: #ffffff;
         overflow-x: hidden;
     }
-
     #nav-modal {
         display: none;
         position: fixed;
@@ -113,7 +106,6 @@
         background-color: rgba(0, 0, 0, 0.8);
         z-index: 1000;
     }
-
     #nav-modal-content {
         background-color: #1f1f1f;
         margin: 15% auto;
@@ -122,29 +114,24 @@
         width: 80%;
         text-align: center;
     }
-
     #nav-modal-content ul {
         list-style: none;
         padding: 0;
     }
-
     #nav-modal-content ul li {
         margin: 10px 0;
     }
-
     #nav-modal-content ul li a {
         color: #ffffff;
         text-decoration: none;
         font-size: 2rem;
     }
-
     #nav-close {
         color: #ffffff;
         font-size: 2rem;
         float: right;
         cursor: pointer;
     }
-
     #search-modal {
         display: none;
         position: fixed;
@@ -157,7 +144,6 @@
         justify-content: center;
         align-items: center;
     }
-
     #basket-link {
         background-color: red;
         padding: 5px 5px;

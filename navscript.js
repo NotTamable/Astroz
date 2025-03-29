@@ -68,9 +68,10 @@ function showSearch() {
     document.getElementById('search-modal').style.display = 'block';
 }
 document.getElementById('nav-toggle')?.addEventListener('click', () => {
-    const navToggle = document.getElementById('nav-toggle');
-    navToggle.style.transform = 'rotate(90deg)';
-    setTimeout(() => {
-        navToggle.style.transform = 'rotate(0deg)';
-    }, 300);
+    const navModal = document.getElementById('nav-modal');
+    navModal.style.display = navModal.style.display === 'block' ? 'none' : 'block';
+});
+
+document.getElementById('nav-close')?.addEventListener('click', () => {
+    document.getElementById('nav-modal').style.display = 'none';
 });

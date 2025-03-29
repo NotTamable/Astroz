@@ -2,6 +2,15 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
 const product = window.products.find(p => p.id === productId);
 
+function updateBasketCount() {
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const basketCount = document.getElementById('basket-count');
+    if (basketCount) {
+        const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
+        basketCount.textContent = totalItems;
+    }
+}
+
 if (product) {
     const productDetails = document.getElementById('product-details');
     if (productDetails) {
@@ -30,19 +39,21 @@ if (product) {
 
         const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
         colorOptions.forEach(color => {
+            const colorLabel = document.createElement('label');
+            colorLabel.textContent = color;
+            colorLabel.htmlFor = `color-${color}`;
+            colorLabel.style.display = 'block';
+
             const colorRadio = document.createElement('input');
             colorRadio.type = 'radio';
             colorRadio.name = 'color';
             colorRadio.value = color;
             colorRadio.id = `color-${color}`;
             colorRadio.className = 'color-radio';
+            colorRadio.style.backgroundColor = color.toLowerCase();
 
-            const colorLabel = document.createElement('label');
-            colorLabel.htmlFor = `color-${color}`;
-            colorLabel.textContent = color;
-
-            colorContainer.appendChild(colorRadio);
             colorContainer.appendChild(colorLabel);
+            colorContainer.appendChild(colorRadio);
         });
 
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
@@ -77,6 +88,7 @@ if (product) {
             });
 
             localStorage.setItem('basket', JSON.stringify(basket));
+            updateBasketCount();
 
             // Show popup
             const popup = document.getElementById('basket-popup');
@@ -89,6 +101,7 @@ if (product) {
                     if (index > -1) basket.splice(index, 1);
                 });
                 localStorage.setItem('basket', JSON.stringify(basket));
+                updateBasketCount();
                 popup.style.display = 'none';
             };
 

@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const feeElement = document.getElementById('fee');
     const totalElement = document.getElementById('total');
 
+    function updateBasketCount() {
+        const basketCount = document.getElementById('basket-count');
+        if (basketCount) {
+            const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
+            basketCount.textContent = totalItems;
+        }
+    }
+
     function calculateCharge(desiredAmount) {
         const percentageFee = 0.0349; // 3.49%
         const flatFee = 0.30; // £0.49 flat fee
@@ -21,19 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (basket.length === 0) {
             basketContent.style.display = 'none';
             emptyBasketMessage.style.display = 'block';
+            updateBasketCount();
             return;
         }
 
         basketContent.style.display = 'block';
         emptyBasketMessage.style.display = 'none';
 
-        basket.forEach(item => {
+        basket.forEach((item, index) => {
             const itemCard = document.createElement('div');
             itemCard.className = 'basket-item';
             itemCard.innerHTML = `
                 <div class="basket-item-image">
                     <img src="/ProductImages/${item.name.replace(/\s+/g, '')}/${item.name.replace(/\s+/g, '')}--front.webp" alt="${item.name}">
-                    <input type="checkbox" class="enable-checkbox" ${item.enabled ? 'checked' : ''} data-id="${item.id}">
+                    <input type="checkbox" class="enable-checkbox" id="enable-${index}" ${item.enabled ? 'checked' : ''}>
                 </div>
                 <div class="basket-item-details">
                     <h3>${item.name}</h3>
@@ -41,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>Color: ${item.color}</p>
                     <p>Price: £${item.price.toFixed(2)}</p>
                     <div class="quantity-controls">
-                        <button onclick="decreaseQuantity(${item.id})">-</button>
+                        <button onclick="decreaseQuantity(${index})">-</button>
                         <input type="text" value="${item.quantity}" readonly>
-                        <button onclick="increaseQuantity(${item.id})">+</button>
-                        <button class="remove-item-button" onclick="removeItem(${item.id})">🗙</button>
+                        <button onclick="increaseQuantity(${index})">+</button>
+                        <button class="remove-item-button" onclick="removeItem(${index})">🗙</button>
                     </div>
                 </div>
             `;
@@ -53,6 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item.enabled) {
                 subtotal += item.price * item.quantity;
             }
+
+            document.getElementById(`enable-${index}`).addEventListener('change', (event) => {
+                item.enabled = event.target.checked;
+                localStorage.setItem('basket', JSON.stringify(basket));
+                updateBasket();
+            });
         });
 
         const fee = calculateCharge(subtotal) - subtotal;
@@ -62,44 +77,29 @@ document.addEventListener('DOMContentLoaded', () => {
         feeElement.textContent = fee.toFixed(2);
         totalElement.textContent = total.toFixed(2);
 
-        document.querySelectorAll('.enable-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', (event) => {
-                const itemId = parseInt(event.target.dataset.id);
-                const item = basket.find(item => item.id === itemId);
-                if (item) {
-                    item.enabled = event.target.checked;
-                    localStorage.setItem('basket', JSON.stringify(basket));
-                    updateBasket();
-                }
-            });
-        });
+        updateBasketCount();
     }
 
-    window.increaseQuantity = function (itemId) {
-        const item = basket.find(item => item.id === itemId);
-        if (item && item.quantity < 10) {
-            item.quantity += 1;
+    window.increaseQuantity = function (index) {
+        if (basket[index].quantity < 10) {
+            basket[index].quantity++;
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }
     };
 
-    window.decreaseQuantity = function (itemId) {
-        const item = basket.find(item => item.id === itemId);
-        if (item && item.quantity > 1) {
-            item.quantity -= 1;
+    window.decreaseQuantity = function (index) {
+        if (basket[index].quantity > 1) {
+            basket[index].quantity--;
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }
     };
 
-    window.removeItem = function (itemId) {
-        const itemIndex = basket.findIndex(item => item.id === itemId);
-        if (itemIndex > -1) {
-            basket.splice(itemIndex, 1);
-            localStorage.setItem('basket', JSON.stringify(basket));
-            updateBasket();
-        }
+    window.removeItem = function (index) {
+        basket.splice(index, 1);
+        localStorage.setItem('basket', JSON.stringify(basket));
+        updateBasket();
     };
 
     document.getElementById('clear-basket-button').onclick = () => {

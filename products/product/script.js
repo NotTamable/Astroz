@@ -8,7 +8,7 @@ if (product) {
         const productNameSlug = product.name.replace(/\s+/g, '');
         productDetails.querySelector('.product-image').src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
-        productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
+        productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)}`;
 
         const sizeContainer = document.getElementById('size-options');
         const colorContainer = document.getElementById('color-options');

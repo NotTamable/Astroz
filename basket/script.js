@@ -33,21 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
             itemCard.innerHTML = `
                 <div class="basket-item-image">
                     <img src="/ProductImages/${item.name.replace(/\s+/g, '')}/${item.name.replace(/\s+/g, '')}--front.webp" alt="${item.name}">
-                    <input type="checkbox" class="enable-checkbox" ${item.enabled ? 'checked' : ''} onclick="toggleItem(${item.id})">
                 </div>
                 <div class="basket-item-details">
                     <h3>${item.name}</h3>
-                    <p>Price: £${item.price.toFixed(2)} incl. VAT</p>
+                    <p>Size: ${item.size}</p>
+                    <p>Color: ${item.color}</p>
+                    <p>Price: £${item.price.toFixed(2)}</p>
                     <div class="quantity-controls">
-                        <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
-                        <button class="remove-item-button" onclick="removeItem(${item.id})">X</button>
+                        <button onclick="decreaseQuantity(${item.id})">-</button>
+                        <input type="text" value="${item.quantity}" readonly>
+                        <button onclick="increaseQuantity(${item.id})">+</button>
+                        <button class="remove-item-button" onclick="removeItem(${item.id})">Remove</button>
                     </div>
                 </div>
             `;
             basketItemsContainer.appendChild(itemCard);
-            if (item.enabled) {
-                subtotal += item.price * item.quantity;
-            }
+            subtotal += item.price * item.quantity;
         });
 
         const fee = calculateCharge(subtotal) - subtotal;
@@ -56,21 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
         subtotalElement.textContent = subtotal.toFixed(2);
         feeElement.textContent = fee.toFixed(2);
         totalElement.textContent = total.toFixed(2);
+
+        updateBasketCount();
     }
 
-    window.toggleItem = function (itemId) {
+    window.increaseQuantity = function (itemId) {
         const item = basket.find(item => item.id === itemId);
-        if (item) {
-            item.enabled = !item.enabled;
+        if (item && item.quantity < 10) {
+            item.quantity += 1;
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }
     };
 
-    window.updateQuantity = function (itemId, quantity) {
+    window.decreaseQuantity = function (itemId) {
         const item = basket.find(item => item.id === itemId);
-        if (item) {
-            item.quantity = Math.max(1, parseInt(quantity));
+        if (item && item.quantity > 1) {
+            item.quantity -= 1;
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }
@@ -81,13 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (itemIndex > -1) {
             basket.splice(itemIndex, 1);
             localStorage.setItem('basket', JSON.stringify(basket));
-            location.reload();
+            updateBasket();
         }
     };
 
     document.getElementById('clear-basket-button').onclick = () => {
         localStorage.removeItem('basket');
-        location.reload();
+        basket.length = 0;
+        updateBasket();
     };
 
     document.getElementById('checkout-button').onclick = () => {

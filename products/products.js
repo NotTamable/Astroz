@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const productPrice = document.createElement("p");
         productPrice.className = "price";
-        // Remove excl-vat calculation
         productPrice.textContent = `£${product.price.toFixed(2)}`;
 
         productDiv.appendChild(productImage);
@@ -37,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productDiv.appendChild(productPrice);
 
         productDiv.addEventListener("click", function() {
-            window.location.href = `product/index.html?id=${product.id}`; // Use the predefined ID
+            window.location.href = `product/index.html?id=${product.id}`;
         });
 
         productsContainer.appendChild(productDiv);

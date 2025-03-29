@@ -63,9 +63,13 @@ main {
 
 .product p.price {
     margin: 0;
-    background-color: rgb(255, 0, 0); /* Bright red */
+    background-color: red;
+    color: white;
     padding: 5px;
     border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Remove excl-vat styles */

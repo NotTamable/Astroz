@@ -55,14 +55,25 @@ main {
     opacity: 0.8; /* Slight fade effect */
 }
 
+#basket-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .basket-item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #1f1f1f;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
 }
 
 .basket-item-image {
@@ -86,15 +97,18 @@ main {
 
 .basket-item-details {
     flex: 1;
+    margin-left: 20px;
 }
 
 .basket-item-details h3 {
     margin: 0 0 10px;
     font-size: 1.2rem;
+    color: white;
 }
 
 .basket-item-details p {
-    margin: 0 0 10px;
+    margin: 5px 0;
+    color: #ccc;
 }
 
 .quantity-controls {
@@ -104,12 +118,13 @@ main {
 }
 
 .quantity-controls input {
-    width: 50px;
+    width: 40px;
     text-align: center;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 5px;
+    background-color: #1f1f1f;
+    color: white;
 }
 
 .quantity-controls .remove-item-button {
@@ -128,11 +143,56 @@ main {
     background-color: darkred;
 }
 
+.quantity-controls button {
+    background-color: #37ff00;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    transform: scale(1.1);
+    background-color: #28a745;
+}
+
 #basket-summary {
-    margin-top: 20px;
     text-align: center;
+    margin-top: 20px;
 }
 
 #basket-summary p {
     margin: 5px 0;
+    color: white;
+}
+
+.discover-products-button {
+    background-color: #37ff00;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.discover-products-button:hover {
+    transform: scale(1.1);
+    background-color: #28a745;
+}
+
+@media (max-width: 768px) {
+    .basket-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .basket-item-details {
+        margin-left: 0;
+        text-align: center;
+    }
 }

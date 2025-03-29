@@ -10,9 +10,9 @@
 <body>
     <div id="navbar"></div>
     <main>
-        <div id="empty-basket-message" style="display: none; text-align: center; margin-top: 50px;">
+        <div id="empty-basket-message" style="display: none;">
             <h2>Nothing in your basket yet</h2>
-            <button onclick="window.location.href='/products/'" style="background-color: #37ff00; color: black; padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer;">Discover Products</button>
+            <button onclick="window.location.href='/products/'" class="discover-products-button">Discover Products</button>
         </div>
         <div id="basket-content">
             <h2>Your Basket</h2>
@@ -26,18 +26,6 @@
             <div id="basket-items"></div>
         </div>
     </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const basket = JSON.parse(localStorage.getItem('basket')) || [];
-            const basketContent = document.getElementById('basket-content');
-            const emptyBasketMessage = document.getElementById('empty-basket-message');
-
-            if (basket.length === 0) {
-                basketContent.style.display = 'none';
-                emptyBasketMessage.style.display = 'block';
-            }
-        });
-    </script>
     <script src="script.js"></script>
     <script src="/navscript.js"></script>
 </body>

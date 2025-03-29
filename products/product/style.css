@@ -45,6 +45,10 @@
     margin: 1vh;
     font-weight: bold;
     text-align: center;
+    background-color: red;
+    padding: 2vh;
+    font-size: 2rem;
+    border-radius: 15px;
 }
 
 .add-to-cart-button {
@@ -232,6 +236,42 @@ input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
     font-weight: bold;
     background-color: #37ff00;
     transform: scale(1.1);
+}
+
+.undo-button, .go-to-basket-button, .close-popup-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.undo-button {
+    background-color: red;
+    color: white;
+}
+
+.undo-button:hover {
+    background-color: darkred;
+}
+
+.go-to-basket-button {
+    background-color: #37ff00;
+    color: black;
+}
+
+.go-to-basket-button:hover {
+    background-color: #28a745;
+}
+
+.close-popup-button {
+    background-color: gray;
+    color: white;
+}
+
+.close-popup-button:hover {
+    background-color: darkgray;
 }
 
 @media (max-width: 768px) {

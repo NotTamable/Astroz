@@ -5,22 +5,22 @@
         <li class="menu-item"><a href="/about/">About</a></li>
         <li class="menu-item"><a href="/contact/">Contact</a></li>
         <li class="menu-item">
-            <a href="/basket/" id="basket-link">
-                <span id="basket-count">0</span>
+            <a href="/basket/" class="basket-link">
+                <span class="basket-count">0</span>
             </a>
         </li>
         <li class="menu-item">
-            <button id="search-toggle" onclick="showSearch()">⌕</button>
+            <button class="search-toggle">⌕</button>
         </li>
     </ul>
     <li class="menu-item"><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo">Home</a></li>
     <li class="menu-item">
-        <a href="/basket/" id="basket-link">
-            <span id="basket-count">0</span>
+        <a href="/basket/" class="basket-link">
+            <span class="basket-count">0</span>
         </a>
     </li>
     <li class="menu-item">
-        <button id="search-toggle" onclick="showSearch()">⌕</button>
+        <button class="search-toggle">⌕</button>
     </li>
     <button id="nav-toggle" onclick="openModal('nav-modal')">☰</button>
 </nav>
@@ -49,7 +49,7 @@
         font-family: 'futureclean';
         src: url('/fonts/futureclean.ttf') format('truetype');
     }
-    #basket-count {
+    .basket-count {
         font-family: 'futureclean';
     }
     nav {
@@ -181,7 +181,7 @@
     #search-form button:hover {
         background-color: #2ecc71;
     }
-    #basket-link {
+    .basket-link {
         background-color: red;
         padding: 5px 5px;
         border-radius: 5px;
@@ -189,7 +189,7 @@
         text-align: center;
         justify-content: center;
     }
-    #search-toggle {
+    .search-toggle {
         border: none;
         color: white;
         font-size: 5vh;
@@ -200,7 +200,7 @@
         transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    #search-toggle:hover {
+    .search-toggle:hover {
         transform: scale(1.2); /* Slight zoom on hover */
         color: #37ff00; /* Match hover effect with basket button */
     }

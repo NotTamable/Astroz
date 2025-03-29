@@ -55,9 +55,9 @@ if (product) {
             colorContainer.appendChild(colorRadio);
         });
 
-        const quantityInput = document.getElementById('quantity-input');
-        const decreaseButton = document.getElementById('decrease-quantity');
-        const increaseButton = document.getElementById('increase-quantity');
+        const quantityInput = document.getElementById('quantity-text');
+        const decreaseButton = document.querySelector('.quantity-controls button:first-child');
+        const increaseButton = document.querySelector('.quantity-controls button:last-child');
 
         function updateQuantityButtons() {
             decreaseButton.disabled = quantityInput.value <= 1;
@@ -69,18 +69,19 @@ if (product) {
 
         decreaseButton.addEventListener('click', () => {
             if (quantityInput.value > 1) {
-                quantityInput.value--;
+                quantityInput.value = parseInt(quantityInput.value) - 1;
                 updateQuantityButtons();
             }
         });
 
         increaseButton.addEventListener('click', () => {
             if (quantityInput.value < 10) {
-                quantityInput.value++;
+                quantityInput.value = parseInt(quantityInput.value) + 1;
                 updateQuantityButtons();
             }
         });
 
+        quantityInput.value = 1;
         updateQuantityButtons();
 
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
@@ -149,27 +150,3 @@ if (product) {
 document.addEventListener('DOMContentLoaded', () => {
     updateQuantityButtons();
 });
-const quantityInput = document.getElementById('quantity-text');
-const decreaseButton = document.querySelector('.quantity-controls button:first-child');
-const increaseButton = document.querySelector('.quantity-controls button:last-child');
-quantityInput.value = 1;
-function updateQuantityButtons() {
-    decreaseButton.disabled = quantityInput.value <= 1;
-    increaseButton.disabled = quantityInput.value >= 10;
-
-    decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
-    increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
-}
-function decreaseQuantityButtons() {
-    if (quantityInput.value > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1; // Decrease quantity
-        updateQuantityButtons();
-    }
-}
-
-function increaseQuantityButtons() {
-    if (quantityInput.value < 10) {
-        quantityInput.value = parseInt(quantityInput.value) + 1; // Increase quantity
-        updateQuantityButtons();
-    }
-}

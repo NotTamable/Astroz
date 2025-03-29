@@ -6,6 +6,11 @@ window.products = [
 
 document.addEventListener("DOMContentLoaded", function() {
     const productsContainer = document.getElementById("products-container");
+    if (!productsContainer) {
+        console.error("Error: #products-container not found.");
+        return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('search');
     const filteredProducts = searchQuery ? window.products.filter(product => 

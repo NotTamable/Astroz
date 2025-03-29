@@ -4,12 +4,15 @@ fetch('/navbar.html')
         const navbar = document.getElementById('navbar');
         if (navbar) navbar.innerHTML = data;
     });
+
 function openModal(modalid) {
     document.getElementById(modalid).style.display = 'block';
 }
+
 function closeModal(modalid) {
     document.getElementById(modalid).style.display = 'none';
 }
+
 function updateBasketCount() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketCount = document.getElementById('basket-count');
@@ -18,6 +21,7 @@ function updateBasketCount() {
         basketCount.textContent = totalItems;
     }
 }
+
 function updateBasketTable() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketTableBody = document.querySelector('#basket-table tbody');
@@ -50,13 +54,16 @@ function updateBasketTable() {
         totalElement.textContent = total.toFixed(2);
     }
 }
+
 window.onload = () => {
     updateBasketCount();
     updateBasketTable();
 };
+
 document.addEventListener('DOMContentLoaded', () => {
     updateBasketTable();
 });
+
 function handleSearch(event) {
     event.preventDefault();
     const query = document.getElementById('search-input')?.value.trim().toLowerCase();
@@ -64,12 +71,21 @@ function handleSearch(event) {
         window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
     }
 }
+
 function showSearch() {
-    document.getElementById('search-modal').style.display = 'block';
+    const searchModal = document.getElementById('search-modal');
+    searchModal.style.display = 'block';
 }
+
+function closeSearch(event) {
+    if (event.target.id === 'search-modal') {
+        document.getElementById('search-modal').style.display = 'none';
+    }
+}
+
 document.getElementById('nav-toggle')?.addEventListener('click', () => {
-    const navModal = document.getElementById('nav-modal');
-    navModal.style.display = navModal.style.display === 'block' ? 'none' : 'block';
+    const navbarList = document.getElementById('navbar-list');
+    navbarList.style.display = navbarList.style.display === 'flex' ? 'none' : 'flex';
 });
 
 document.getElementById('nav-close')?.addEventListener('click', () => {

@@ -1,16 +1,16 @@
 <nav>
     <ul id="navbar-list">
-        <li><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo" id="logo">Home</a></li>
-        <li><a href="/products/">Products</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/contact/">Contact</a></li>
-        <li>
+        <li class="menu-item"><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo" id="logo">Home</a></li>
+        <li class="menu-item"><a href="/products/">Products</a></li>
+        <li class="menu-item"><a href="/about/">About</a></li>
+        <li class="menu-item"><a href="/contact/">Contact</a></li>
+        <li class="menu-item">
             <a href="/basket/" id="basket-link">
                 🛒
                 <span id="basket-count">0</span>
             </a>
         </li>
-        <li>
+        <li class="menu-item">
             <button id="search-toggle" onclick="showSearch()">⌕</button>
         </li>
     </ul>
@@ -26,7 +26,7 @@
         </ul>
     </div>
 </div>
-<div id="search-modal">
+<div id="search-modal" onclick="closeSearch(event)">
     <form id="search-form" onsubmit="handleSearch(event)">
         <input type="text" id="search-input" placeholder="Search for products..." required>
         <button type="submit">⌕</button>
@@ -58,7 +58,7 @@
         width: 100%;
     }
     #navbar-list {
-        display: flex;
+        display: none; /* Hide menu items by default */
         list-style: none;
         padding: 0;
         margin: 0;
@@ -86,7 +86,7 @@
         height: 5vh;
     }
     #nav-toggle {
-        display: none;
+        display: block; /* Show menu button */
         background: none;
         border: none;
         color: #ffffff;
@@ -195,5 +195,15 @@
     #search-toggle:hover {
         transform: scale(1.2); /* Slight zoom on hover */
         color: #37ff00; /* Match hover effect with basket button */
+    }
+
+    @media (min-width: 768px) {
+        #navbar-list {
+            display: flex; /* Show menu items on larger screens */
+        }
+
+        #nav-toggle {
+            display: none; /* Hide menu button on larger screens */
+        }
     }
 </style>

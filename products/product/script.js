@@ -38,19 +38,18 @@ if (product) {
         });
 
         const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
-        colorOptions.forEach(color => {
+        colorOptions.forEach((color, index) => {
             const colorLabel = document.createElement('label');
             colorLabel.textContent = color;
-            colorLabel.htmlFor = `color-${color}`;
+            colorLabel.htmlFor = `color-${index}`;
             colorLabel.style.display = 'block';
 
             const colorRadio = document.createElement('input');
             colorRadio.type = 'radio';
             colorRadio.name = 'color';
             colorRadio.value = color;
-            colorRadio.id = `color-${color}`;
+            colorRadio.id = `color-${index}`;
             colorRadio.className = 'color-radio';
-            colorRadio.style.backgroundColor = color.toLowerCase();
 
             colorContainer.appendChild(colorLabel);
             colorContainer.appendChild(colorRadio);

@@ -11,7 +11,7 @@
             </a>
         </li>
         <li>
-            <button id="search-toggle" class="nav-extra">⌕</button>
+            <button id="search-toggle">⌕</button>
         </li>
     </ul>
     <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
@@ -27,10 +27,10 @@
     </div>
 </div>
 <div id="search-modal" class="search-modal">
-    <div class="search-modal-content">
-        <input type="text" id="search-input-modal" placeholder="Search for products...">
-        <button id="search-button-modal">⌕</button>
-    </div>
+    <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search for products...">
+        <button type="submit">⌕</button>
+    </form>
 </div>
 <style>
     @font-face {
@@ -156,53 +156,5 @@ body {
         z-index: 1000;
         justify-content: center;
         align-items: center;
-    }
-
-    .search-modal-content {
-        background-color: #1f1f1f;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        width: 80%;
-        max-width: 400px;
-    }
-
-    .search-modal-content input {
-        width: 80%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-        background-color: #1f1f1f;
-        color: #ffffff;
-    }
-
-    .search-modal-content button {
-        background-color: #37ff00;
-        color: black;
-        border: none;
-        padding: 10px;
-        font-size: 1rem;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-
-    .search-modal-content button:hover {
-        background-color: #28a745;
-    }
-
-    @media (max-width: 768px) {
-        .nav-extra {
-            display: none;
-        }
-
-        #nav-toggle {
-            display: block;
-        }
-
-        #search-toggle {
-            display: block;
-        }
     }
 </style>

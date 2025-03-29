@@ -73,3 +73,29 @@ document.getElementById('nav-toggle')?.addEventListener('click', () => {
         navToggle.style.transform = 'rotate(0deg)';
     }, 300);
 });
+
+document.getElementById('search-toggle')?.addEventListener('click', () => {
+    const searchModal = document.getElementById('search-modal');
+    searchModal.style.display = 'flex';
+});
+
+document.getElementById('search-button-modal')?.addEventListener('click', () => {
+    const query = document.getElementById('search-input-modal')?.value.trim().toLowerCase();
+    if (query) {
+        window.location.href = `/products/index.html?search=${encodeURIComponent(query)}`;
+    }
+});
+
+document.getElementById('search-input-modal')?.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById('search-button-modal').click();
+    }
+});
+
+window.addEventListener('click', (event) => {
+    const searchModal = document.getElementById('search-modal');
+    if (event.target === searchModal) {
+        searchModal.style.display = 'none';
+    }
+});

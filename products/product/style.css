@@ -146,7 +146,7 @@
 
 .basket-modal {
     position: fixed;
-    top: 0;
+    top: 5vh;
     left: 50%;
     transform: translateX(-50%);
     background-color: #1f1f1f;
@@ -165,17 +165,6 @@
     flex-direction: column;
     align-items: center;
     gap: 8px; /* Reduced gap */
-}
-
-.basket-modal button {
-    background-color: #37ff00;
-    color: black;
-    border: none;
-    padding: 8px 15px; /* Reduced button padding */
-    font-size: 0.9rem; /* Slightly smaller font size */
-    border-radius: 4px; /* Reduced border radius */
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .basket-modal button:hover {

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateCharge(desiredAmount) {
         const percentageFee = 0.0349; // 3.49%
-        const flatFee = 0.49; // £0.49 flat fee
+        const flatFee = 0.30; // £0.49 flat fee
         const charge = (desiredAmount + flatFee) / (1 - percentageFee);
         return parseFloat(charge.toFixed(2)); // Rounds to two decimal places
     }
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button onclick="decreaseQuantity(${item.id})">-</button>
                         <input type="text" value="${item.quantity}" readonly>
                         <button onclick="increaseQuantity(${item.id})">+</button>
-                        <button class="remove-item-button" onclick="removeItem(${item.id})">Remove</button>
+                        <button class="remove-item-button" onclick="removeItem(${item.id})">🗙</button>
                     </div>
                 </div>
             `;
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('basket');
         basket.length = 0;
         updateBasket();
+        updateBasketCount(); // Ensure navbar basket count is updated
     };
 
     document.getElementById('checkout-button').onclick = () => {

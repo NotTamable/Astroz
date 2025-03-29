@@ -55,11 +55,40 @@ if (product) {
             colorContainer.appendChild(colorRadio);
         });
 
+        const quantityInput = document.getElementById('quantity-input');
+        const decreaseButton = document.getElementById('decrease-quantity');
+        const increaseButton = document.getElementById('increase-quantity');
+
+        function updateQuantityButtons() {
+            decreaseButton.disabled = quantityInput.value <= 1;
+            increaseButton.disabled = quantityInput.value >= 10;
+
+            decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
+            increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
+        }
+
+        decreaseButton.addEventListener('click', () => {
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+                updateQuantityButtons();
+            }
+        });
+
+        increaseButton.addEventListener('click', () => {
+            if (quantityInput.value < 10) {
+                quantityInput.value++;
+                updateQuantityButtons();
+            }
+        });
+
+        updateQuantityButtons();
+
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
 
         addToCartButton.addEventListener('click', () => {
             const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
             const selectedColor = document.querySelector('.color-radio:checked')?.value;
+            const quantity = parseInt(quantityInput.value);
 
             if (!selectedColor) {
                 alert('Please select a color.');
@@ -78,9 +107,9 @@ if (product) {
                 const existingItem = basket.find(item => item.id === product.id && item.size === size && item.color === selectedColor);
 
                 if (existingItem) {
-                    existingItem.quantity += 1;
+                    existingItem.quantity += quantity;
                 } else {
-                    const newItem = { ...product, size, color: selectedColor, quantity: 1, enabled: true };
+                    const newItem = { ...product, size, color: selectedColor, quantity, enabled: true };
                     basket.push(newItem);
                     addedItems.push(newItem);
                 }

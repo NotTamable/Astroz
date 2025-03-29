@@ -75,6 +75,10 @@
         align-items: center;
         font-family: 'Antipasto', sans-serif;
         font-size: 5vh;
+        transition: transform 0.3s ease; /* Add smooth transition */
+    }
+    #navbar-list li a:hover {
+        transform: scale(1.1); /* Slightly increase size on hover */
     }
     #logo {
         margin-right: 1vh;
@@ -174,5 +178,21 @@
         padding: 5px 5px;
         border-radius: 5px;
         font-weight: bolder;
+        text-align: center;
+        justify-content: center;
+    }
+    #search-toggle {
+        border: none;
+        color: #ffffff;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    #search-toggle:hover {
+        transform: scale(1.2); /* Slight zoom on hover */
+        color: #37ff00; /* Match hover effect with basket button */
     }
 </style>

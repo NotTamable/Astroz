@@ -145,3 +145,35 @@ if (product) {
         });
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const quantityInput = document.getElementById('quantity-text');
+    const decreaseButton = document.querySelector('.quantity-controls button:first-child');
+    const increaseButton = document.querySelector('.quantity-controls button:last-child');
+
+    function updateQuantityButtons() {
+        decreaseButton.disabled = quantityInput.value <= 1;
+        increaseButton.disabled = quantityInput.value >= 10;
+
+        decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
+        increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
+    }
+
+    decreaseButton.addEventListener('click', () => {
+        if (quantityInput.value > 1) {
+            quantityInput.value--;
+            updateQuantityButtons();
+        }
+    });
+
+    increaseButton.addEventListener('click', () => {
+        if (quantityInput.value < 10) {
+            quantityInput.value++;
+            updateQuantityButtons();
+        }
+    });
+
+    // Initialize the quantity input and buttons
+    quantityInput.value = 1;
+    updateQuantityButtons();
+});

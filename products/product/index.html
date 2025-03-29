@@ -44,9 +44,9 @@
                         </div>
                     </div>
                     <div class="quantity-controls">
-                        <button id="decrease-quantity">-</button>
-                        <input type="number" id="quantity-input" value="1" min="1" max="10">
-                        <button id="increase-quantity">+</button>
+                        <button onclick="decreaseQuantity()">-</button>
+                        <input type="text" id="quantity-text" readonly>
+                        <button onclick="increaseQuantity()">+</button>
                     </div>
                     <button class="add-to-cart-button">Add to Basket</button>
                 </center>

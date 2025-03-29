@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const productPrice = document.createElement("p");
         productPrice.className = "price";
-        const displayedPrice = (product.price * 0.8).toFixed(2); // 20% less
-        productPrice.textContent = `£${displayedPrice}`;
+        // Remove excl-vat calculation
+        productPrice.textContent = `£${product.price.toFixed(2)}`;
 
         productDiv.appendChild(productImage);
         productDiv.appendChild(productName);

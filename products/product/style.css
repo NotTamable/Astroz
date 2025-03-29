@@ -40,18 +40,11 @@
     text-align: center;
 }
 
-.price, .excl-vat {
+.price {
     color: white;
     margin: 1vh;
     font-weight: bold;
     text-align: center;
-}
-
-.excl-vat {
-    background-color: red;
-    padding: 2vh;
-    font-size: 2rem;
-    border-radius: 15px;
 }
 
 .add-to-cart-button {

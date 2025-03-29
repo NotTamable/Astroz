@@ -8,7 +8,6 @@ if (product) {
         const productNameSlug = product.name.replace(/\s+/g, '');
         productDetails.querySelector('.product-image').src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
-        productDetails.querySelector('.excl-vat').textContent = `£${(product.price * 0.8).toFixed(2)}`;
         productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)} incl. VAT`;
 
         const sizeContainer = document.getElementById('size-options');

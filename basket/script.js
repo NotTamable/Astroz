@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const basketCounts = document.getElementsByClassName('basket-count'); // Use class instead of ID
     const basketItemsContainer = document.getElementById('basket-items');
     const basketContent = document.getElementById('basket-content');
     const emptyBasketMessage = document.getElementById('empty-basket-message');
@@ -8,10 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalElement = document.getElementById('total');
 
     function updateBasketCount() {
-        const basketCount = document.getElementById('basket-count');
-        if (basketCount) {
-            const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
-            basketCount.textContent = totalItems;
+        const totalItems = basket.reduce(function(sum, item) {
+            return sum + item.quantity;
+        }, 0);
+
+        for (var i = 0; i < basketCounts.length; i++) {
+            basketCounts[i].textContent = totalItems;
         }
     }
 
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         basketContent.style.display = 'block';
         emptyBasketMessage.style.display = 'none';
 
-        basket.forEach((item, index) => {
+        basket.forEach(function(item, index) {
             const itemCard = document.createElement('div');
             itemCard.className = 'basket-item';
             itemCard.innerHTML = `
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 subtotal += item.price * item.quantity;
             }
 
-            document.getElementById(`enable-${index}`).addEventListener('change', (event) => {
+            document.getElementById(`enable-${index}`).addEventListener('change', function(event) {
                 item.enabled = event.target.checked;
                 localStorage.setItem('basket', JSON.stringify(basket));
                 updateBasket();
@@ -80,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateBasketCount();
     }
 
-    window.increaseQuantity = function (index) {
+    window.increaseQuantity = function(index) {
         if (basket[index].quantity < 10) {
             basket[index].quantity++;
             localStorage.setItem('basket', JSON.stringify(basket));
@@ -88,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.decreaseQuantity = function (index) {
+    window.decreaseQuantity = function(index) {
         if (basket[index].quantity > 1) {
             basket[index].quantity--;
             localStorage.setItem('basket', JSON.stringify(basket));
@@ -96,20 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.removeItem = function (index) {
+    window.removeItem = function(index) {
         basket.splice(index, 1);
         localStorage.setItem('basket', JSON.stringify(basket));
         updateBasket();
     };
 
-    document.getElementById('clear-basket-button').onclick = () => {
+    document.getElementById('clear-basket-button').onclick = function() {
         localStorage.removeItem('basket');
         basket.length = 0;
         updateBasket();
         updateBasketCount(); // Ensure navbar basket count is updated
     };
 
-    document.getElementById('checkout-button').onclick = () => {
+    document.getElementById('checkout-button').onclick = function() {
         alert('Checkout functionality is not implemented yet.');
     };
 

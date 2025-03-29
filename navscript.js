@@ -15,10 +15,13 @@ function closeModal(modalid) {
 
 function updateBasketCount() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
-    const basketCount = document.getElementById('basket-count');
-    if (basketCount) {
-        const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
-        basketCount.textContent = totalItems;
+    const basketCounts = document.getElementsByClassName('basket-count'); // Use class instead of ID
+    const totalItems = basket.reduce(function(sum, item) {
+        return sum + item.quantity;
+    }, 0);
+
+    for (var i = 0; i < basketCounts.length; i++) {
+        basketCounts[i].textContent = totalItems;
     }
 }
 

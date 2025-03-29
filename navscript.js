@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-document.getElementById('search-toggle')?.addEventListener('click', () => {
+function showSearch(){
     document.getElementById('search-modal').style.display = 'block';
-});
+}
 document.getElementById('nav-toggle')?.addEventListener('click', () => {
     const navToggle = document.getElementById('nav-toggle');
     navToggle.style.transform = 'rotate(90deg)';

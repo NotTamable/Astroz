@@ -1,23 +1,23 @@
 <nav>
     <ul id="navbar-list">
-        <li><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo" class="logo">Home</a></li>
-        <li class="nav-extra"><a href="/products/">Products</a></li>
-        <li class="nav-extra"><a href="/about/">About</a></li>
-        <li class="nav-extra"><a href="/contact/">Contact</a></li>
+        <li><a href="/"><img src="/images/AstrozLogo.png" alt="Astroz Logo" id="logo">Home</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
         <li>
-            <a href="/basket/" style="background-color: red; padding: 5px 5px; border-radius: 5px; font-weight: bolder;">
+            <a href="/basket/" id="basket-link">
                 🛒
                 <span id="basket-count">0</span>
             </a>
         </li>
         <li>
-            <button id="search-toggle">⌕</button>
+            <button id="search-toggle" onclick="showSearch()">⌕</button>
         </li>
     </ul>
-    <button id="nav-toggle" class="nav-extra" onclick="openModal('nav-modal')">☰</button>
+    <button id="nav-toggle" onclick="openModal('nav-modal')">☰</button>
 </nav>
-<div id="nav-modal" class="nav-modal">
-    <div class="nav-modal-content">
+<div id="nav-modal">
+    <div id="nav-modal-content">
         <span id="nav-close" onclick="closeModal('nav-modal')">&times;</span>
         <ul>
             <li><a href="/products/">Products</a></li>
@@ -26,7 +26,7 @@
         </ul>
     </div>
 </div>
-<div id="search-modal" class="search-modal">
+<div id="search-modal">
     <form id="search-form">
         <input type="text" id="search-input" placeholder="Search for products...">
         <button type="submit">⌕</button>
@@ -46,7 +46,7 @@
     }
     nav {
         display: flex;
-        justify-content: center; /* Center all navbar elements */
+        justify-content: center;
         align-items: center;
         background: radial-gradient(circle at 10% 20%, #000428, transparent),
             radial-gradient(circle at 80% 80%, #002241, transparent),
@@ -58,20 +58,20 @@
         width: 100%;
     }
 
-    nav ul {
+    #navbar-list {
         display: flex;
         list-style: none;
         padding: 0;
         margin: 0;
         align-items: center;
-        justify-content: center; /* Center the list items */
+        justify-content: center;
     }
 
-    nav ul li {
-        margin: 0 5vh; /* Equal spacing on both sides */
+    #navbar-list li {
+        margin: 0 5vh;
     }
 
-    nav ul li a {
+    #navbar-list li a {
         color: #ffffff;
         text-decoration: none;
         display: flex;
@@ -80,7 +80,7 @@
         font-size: 5vh;
     }
 
-    nav ul li a img {
+    #logo {
         margin-right: 1vh;
         width: auto;
         height: 5vh;
@@ -95,15 +95,15 @@
         cursor: pointer;
     }
 
-body {
-    margin: 0;
-    font-family: "FutureClean";
-    background-color: #121212;
-    color: #ffffff;
-    overflow-x: hidden;
-}
+    body {
+        margin: 0;
+        font-family: "FutureClean";
+        background-color: #121212;
+        color: #ffffff;
+        overflow-x: hidden;
+    }
 
-    .nav-modal {
+    #nav-modal {
         display: none;
         position: fixed;
         top: 0;
@@ -114,7 +114,7 @@ body {
         z-index: 1000;
     }
 
-    .nav-modal-content {
+    #nav-modal-content {
         background-color: #1f1f1f;
         margin: 15% auto;
         padding: 20px;
@@ -123,16 +123,16 @@ body {
         text-align: center;
     }
 
-    .nav-modal-content ul {
+    #nav-modal-content ul {
         list-style: none;
         padding: 0;
     }
 
-    .nav-modal-content ul li {
+    #nav-modal-content ul li {
         margin: 10px 0;
     }
 
-    .nav-modal-content ul li a {
+    #nav-modal-content ul li a {
         color: #ffffff;
         text-decoration: none;
         font-size: 2rem;
@@ -145,7 +145,7 @@ body {
         cursor: pointer;
     }
 
-    .search-modal {
+    #search-modal {
         display: none;
         position: fixed;
         top: 0;
@@ -156,5 +156,12 @@ body {
         z-index: 1000;
         justify-content: center;
         align-items: center;
+    }
+
+    #basket-link {
+        background-color: red;
+        padding: 5px 5px;
+        border-radius: 5px;
+        font-weight: bolder;
     }
 </style>

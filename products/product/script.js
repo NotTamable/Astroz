@@ -37,18 +37,17 @@ if (product) {
             sizeContainer.appendChild(sizeLabel);
         });
 
-        // Dynamically generate color options from the product data
         product.colors.forEach(color => {
             const colorLabel = document.createElement('label');
             colorLabel.textContent = color;
-            colorLabel.htmlFor = `color-${color}`; // Ensure proper association
+            colorLabel.htmlFor = `color-${color}`;
             colorLabel.style.display = 'block';
 
             const colorRadio = document.createElement('input');
             colorRadio.type = 'radio';
             colorRadio.name = 'color';
             colorRadio.value = color;
-            colorRadio.id = `color-${color}`; // Match the id with the label's for attribute
+            colorRadio.id = `color-${color}`;
             colorRadio.className = 'color-radio';
 
             colorContainer.appendChild(colorRadio);
@@ -56,13 +55,12 @@ if (product) {
         });
 
         const quantityInput = document.getElementById('quantity-text');
-        const decreaseButton = document.querySelector('.quantity-controls button:first-child');
-        const increaseButton = document.querySelector('.quantity-controls button:last-child');
+        const decreaseButton = document.getElementById('decrease-btn');
+        const increaseButton = document.getElementById('increase-btn');
 
         function updateQuantityButtons() {
             decreaseButton.disabled = quantityInput.value <= 1;
             increaseButton.disabled = quantityInput.value >= 10;
-
             decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
             increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
         }
@@ -83,17 +81,14 @@ if (product) {
 
         decreaseButton.addEventListener('click', decreaseQuantity);
         increaseButton.addEventListener('click', increaseQuantity);
-
         quantityInput.value = 1;
         updateQuantityButtons();
 
-        const addToCartButton = productDetails.querySelector('.add-to-cart-button');
-
+        const addToCartButton = document.getElementById('add-to-cart');
         addToCartButton.addEventListener('click', handleAddToCart);
-        addToCartButton.addEventListener('touchstart', handleAddToCart); // Add touch support
 
         function handleAddToCart(event) {
-            event.preventDefault(); // Prevent default behavior for touch events
+            event.preventDefault();
             const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
             const selectedColor = document.querySelector('.color-radio:checked')?.value;
             const quantity = parseInt(quantityInput.value);
@@ -113,7 +108,6 @@ if (product) {
 
             selectedSizes.forEach(size => {
                 const existingItem = basket.find(item => item.id === product.id && item.size === size && item.color === selectedColor);
-
                 if (existingItem) {
                     existingItem.quantity += quantity;
                 } else {
@@ -126,11 +120,9 @@ if (product) {
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasketCount();
 
-            // Show popup
             const popup = document.getElementById('basket-popup');
             popup.style.display = 'block';
 
-            // Undo button functionality
             document.getElementById('undo-add-to-basket').onclick = () => {
                 addedItems.forEach(item => {
                     const index = basket.findIndex(basketItem => basketItem.id === item.id && basketItem.size === item.size && basketItem.color === item.color);
@@ -141,12 +133,10 @@ if (product) {
                 popup.style.display = 'none';
             };
 
-            // Go to basket button functionality
             document.getElementById('go-to-basket').onclick = () => {
                 window.location.href = '/basket/';
             };
 
-            // Close popup button functionality
             document.getElementById('close-popup').onclick = () => {
                 popup.style.display = 'none';
             };
@@ -154,6 +144,4 @@ if (product) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    updateQuantityButtons();
-});
+document.addEventListener('DOMContentLoaded', updateQuantityButtons);

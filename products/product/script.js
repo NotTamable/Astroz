@@ -61,7 +61,7 @@ if (product) {
 
         if (quantityInput && decreaseButton && increaseButton && addToCartButton) {
             function updateQuantityButtons() {
-                const currentValue = parseInt(quantityInput.value);
+                const currentValue = parseInt(quantityInput.value) || 1;
                 decreaseButton.disabled = currentValue <= 1;
                 increaseButton.disabled = currentValue >= 10;
                 decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
@@ -69,7 +69,7 @@ if (product) {
             }
 
             function decreaseQuantity() {
-                const currentValue = parseInt(quantityInput.value);
+                const currentValue = parseInt(quantityInput.value) || 1;
                 if (currentValue > 1) {
                     quantityInput.value = currentValue - 1;
                     updateQuantityButtons();
@@ -77,7 +77,7 @@ if (product) {
             }
 
             function increaseQuantity() {
-                const currentValue = parseInt(quantityInput.value);
+                const currentValue = parseInt(quantityInput.value) || 1;
                 if (currentValue < 10) {
                     quantityInput.value = currentValue + 1;
                     updateQuantityButtons();
@@ -93,7 +93,7 @@ if (product) {
             addToCartButton.addEventListener('click', function handleAddToCart() {
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
-                const quantity = parseInt(quantityInput.value);
+                const quantity = parseInt(quantityInput.value) || 1;
 
                 if (!selectedColor) {
                     alert('Please select a color.');

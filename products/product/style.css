@@ -104,8 +104,8 @@
     background-color: #37ff00;
     color: black;
     border: none;
-    width: 40px; /* Square button */
-    height: 40px; /* Match input height */
+    width: 50px; /* Increased size for better touch support */
+    height: 50px; /* Match input height */
     font-size: 1.5rem;
     cursor: pointer;
     border-radius: 5px;
@@ -126,8 +126,8 @@
 }
 
 .quantity-controls input {
-    width: 50px;
-    height: 40px; /* Match button height */
+    width: 60px; /* Increased width for better readability */
+    height: 50px; /* Match button height */
     text-align: center;
     font-size: 1.2rem;
     border: 1px solid #ccc;

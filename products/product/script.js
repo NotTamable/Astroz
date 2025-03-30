@@ -61,8 +61,9 @@ if (product) {
 
         if (quantityInput && decreaseButton && increaseButton && addToCartButton) {
             function updateQuantityButtons() {
-                decreaseButton.disabled = quantityInput.value <= 1;
-                increaseButton.disabled = quantityInput.value >= 10;
+                const currentValue = parseInt(quantityInput.value);
+                decreaseButton.disabled = currentValue <= 1;
+                increaseButton.disabled = currentValue >= 10;
                 decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
                 increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
             }
@@ -70,7 +71,7 @@ if (product) {
             function decreaseQuantity() {
                 const currentValue = parseInt(quantityInput.value);
                 if (currentValue > 1) {
-                    quantityInput.value = currentValue - 1; // Decrease by 1
+                    quantityInput.value = currentValue - 1;
                     updateQuantityButtons();
                 }
             }
@@ -78,12 +79,18 @@ if (product) {
             function increaseQuantity() {
                 const currentValue = parseInt(quantityInput.value);
                 if (currentValue < 10) {
-                    quantityInput.value = currentValue + 1; // Increase by 1
+                    quantityInput.value = currentValue + 1;
                     updateQuantityButtons();
                 }
             }
 
-            window.handleAddToCart = function() {
+            decreaseButton.addEventListener('click', decreaseQuantity);
+            increaseButton.addEventListener('click', increaseQuantity);
+
+            quantityInput.value = 1;
+            updateQuantityButtons();
+
+            addToCartButton.addEventListener('click', function handleAddToCart() {
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
                 const quantity = parseInt(quantityInput.value);
@@ -137,14 +144,7 @@ if (product) {
                         popup.style.display = 'none';
                     });
                 }
-            };
-
-            decreaseButton.addEventListener('click', decreaseQuantity);
-            increaseButton.addEventListener('click', increaseQuantity);
-            addToCartButton.addEventListener('click', handleAddToCart);
-
-            quantityInput.value = 1;
-            updateQuantityButtons();
+            });
         }
     }
 }

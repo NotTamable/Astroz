@@ -82,8 +82,13 @@ if (product) {
                 }
             }
 
-            decreaseButton.addEventListener('click', decreaseQuantity);
-            increaseButton.addEventListener('click', increaseQuantity);
+            // Remove existing event listeners to prevent duplication
+            decreaseButton.replaceWith(decreaseButton.cloneNode(true));
+            increaseButton.replaceWith(increaseButton.cloneNode(true));
+
+            document.querySelector('.quantity-controls button:first-child').addEventListener('click', decreaseQuantity);
+            document.querySelector('.quantity-controls button:last-child').addEventListener('click', increaseQuantity);
+
             quantityInput.value = 1;
             updateQuantityButtons();
         }
@@ -163,6 +168,31 @@ document.addEventListener('DOMContentLoaded', () => {
             decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
             increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
         }
+
+        function decreaseQuantity() {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1; // Decrease by 1
+                updateQuantityButtons();
+            }
+        }
+
+        function increaseQuantity() {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue < 10) {
+                quantityInput.value = currentValue + 1; // Increase by 1
+                updateQuantityButtons();
+            }
+        }
+
+        // Remove existing event listeners to prevent duplication
+        decreaseButton.replaceWith(decreaseButton.cloneNode(true));
+        increaseButton.replaceWith(increaseButton.cloneNode(true));
+
+        document.querySelector('.quantity-controls button:first-child').addEventListener('click', decreaseQuantity);
+        document.querySelector('.quantity-controls button:last-child').addEventListener('click', increaseQuantity);
+
+        quantityInput.value = 1;
         updateQuantityButtons();
     }
 });

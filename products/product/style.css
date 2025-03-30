@@ -55,8 +55,8 @@
 .add-to-cart-button {
     background-color: #37ff00;
     color: black;
-    padding: 1rem 2rem;
-    font-size: 1.5rem;
+    padding: 1rem 1.5rem; /* Adjust padding for touch-friendly design */
+    font-size: 1.2rem; /* Adjust font size for better readability on smaller screens */
     border-radius: 15px;
     margin-top: 2rem;
     font-family: 'FutureClean';
@@ -274,6 +274,11 @@ input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
 
 .close-popup-button:hover {
     background-color: darkgray;
+}
+
+button, input {
+    touch-action: manipulation; /* Improve touch responsiveness */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 @media (max-width: 768px) {

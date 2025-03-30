@@ -36,11 +36,11 @@
                         </div>
                     </div>
                     <div class="quantity-controls">
-                        <button onclick="decreaseQuantityButtons()">-</button>
+                        <button onclick="decreaseQuantity()">-</button>
                         <input type="text" id="quantity-text" readonly>
-                        <button onclick="increaseQuantityButtons()">+</button>
+                        <button onclick="increaseQuantity()">+</button>
                     </div>
-                    <button class="add-to-cart-button">Add to Basket</button>
+                    <button class="add-to-cart-button" onclick="handleAddToCart()">Add to Basket</button>
                 </center>
             </div>
         </div>
@@ -49,19 +49,23 @@
     <script src="script.js"></script>
     <script src="/navscript.js"></script>
     <script>
-        document.getElementById('decrease-quantity').addEventListener('click', () => {
+        function decreaseQuantity() {
             const quantityInput = document.getElementById('quantity-input');
             if (quantityInput.value > 1) {
                 quantityInput.value--;
             }
-        });
+        }
 
-        document.getElementById('increase-quantity').addEventListener('click', () => {
+        function increaseQuantity() {
             const quantityInput = document.getElementById('quantity-input');
             if (quantityInput.value < 10) {
                 quantityInput.value++;
             }
-        });
+        }
+
+        function handleAddToCart() {
+            // Add to cart logic here
+        }
     </script>
 </body>
 </html>

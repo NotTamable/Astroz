@@ -67,26 +67,33 @@ if (product) {
             increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
         }
 
-        decreaseButton.addEventListener('click', () => {
+        function decreaseQuantity() {
             if (quantityInput.value > 1) {
                 quantityInput.value = parseInt(quantityInput.value) - 1;
                 updateQuantityButtons();
             }
-        });
+        }
 
-        increaseButton.addEventListener('click', () => {
+        function increaseQuantity() {
             if (quantityInput.value < 10) {
                 quantityInput.value = parseInt(quantityInput.value) + 1;
                 updateQuantityButtons();
             }
-        });
+        }
+
+        decreaseButton.addEventListener('click', decreaseQuantity);
+        increaseButton.addEventListener('click', increaseQuantity);
 
         quantityInput.value = 1;
         updateQuantityButtons();
 
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
 
-        addToCartButton.addEventListener('click', () => {
+        addToCartButton.addEventListener('click', handleAddToCart);
+        addToCartButton.addEventListener('touchstart', handleAddToCart); // Add touch support
+
+        function handleAddToCart(event) {
+            event.preventDefault(); // Prevent default behavior for touch events
             const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
             const selectedColor = document.querySelector('.color-radio:checked')?.value;
             const quantity = parseInt(quantityInput.value);
@@ -143,7 +150,7 @@ if (product) {
             document.getElementById('close-popup').onclick = () => {
                 popup.style.display = 'none';
             };
-        });
+        }
     }
 }
 

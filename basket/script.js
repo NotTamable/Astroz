@@ -105,16 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
         updateBasket();
     };
 
-    document.getElementById('clear-basket-button').onclick = function() {
-        localStorage.removeItem('basket');
-        basket.length = 0;
-        updateBasket();
-        updateBasketCount(); // Ensure navbar basket count is updated
-    };
-
-    document.getElementById('checkout-button').onclick = function() {
-        alert('Checkout functionality is not implemented yet.');
-    };
-
     updateBasket();
 });
+
+function clearBasket() {
+    localStorage.removeItem('basket');
+    basket.length = 0;
+    updateBasket();
+    updateBasketCount(); // Ensure navbar basket count is updated
+}
+
+function handleCheckout() {
+    alert('Checkout functionality is not implemented yet.');
+}

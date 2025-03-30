@@ -84,13 +84,28 @@ if (product) {
                 }
             }
 
+            decreaseButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                decreaseQuantity();
+            });
             decreaseButton.addEventListener('click', decreaseQuantity);
+
+            increaseButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                increaseQuantity();
+            });
             increaseButton.addEventListener('click', increaseQuantity);
 
             quantityInput.value = 1;
             updateQuantityButtons();
 
-            addToCartButton.addEventListener('click', function handleAddToCart() {
+            addToCartButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handleAddToCart();
+            });
+            addToCartButton.addEventListener('click', handleAddToCart);
+
+            function handleAddToCart() {
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
                 const quantity = parseInt(quantityInput.value) || 1;
@@ -144,7 +159,7 @@ if (product) {
                         popup.style.display = 'none';
                     });
                 }
-            });
+            }
         }
     }
 }

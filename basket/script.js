@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>Color: ${item.color}</p>
                     <p>Price: £${item.price.toFixed(2)}</p>
                     <div class="quantity-controls">
-                        <button onclick="decreaseQuantity(${index})">-</button>
+                        <button onclick="decreaseQuantity(${index})" data-index="${index}">-</button>
                         <input type="text" value="${item.quantity}" readonly>
-                        <button onclick="increaseQuantity(${index})">+</button>
+                        <button onclick="increaseQuantity(${index})" data-index="${index}">+</button>
                         <button class="remove-item-button" onclick="removeItem(${index})">🗙</button>
                     </div>
                 </div>
@@ -104,6 +104,19 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('basket', JSON.stringify(basket));
         updateBasket();
     };
+
+    document.addEventListener('touchstart', (e) => {
+        const target = e.target;
+        if (target.matches('.quantity-controls button')) {
+            e.preventDefault();
+            const index = parseInt(target.dataset.index, 10);
+            if (target.textContent === '+') {
+                window.increaseQuantity(index);
+            } else if (target.textContent === '-') {
+                window.decreaseQuantity(index);
+            }
+        }
+    });
 
     updateBasket();
 });

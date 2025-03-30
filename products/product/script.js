@@ -1,8 +1,20 @@
+// Ensure localStorage works in Safari
+function isLocalStorageAvailable() {
+    try {
+        localStorage.setItem('_test', '1');
+        localStorage.removeItem('_test');
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
-const product = window.products.find(p => p.id === productId);
+const product = window.products?.find(p => p.id === productId);
 
 function updateBasketCount() {
+    if (!isLocalStorageAvailable()) return;
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketCount = document.getElementById('basket-count');
     if (basketCount) {
@@ -15,7 +27,7 @@ if (product) {
     const productDetails = document.getElementById('product-details');
     if (productDetails) {
         const productNameSlug = product.name.replace(/\s+/g, '');
-        productDetails.querySelector('.product-image').src = `/ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
+        productDetails.querySelector('.product-image').src = `./ProductImages/${productNameSlug}/${productNameSlug}--front.webp`;
         productDetails.querySelector('.product-name').textContent = product.name;
         productDetails.querySelector('.price').textContent = `£${product.price.toFixed(2)}`;
 
@@ -37,18 +49,17 @@ if (product) {
             sizeContainer.appendChild(sizeLabel);
         });
 
-        // Dynamically generate color options from the product data
         product.colors.forEach(color => {
             const colorLabel = document.createElement('label');
             colorLabel.textContent = color;
-            colorLabel.htmlFor = `color-${color}`; // Ensure proper association
+            colorLabel.htmlFor = `color-${color}`;
             colorLabel.style.display = 'block';
 
             const colorRadio = document.createElement('input');
             colorRadio.type = 'radio';
             colorRadio.name = 'color';
             colorRadio.value = color;
-            colorRadio.id = `color-${color}`; // Match the id with the label's for attribute
+            colorRadio.id = `color-${color}`;
             colorRadio.className = 'color-radio';
 
             colorContainer.appendChild(colorRadio);
@@ -62,9 +73,6 @@ if (product) {
         function updateQuantityButtons() {
             decreaseButton.disabled = quantityInput.value <= 1;
             increaseButton.disabled = quantityInput.value >= 10;
-
-            decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
-            increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
         }
 
         function decreaseQuantity() {
@@ -90,10 +98,11 @@ if (product) {
         const addToCartButton = productDetails.querySelector('.add-to-cart-button');
 
         addToCartButton.addEventListener('click', handleAddToCart);
-        addToCartButton.addEventListener('touchstart', handleAddToCart); // Add touch support
+        addToCartButton.addEventListener('touchend', handleAddToCart); // Added touch support
 
         function handleAddToCart(event) {
-            event.preventDefault(); // Prevent default behavior for touch events
+            event.preventDefault();
+
             const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
             const selectedColor = document.querySelector('.color-radio:checked')?.value;
             const quantity = parseInt(quantityInput.value);
@@ -105,6 +114,11 @@ if (product) {
 
             if (selectedSizes.length === 0) {
                 alert('Please select at least one size.');
+                return;
+            }
+
+            if (!isLocalStorageAvailable()) {
+                alert('Your browser does not support local storage.');
                 return;
             }
 
@@ -126,11 +140,9 @@ if (product) {
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasketCount();
 
-            // Show popup
             const popup = document.getElementById('basket-popup');
             popup.style.display = 'block';
 
-            // Undo button functionality
             document.getElementById('undo-add-to-basket').onclick = () => {
                 addedItems.forEach(item => {
                     const index = basket.findIndex(basketItem => basketItem.id === item.id && basketItem.size === item.size && basketItem.color === item.color);
@@ -141,12 +153,10 @@ if (product) {
                 popup.style.display = 'none';
             };
 
-            // Go to basket button functionality
             document.getElementById('go-to-basket').onclick = () => {
                 window.location.href = '/basket/';
             };
 
-            // Close popup button functionality
             document.getElementById('close-popup').onclick = () => {
                 popup.style.display = 'none';
             };
@@ -154,6 +164,4 @@ if (product) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    updateQuantityButtons();
-});
+document.addEventListener('DOMContentLoaded', updateQuantityButtons);

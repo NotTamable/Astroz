@@ -32,40 +32,20 @@
                     </div>
                     <div class="color-selection">
                         <h4>Select Color:</h4>
-                        <div id="color-options">
-                        </div>
+                        <div id="color-options"></div>
                     </div>
                     <div class="quantity-controls">
                         <button onclick="decreaseQuantity()">-</button>
                         <input type="text" id="quantity-text" readonly>
                         <button onclick="increaseQuantity()">+</button>
                     </div>
-                    <button class="add-to-cart-button" onclick="handleAddToCart()">Add to Basket</button>
+                    <button class="add-to-cart-button">Add to Basket</button>
                 </center>
             </div>
         </div>
     </main>
-    <script src="../products.js"></script> <!-- Ensure this is loaded first -->
+    <script src="../products.js"></script> 
     <script src="script.js"></script>
     <script src="/navscript.js"></script>
-    <script>
-        function decreaseQuantity() {
-            const quantityInput = document.getElementById('quantity-input');
-            if (quantityInput.value > 1) {
-                quantityInput.value--;
-            }
-        }
-
-        function increaseQuantity() {
-            const quantityInput = document.getElementById('quantity-input');
-            if (quantityInput.value < 10) {
-                quantityInput.value++;
-            }
-        }
-
-        function handleAddToCart() {
-            // Add to cart logic here
-        }
-    </script>
 </body>
 </html>

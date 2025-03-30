@@ -38,21 +38,21 @@ if (product) {
         });
 
         const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
-        colorOptions.forEach((color, index) => {
+        colorOptions.forEach((color) => {
             const colorLabel = document.createElement('label');
             colorLabel.textContent = color;
-            colorLabel.htmlFor = `color-${index}`;
+            colorLabel.htmlFor = `color-${color}`; // Ensure proper association
             colorLabel.style.display = 'block';
 
             const colorRadio = document.createElement('input');
             colorRadio.type = 'radio';
             colorRadio.name = 'color';
             colorRadio.value = color;
-            colorRadio.id = `color-${index}`;
+            colorRadio.id = `color-${color}`; // Match the id with the label's for attribute
             colorRadio.className = 'color-radio';
 
-            colorContainer.appendChild(colorLabel);
             colorContainer.appendChild(colorRadio);
+            colorContainer.appendChild(colorLabel);
         });
 
         const quantityInput = document.getElementById('quantity-text');

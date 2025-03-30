@@ -73,7 +73,7 @@
         display: flex; /* Show navbar-list by default */
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 887px) {
         #navbar-list {
             display: none; /* Hide navbar-list on small screens */
         }
@@ -92,6 +92,16 @@
     }
     nav li {
         margin: 0 5vh;
+    }
+    @media (max-width: 768px) {
+        nav li {
+            margin: 0 3vh; /* Reduce margin for narrower screens */
+        }
+    }
+    @media (max-width: 480px) {
+        nav li {
+            margin: 0 1vh; /* Further reduce margin for very narrow screens */
+        }
     }
     nav li a {
         color: #ffffff;
@@ -222,7 +232,7 @@
         color: #37ff00; /* Match hover effect with basket button */
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 887px) {
         #navbar-list {
             display: flex; /* Show menu items on larger screens */
         }

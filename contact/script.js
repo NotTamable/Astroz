@@ -1,11 +1,12 @@
 document.getElementById('contact-form')?.addEventListener('submit', function(event) {
-    const lastSubmitTime = localStorage.getItem('lastSubmitTime');
-    const now = new Date().getTime();
-    if (lastSubmitTime && now - lastSubmitTime < 24 * 60 * 60 * 1000) {
+    const lastSubmitDate = localStorage.getItem('lastSubmitDate');
+    const today = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+
+    if (lastSubmitDate === today) {
         event.preventDefault();
         alert('You can only send one message per day.');
     } else {
-        localStorage.setItem('lastSubmitTime', now);
+        localStorage.setItem('lastSubmitDate', today);
     }
 });
 const basket = JSON.parse(localStorage.getItem('basket')) || [];

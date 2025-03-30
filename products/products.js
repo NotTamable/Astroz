@@ -1,7 +1,7 @@
 window.products = [
-    { id: 1, name: "Astroz Hoodie - Default", price: 10, sizes: ['3-4', '4-5', '5-6', '6-7', '7-8'] },
-    { id: 2, name: "Product2", price: 20, sizes: ['S', 'M', 'L', 'XL'] },
-    { id: 3, name: "Product3", price: 30, sizes: ['One Size'] }
+    { id: 1, name: "Astroz Hoodie - Default", price: 10, sizes: ['3-4', '4-5', '5-6', '6-7', '7-8'], colors: ['Red', 'Blue', 'Green', 'Black'] },
+    { id: 2, name: "Product2", price: 20, sizes: ['S', 'M', 'L', 'XL'], colors: ['White', 'Black'] },
+    { id: 3, name: "Product3", price: 30, sizes: ['One Size'], colors: ['Yellow', 'Pink'] }
 ];
 
 document.addEventListener("DOMContentLoaded", function() {

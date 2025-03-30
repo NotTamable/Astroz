@@ -37,8 +37,8 @@ if (product) {
             sizeContainer.appendChild(sizeLabel);
         });
 
-        const colorOptions = ['Red', 'Blue', 'Green', 'Black'];
-        colorOptions.forEach((color) => {
+        // Dynamically generate color options from the product data
+        product.colors.forEach(color => {
             const colorLabel = document.createElement('label');
             colorLabel.textContent = color;
             colorLabel.htmlFor = `color-${color}`; // Ensure proper association

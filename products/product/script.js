@@ -82,22 +82,15 @@ if (product) {
                 }
             }
 
-            // Remove existing event listeners to prevent duplication
-            decreaseButton.replaceWith(decreaseButton.cloneNode(true));
-            increaseButton.replaceWith(increaseButton.cloneNode(true));
-
-            document.querySelector('.quantity-controls button:first-child').addEventListener('click', decreaseQuantity);
-            document.querySelector('.quantity-controls button:last-child').addEventListener('click', increaseQuantity);
-
+            decreaseButton.addEventListener('click', decreaseQuantity);
+            increaseButton.addEventListener('click', increaseQuantity);
             quantityInput.value = 1;
             updateQuantityButtons();
         }
 
         const addToCartButton = document.querySelector('.add-to-cart-button');
         if (addToCartButton) {
-            addToCartButton.addEventListener('click', handleAddToCart);
-
-            function handleAddToCart(event) {
+            addToCartButton.addEventListener('click', function handleAddToCart(event) {
                 event.preventDefault();
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
@@ -152,47 +145,7 @@ if (product) {
                         popup.style.display = 'none';
                     });
                 }
-            }
+            });
         }
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const quantityInput = document.getElementById('quantity-text');
-    const decreaseButton = document.querySelector('.quantity-controls button:first-child');
-    const increaseButton = document.querySelector('.quantity-controls button:last-child');
-    if (quantityInput && decreaseButton && increaseButton) {
-        function updateQuantityButtons() {
-            decreaseButton.disabled = quantityInput.value <= 1;
-            increaseButton.disabled = quantityInput.value >= 10;
-            decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
-            increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
-        }
-
-        function decreaseQuantity() {
-            const currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1; // Decrease by 1
-                updateQuantityButtons();
-            }
-        }
-
-        function increaseQuantity() {
-            const currentValue = parseInt(quantityInput.value);
-            if (currentValue < 10) {
-                quantityInput.value = currentValue + 1; // Increase by 1
-                updateQuantityButtons();
-            }
-        }
-
-        // Remove existing event listeners to prevent duplication
-        decreaseButton.replaceWith(decreaseButton.cloneNode(true));
-        increaseButton.replaceWith(increaseButton.cloneNode(true));
-
-        document.querySelector('.quantity-controls button:first-child').addEventListener('click', decreaseQuantity);
-        document.querySelector('.quantity-controls button:last-child').addEventListener('click', increaseQuantity);
-
-        quantityInput.value = 1;
-        updateQuantityButtons();
-    }
-});

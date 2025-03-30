@@ -67,15 +67,17 @@ if (product) {
             }
 
             function decreaseQuantity() {
-                if (quantityInput.value > 1) {
-                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                const currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1; // Decrease by 1
                     updateQuantityButtons();
                 }
             }
 
             function increaseQuantity() {
-                if (quantityInput.value < 10) {
-                    quantityInput.value = parseInt(quantityInput.value) + 1;
+                const currentValue = parseInt(quantityInput.value);
+                if (currentValue < 10) {
+                    quantityInput.value = currentValue + 1; // Increase by 1
                     updateQuantityButtons();
                 }
             }

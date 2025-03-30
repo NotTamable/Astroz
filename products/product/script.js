@@ -55,10 +55,11 @@ if (product) {
         });
 
         const quantityInput = document.getElementById('quantity-text');
-        const decreaseButton = document.querySelector('.quantity-controls button:first-child');
-        const increaseButton = document.querySelector('.quantity-controls button:last-child');
+        const decreaseButton = document.getElementById('decrease-quantity');
+        const increaseButton = document.getElementById('increase-quantity');
+        const addToCartButton = document.getElementById('add-to-cart');
 
-        if (quantityInput && decreaseButton && increaseButton) {
+        if (quantityInput && decreaseButton && increaseButton && addToCartButton) {
             function updateQuantityButtons() {
                 decreaseButton.disabled = quantityInput.value <= 1;
                 increaseButton.disabled = quantityInput.value >= 10;
@@ -82,16 +83,7 @@ if (product) {
                 }
             }
 
-            decreaseButton.addEventListener('click', decreaseQuantity);
-            increaseButton.addEventListener('click', increaseQuantity);
-            quantityInput.value = 1;
-            updateQuantityButtons();
-        }
-
-        const addToCartButton = document.querySelector('.add-to-cart-button');
-        if (addToCartButton) {
-            addToCartButton.addEventListener('click', function handleAddToCart(event) {
-                event.preventDefault();
+            window.handleAddToCart = function() {
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
                 const quantity = parseInt(quantityInput.value);
@@ -145,7 +137,14 @@ if (product) {
                         popup.style.display = 'none';
                     });
                 }
-            });
+            };
+
+            decreaseButton.addEventListener('click', decreaseQuantity);
+            increaseButton.addEventListener('click', increaseQuantity);
+            addToCartButton.addEventListener('click', handleAddToCart);
+
+            quantityInput.value = 1;
+            updateQuantityButtons();
         }
     }
 }

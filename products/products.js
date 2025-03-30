@@ -5,7 +5,7 @@ window.products = [
 ];
 
 document.addEventListener("DOMContentLoaded", function() {
-    const productsContainer = document.getElementById("products-container"); // Correct container
+    const productsContainer = document.getElementById("products-container");
     if (!productsContainer) {
         console.error("Error: #products-container not found.");
         return;

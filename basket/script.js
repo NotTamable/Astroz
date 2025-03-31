@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketCounts = document.getElementsByClassName('basket-count');
     const basketItemsContainer = document.getElementById('basket-items');
@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const subtotalElement = document.getElementById('subtotal');
     const feeElement = document.getElementById('fee');
     const totalElement = document.getElementById('total');
+    const clearBasketButton = document.getElementById('clear-basket-button');
+    const checkoutButton = document.getElementById('checkout-button');
 
     function updateBasketCount() {
         const totalItems = basket.reduce(function (sum, item) {
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button id="decrease-${index}">-</button>
                         <input type="text" value="${item.quantity}" readonly>
                         <button id="increase-${index}">+</button>
-                        <button class="remove-item-button" id="remove-${index}">🗙</button>
+                        <button class="remove-item-button" id="remove-${index}">X</button>
                     </div>
                 </div>
             `;
@@ -138,6 +140,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleCheckout() {
         alert('Checkout functionality is not implemented yet.');
+    }
+
+    if (clearBasketButton) {
+        clearBasketButton.addEventListener('click', clearBasket);
+        clearBasketButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            clearBasket();
+        });
+    }
+
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', handleCheckout);
+        checkoutButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            handleCheckout();
+        });
     }
 
     updateBasket();

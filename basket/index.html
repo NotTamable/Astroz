@@ -20,16 +20,10 @@
                 <p>Subtotal: £<span id="subtotal">0.00</span></p>
                 <p>Fee: £<span id="fee">0.00</span></p>
                 <p>Total: £<span id="total">0.00</span></p>
-                <button id="checkout-button" onclick="handleCheckout()">Checkout</button>
-                <button id="clear-basket-button" onclick="clearBasket()">Clear Basket</button>
+                <button id="checkout-button" class="checkout-button">Checkout</button>
+                <button id="clear-basket-button" class="clear-basket-button">Clear Basket</button>
             </div>
             <div id="basket-items"></div>
-            <div class="quantity-controls">
-                <button onclick="decreaseQuantity($,{index})">-</button>
-                <input type="text" value="${item.quantity}" readonly>
-                <button onclick="increaseQuantity($,{index})">+</button>
-                <button class="remove-item-button" onclick="removeItem($,{index})">🗙</button>
-            </div>
         </div>
     </center></main>
     <script src="script.js"></script>

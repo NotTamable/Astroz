@@ -25,9 +25,9 @@
             </div>
             <div id="basket-items"></div>
             <div class="quantity-controls">
-                <button onclick="decreaseQuantity($,{index})" data-index="${index}">-</button>
+                <button onclick="decreaseQuantity($,{index})">-</button>
                 <input type="text" value="${item.quantity}" readonly>
-                <button onclick="increaseQuantity($,{index})" data-index="${index}">+</button>
+                <button onclick="increaseQuantity($,{index})">+</button>
                 <button class="remove-item-button" onclick="removeItem($,{index})">🗙</button>
             </div>
         </div>

@@ -60,31 +60,31 @@ if (product) {
         const addToCartButton = document.getElementById('add-to-cart');
 
         if (quantityInput && decreaseButton && increaseButton && addToCartButton) {
-            window.updateQuantityButtons = function () {
+            function updateQuantityButtons() {
                 const currentValue = parseInt(quantityInput.value) || 1;
                 decreaseButton.disabled = currentValue <= 1;
                 increaseButton.disabled = currentValue >= 10;
                 decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
                 increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
-            };
+            }
 
-            window.decreaseQuantity = function () {
+            function decreaseQuantity() {
                 const currentValue = parseInt(quantityInput.value) || 1;
                 if (currentValue > 1) {
                     quantityInput.value = currentValue - 1;
                     updateQuantityButtons();
                 }
-            };
+            }
 
-            window.increaseQuantity = function () {
+            function increaseQuantity() {
                 const currentValue = parseInt(quantityInput.value) || 1;
                 if (currentValue < 10) {
                     quantityInput.value = currentValue + 1;
                     updateQuantityButtons();
                 }
-            };
+            }
 
-            window.handleAddToCart = function () {
+            function handleAddToCart() {
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
                 const quantity = parseInt(quantityInput.value) || 1;
@@ -120,7 +120,7 @@ if (product) {
                 if (popup) {
                     popup.style.display = 'block';
 
-                    document.getElementById('undo-add-to-basket')?.addEventListener('click', () => {
+                    document.getElementById('undo-add-to-basket').onclick = function () {
                         addedItems.forEach(item => {
                             const index = basket.findIndex(basketItem => basketItem.id === item.id && basketItem.size === item.size && basketItem.color === item.color);
                             if (index > -1) basket.splice(index, 1);
@@ -128,32 +128,38 @@ if (product) {
                         localStorage.setItem('basket', JSON.stringify(basket));
                         updateBasketCount();
                         popup.style.display = 'none';
-                    });
+                    };
 
-                    document.getElementById('go-to-basket')?.addEventListener('click', () => {
+                    document.getElementById('go-to-basket').onclick = function () {
                         window.location.href = '/basket/';
-                    });
+                    };
 
-                    document.getElementById('close-popup')?.addEventListener('click', () => {
+                    document.getElementById('close-popup').onclick = function () {
                         popup.style.display = 'none';
-                    });
+                    };
                 }
-            };
+            }
 
+            decreaseButton.onclick = decreaseQuantity;
             decreaseButton.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 decreaseQuantity();
             });
+
+            increaseButton.onclick = increaseQuantity;
             increaseButton.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 increaseQuantity();
             });
-            quantityInput.value = 1;
-            updateQuantityButtons();
+
+            addToCartButton.onclick = handleAddToCart;
             addToCartButton.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 handleAddToCart();
             });
+
+            quantityInput.value = 1;
+            updateQuantityButtons();
         }
     }
 }

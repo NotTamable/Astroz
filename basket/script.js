@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
-    const basketCounts = document.getElementsByClassName('basket-count'); // Use class instead of ID
+    const basketCounts = document.getElementsByClassName('basket-count');
     const basketItemsContainer = document.getElementById('basket-items');
     const basketContent = document.getElementById('basket-content');
     const emptyBasketMessage = document.getElementById('empty-basket-message');
@@ -9,24 +9,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalElement = document.getElementById('total');
 
     function updateBasketCount() {
-        const totalItems = basket.reduce(function(sum, item) {
+        const totalItems = basket.reduce(function (sum, item) {
             return sum + item.quantity;
         }, 0);
 
-        for (var i = 0; i < basketCounts.length; i++) {
+        for (let i = 0; i < basketCounts.length; i++) {
             basketCounts[i].textContent = totalItems;
         }
     }
 
     function calculateCharge(desiredAmount) {
-        const percentageFee = 0.0349; // 3.49%
-        const flatFee = 0.30; // £0.49 flat fee
+        const percentageFee = 0.0349;
+        const flatFee = 0.30;
         const charge = (desiredAmount + flatFee) / (1 - percentageFee);
-        return parseFloat(charge.toFixed(2)); // Rounds to two decimal places
+        return parseFloat(charge.toFixed(2));
     }
 
     function updateBasket() {
-        basketItemsContainer.innerHTML = ''; // Clear existing items
+        basketItemsContainer.innerHTML = '';
         let subtotal = 0;
 
         if (basket.length === 0) {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         basketContent.style.display = 'block';
         emptyBasketMessage.style.display = 'none';
 
-        basket.forEach(function(item, index) {
+        basket.forEach(function (item, index) {
             const itemCard = document.createElement('div');
             itemCard.className = 'basket-item';
             itemCard.innerHTML = `
@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>Color: ${item.color}</p>
                     <p>Price: £${item.price.toFixed(2)}</p>
                     <div class="quantity-controls">
-                        <button onclick="decreaseQuantity(${index})" data-index="${index}">-</button>
+                        <button id="decrease-${index}">-</button>
                         <input type="text" value="${item.quantity}" readonly>
-                        <button onclick="increaseQuantity(${index})" data-index="${index}">+</button>
-                        <button class="remove-item-button" onclick="removeItem(${index})">🗙</button>
+                        <button id="increase-${index}">+</button>
+                        <button class="remove-item-button" id="remove-${index}">🗙</button>
                     </div>
                 </div>
             `;
@@ -66,11 +66,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 subtotal += item.price * item.quantity;
             }
 
-            document.getElementById(`enable-${index}`).addEventListener('change', function(event) {
+            document.getElementById(`enable-${index}`).addEventListener('change', function (event) {
                 item.enabled = event.target.checked;
                 localStorage.setItem('basket', JSON.stringify(basket));
                 updateBasket();
             });
+
+            const decreaseButton = document.getElementById(`decrease-${index}`);
+            const increaseButton = document.getElementById(`increase-${index}`);
+            const removeButton = document.getElementById(`remove-${index}`);
+
+            decreaseButton.onclick = function () {
+                decreaseQuantity(index);
+            };
+            decreaseButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                decreaseQuantity(index);
+            });
+
+            increaseButton.onclick = function () {
+                increaseQuantity(index);
+            };
+            increaseButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                increaseQuantity(index);
+            });
+
+            removeButton.onclick = function () {
+                removeItem(index);
+            };
         });
 
         const fee = calculateCharge(subtotal) - subtotal;
@@ -83,51 +107,38 @@ document.addEventListener('DOMContentLoaded', function() {
         updateBasketCount();
     }
 
-    window.increaseQuantity = function(index) {
+    function increaseQuantity(index) {
         if (basket[index].quantity < 10) {
             basket[index].quantity++;
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }
-    };
+    }
 
-    window.decreaseQuantity = function(index) {
+    function decreaseQuantity(index) {
         if (basket[index].quantity > 1) {
             basket[index].quantity--;
             localStorage.setItem('basket', JSON.stringify(basket));
             updateBasket();
         }
-    };
+    }
 
-    window.removeItem = function(index) {
+    function removeItem(index) {
         basket.splice(index, 1);
         localStorage.setItem('basket', JSON.stringify(basket));
         updateBasket();
-    };
+    }
 
-    document.addEventListener('touchstart', (e) => {
-        const target = e.target;
-        if (target.matches('.quantity-controls button')) {
-            e.preventDefault();
-            const index = parseInt(target.dataset.index, 10);
-            if (target.textContent === '+') {
-                window.increaseQuantity(index);
-            } else if (target.textContent === '-') {
-                window.decreaseQuantity(index);
-            }
-        }
-    });
+    function clearBasket() {
+        localStorage.removeItem('basket');
+        basket.length = 0;
+        updateBasket();
+        updateBasketCount();
+    }
+
+    function handleCheckout() {
+        alert('Checkout functionality is not implemented yet.');
+    }
 
     updateBasket();
 });
-
-function clearBasket() {
-    localStorage.removeItem('basket');
-    basket.length = 0;
-    updateBasket();
-    updateBasketCount(); // Ensure navbar basket count is updated
-}
-
-function handleCheckout() {
-    alert('Checkout functionality is not implemented yet.');
-}

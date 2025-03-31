@@ -60,52 +60,31 @@ if (product) {
         const addToCartButton = document.getElementById('add-to-cart');
 
         if (quantityInput && decreaseButton && increaseButton && addToCartButton) {
-            function updateQuantityButtons() {
+            window.updateQuantityButtons = function () {
                 const currentValue = parseInt(quantityInput.value) || 1;
                 decreaseButton.disabled = currentValue <= 1;
                 increaseButton.disabled = currentValue >= 10;
                 decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
                 increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
-            }
+            };
 
-            function decreaseQuantity() {
+            window.decreaseQuantity = function () {
                 const currentValue = parseInt(quantityInput.value) || 1;
                 if (currentValue > 1) {
                     quantityInput.value = currentValue - 1;
                     updateQuantityButtons();
                 }
-            }
+            };
 
-            function increaseQuantity() {
+            window.increaseQuantity = function () {
                 const currentValue = parseInt(quantityInput.value) || 1;
                 if (currentValue < 10) {
                     quantityInput.value = currentValue + 1;
                     updateQuantityButtons();
                 }
-            }
+            };
 
-            decreaseButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                decreaseQuantity();
-            });
-            decreaseButton.addEventListener('click', decreaseQuantity);
-
-            increaseButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                increaseQuantity();
-            });
-            increaseButton.addEventListener('click', increaseQuantity);
-
-            quantityInput.value = 1;
-            updateQuantityButtons();
-
-            addToCartButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                handleAddToCart();
-            });
-            addToCartButton.addEventListener('click', handleAddToCart);
-
-            function handleAddToCart() {
+            window.handleAddToCart = function () {
                 const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
                 const selectedColor = document.querySelector('.color-radio:checked')?.value;
                 const quantity = parseInt(quantityInput.value) || 1;
@@ -159,7 +138,22 @@ if (product) {
                         popup.style.display = 'none';
                     });
                 }
-            }
+            };
+
+            decreaseButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                decreaseQuantity();
+            });
+            increaseButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                increaseQuantity();
+            });
+            quantityInput.value = 1;
+            updateQuantityButtons();
+            addToCartButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handleAddToCart();
+            });
         }
     }
 }

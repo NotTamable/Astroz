@@ -11,6 +11,115 @@ function updateBasketCount() {
     }
 }
 
+window.handleAddToCart = function () {
+    const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
+    const selectedColor = document.querySelector('.color-radio:checked')?.value;
+    const quantity = parseInt(document.getElementById("quantity-text").value) || 1;
+
+    if (!selectedColor) {
+        alert('Please select a color.');
+        return;
+    }
+
+    if (selectedSizes.length === 0) {
+        alert('Please select at least one size.');
+        return;
+    }
+
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const addedItems = [];
+
+    selectedSizes.forEach(size => {
+        const existingItem = basket.find(item => item.id === product.id && item.size === size && item.color === selectedColor);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            const newItem = { ...product, size, color: selectedColor, quantity, enabled: true };
+            basket.push(newItem);
+            addedItems.push(newItem);
+        }
+    });
+
+    localStorage.setItem('basket', JSON.stringify(basket));
+    updateBasketCount();
+
+    const popup = document.getElementById('basket-popup');
+    if (popup) {
+        popup.style.display = 'block';
+
+        document.getElementById('undo-add-to-basket').onclick = function () {
+            addedItems.forEach(item => {
+                const index = basket.findIndex(basketItem => basketItem.id === item.id && basketItem.size === item.size && basketItem.color === item.color);
+                if (index > -1) basket.splice(index, 1);
+            });
+            localStorage.setItem('basket', JSON.stringify(basket));
+            updateBasketCount();
+            popup.style.display = 'none';
+        };
+
+        document.getElementById('go-to-basket').onclick = function () {
+            window.location.href = '/basket/';
+        };
+
+        document.getElementById('close-popup').onclick = function () {
+            popup.style.display = 'none';
+        };
+    }
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+    const addToCartButton = document.getElementById("add-to-cart");
+    if (addToCartButton) {
+        addToCartButton.addEventListener("click", handleAddToCart);
+        addToCartButton.addEventListener("touchstart", handleAddToCart, { passive: true });
+    }
+
+    const decreaseButton = document.getElementById('decrease-quantity');
+    const increaseButton = document.getElementById('increase-quantity');
+    const quantityInput = document.getElementById('quantity-text');
+
+    function updateQuantityButtons() {
+        const currentValue = parseInt(quantityInput.value) || 1;
+        decreaseButton.disabled = currentValue <= 1;
+        increaseButton.disabled = currentValue >= 10;
+        decreaseButton.style.opacity = decreaseButton.disabled ? '0.5' : '1';
+        increaseButton.style.opacity = increaseButton.disabled ? '0.5' : '1';
+    }
+
+    function decreaseQuantity() {
+        const currentValue = parseInt(quantityInput.value) || 1;
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+            updateQuantityButtons();
+        }
+    }
+
+    function increaseQuantity() {
+        const currentValue = parseInt(quantityInput.value) || 1;
+        if (currentValue < 10) {
+            quantityInput.value = currentValue + 1;
+            updateQuantityButtons();
+        }
+    }
+
+    if (decreaseButton && increaseButton && quantityInput) {
+        decreaseButton.addEventListener("click", decreaseQuantity);
+        decreaseButton.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            decreaseQuantity();
+        });
+
+        increaseButton.addEventListener("click", increaseQuantity);
+        increaseButton.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            increaseQuantity();
+        });
+
+        quantityInput.value = 1;
+        updateQuantityButtons();
+    }
+});
+
 if (product) {
     const productDetails = document.getElementById('product-details');
     if (productDetails) {
@@ -83,80 +192,6 @@ if (product) {
                     updateQuantityButtons();
                 }
             }
-
-            function handleAddToCart() {
-                const selectedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
-                const selectedColor = document.querySelector('.color-radio:checked')?.value;
-                const quantity = parseInt(quantityInput.value) || 1;
-
-                if (!selectedColor) {
-                    alert('Please select a color.');
-                    return;
-                }
-
-                if (selectedSizes.length === 0) {
-                    alert('Please select at least one size.');
-                    return;
-                }
-
-                const basket = JSON.parse(localStorage.getItem('basket')) || [];
-                const addedItems = [];
-
-                selectedSizes.forEach(size => {
-                    const existingItem = basket.find(item => item.id === product.id && item.size === size && item.color === selectedColor);
-                    if (existingItem) {
-                        existingItem.quantity += quantity;
-                    } else {
-                        const newItem = { ...product, size, color: selectedColor, quantity, enabled: true };
-                        basket.push(newItem);
-                        addedItems.push(newItem);
-                    }
-                });
-
-                localStorage.setItem('basket', JSON.stringify(basket));
-                updateBasketCount();
-
-                const popup = document.getElementById('basket-popup');
-                if (popup) {
-                    popup.style.display = 'block';
-
-                    document.getElementById('undo-add-to-basket').onclick = function () {
-                        addedItems.forEach(item => {
-                            const index = basket.findIndex(basketItem => basketItem.id === item.id && basketItem.size === item.size && basketItem.color === item.color);
-                            if (index > -1) basket.splice(index, 1);
-                        });
-                        localStorage.setItem('basket', JSON.stringify(basket));
-                        updateBasketCount();
-                        popup.style.display = 'none';
-                    };
-
-                    document.getElementById('go-to-basket').onclick = function () {
-                        window.location.href = '/basket/';
-                    };
-
-                    document.getElementById('close-popup').onclick = function () {
-                        popup.style.display = 'none';
-                    };
-                }
-            }
-
-            decreaseButton.onclick = decreaseQuantity;
-            decreaseButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                decreaseQuantity();
-            });
-
-            increaseButton.onclick = increaseQuantity;
-            increaseButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                increaseQuantity();
-            });
-
-            addToCartButton.onclick = handleAddToCart;
-            addToCartButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                handleAddToCart();
-            });
 
             quantityInput.value = 1;
             updateQuantityButtons();

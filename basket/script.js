@@ -78,25 +78,22 @@ document.addEventListener('DOMContentLoaded', function () {
             const increaseButton = document.getElementById(`increase-${index}`);
             const removeButton = document.getElementById(`remove-${index}`);
 
-            decreaseButton.onclick = function () {
-                decreaseQuantity(index);
-            };
-            decreaseButton.addEventListener('touchstart', (e) => {
+            decreaseButton.addEventListener('pointerdown', (e) => {
                 e.preventDefault();
+                document.activeElement.blur(); // Remove focus from any element
                 decreaseQuantity(index);
             });
 
-            increaseButton.onclick = function () {
-                increaseQuantity(index);
-            };
-            increaseButton.addEventListener('touchstart', (e) => {
+            increaseButton.addEventListener('pointerdown', (e) => {
                 e.preventDefault();
+                document.activeElement.blur();
                 increaseQuantity(index);
             });
 
-            removeButton.onclick = function () {
+            removeButton.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
                 removeItem(index);
-            };
+            });
         });
 
         const fee = calculateCharge(subtotal) - subtotal;
@@ -143,16 +140,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (clearBasketButton) {
-        clearBasketButton.addEventListener('click', clearBasket);
-        clearBasketButton.addEventListener('touchstart', (e) => {
+        clearBasketButton.addEventListener('pointerdown', (e) => {
             e.preventDefault();
             clearBasket();
         });
     }
 
     if (checkoutButton) {
-        checkoutButton.addEventListener('click', handleCheckout);
-        checkoutButton.addEventListener('touchstart', (e) => {
+        checkoutButton.addEventListener('pointerdown', (e) => {
             e.preventDefault();
             handleCheckout();
         });

@@ -159,6 +159,10 @@ main {
     background-color: #28a745;
 }
 
+input[readonly] {
+    pointer-events: none; /* Prevent interaction with readonly inputs */
+}
+
 #basket-summary {
     text-align: center;
     margin-top: 20px;
